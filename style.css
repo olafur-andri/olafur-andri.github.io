@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(240, 240, 240);
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  width: 95%;
+  margin: auto;
+  display: block;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 15px;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card ul li {
+  margin-bottom: 18px;
+  padding-left: 15px;
+  margin-left: 10px;
+}
+
+.card ul li a {
+  font-family: "Roboto", sans-serif;
+  color: rgba(0, 0, 0, 0.87654);
+  text-decoration: none;
+  font-size: 18px;
+}
