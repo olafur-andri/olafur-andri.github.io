@@ -33,7 +33,16 @@ body {
   top: 0;
   left: 0;
   z-index: 0;
-  transition: box-shadow 400ms ease;
+  transition: transform 400ms ease;
+  will-change: transform;
+}
+
+.navbar.grow {
+  transform: scaleY(3);
+}
+
+.navbar-header i {
+  cursor: pointer;
 }
 
 .navbar.active {
@@ -99,11 +108,11 @@ body {
   bottom: 18px;
   left: 18px;
   pointer-events: none;
+  transition: opacity 400ms ease;
 }
 
-#languages i.fade {
+.footer i.fade {
   opacity: 0;
-  transition: opacity 400ms ease;
 }
 
 .fab i {
@@ -123,7 +132,7 @@ body {
 
 .main .header {
   display: flex;
-  height: 350px;
+  height: 400px;
   width: 100%;
   align-items: flex-end;
   background-color: #E91E63;
