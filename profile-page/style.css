@@ -20,6 +20,7 @@ body {
 
 .wrapper a, button {
   -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .navbar {
@@ -35,10 +36,11 @@ body {
   z-index: 0;
   transition: transform 400ms ease;
   will-change: transform;
+  transform-origin: 50% 0;
 }
 
 .navbar.grow {
-  transform: scaleY(3);
+  transform: scaleY(4.5);
 }
 
 .navbar-header i {
@@ -160,20 +162,18 @@ body {
   height: auto;
   width: 100%;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.56);
   top: 80px;
   left: 0;
   z-index: 1000;
   display: block;
-  will-change: transform;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 400ms 400ms ease;
+  will-change: opacity;
+  opacity: 0;
+  transition: opacity 400ms ease;
 }
 
-.navbar-content.grow {
-  transform: scaleY(1);
-  transition: transform 400ms ease;
+.navbar-content.make-visible {
+  opacity: 1;
+  transition: opacity 400ms 100ms ease;
 }
 
 .navbar-content ul {
@@ -181,23 +181,17 @@ body {
   width: 100%;
   text-align: right;
   padding-right: 40px;
-  opacity: 0;
-  transition: opacity 400ms ease;
-}
-
-.navbar-content ul.visible {
-  opacity: 1;
-  transition: opacity 400ms 400ms ease;
 }
 
 .navbar-content ul li {
-  padding-bottom: 23px;
-  padding-top: 23px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .navbar-content ul li a {
   color: white;
   text-decoration: none;
+  font-size: 17px;
 }
 
 .main i {

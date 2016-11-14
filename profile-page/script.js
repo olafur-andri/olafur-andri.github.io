@@ -5,6 +5,7 @@ window.addEventListener("load", function() {
   var footerIcon = document.querySelector(".footer i");
   var hamburger = document.querySelector(".navbar-header i");
   var navbar = document.querySelector(".navbar");
+  var navbarContent = document.querySelector(".navbar-content");
   var footerIconText = "";
   var counter = 1;
 
@@ -18,7 +19,7 @@ window.addEventListener("load", function() {
 
   hamburger.addEventListener("click", function(e) {
     e.preventDefault();
-
+    navbarContent.classList.toggle("make-visible");
     navbar.classList.toggle("grow");
   }, true);
 }, true);
