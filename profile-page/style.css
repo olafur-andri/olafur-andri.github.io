@@ -45,6 +45,11 @@ body {
 
 .navbar-header i {
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
 }
 
 .navbar.active {
