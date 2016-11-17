@@ -37,6 +37,7 @@ body {
   transition: transform 400ms ease;
   will-change: transform;
   transform-origin: 50% 0;
+  pointer-events: none;
 }
 
 .navbar.grow {
