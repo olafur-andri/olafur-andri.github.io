@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(240, 240, 240);
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  font-family: "Arvo", sans-serif;
+  font-weight: 400;
+}
+
+.navbar {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  padding-left: 10px;
+  padding-right: 30px;
+  color: white;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.col-1-hor {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.align-right {
+  justify-content: flex-end;
+}
+
+#logo {
+  height: 80px;
+  background-color: transparent;
+}
+
+.header {
+  top: 0;
+  left: 0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-image: url("http://archpaper.com/wp-content/uploads/2011/11/best_towers_2011_01.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  z-index: 0;
+}
+
+.layer {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.main {
+  width: 100%;
+  margin: auto;
+  margin-top: 200px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  padding: 18px;
+  position: relative;
+}
+
+.headline {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.876);
+}
+
+@media screen and (min-width: 600px) {
+  .main {
+    width: 90%;
+  }
+}
