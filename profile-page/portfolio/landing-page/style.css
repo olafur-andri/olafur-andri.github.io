@@ -14,8 +14,8 @@ body {
 .wrapper {
   height: 100%;
   width: 100%;
-  font-family: "Arvo", sans-serif;
-  font-weight: 100;
+  font-family: "Lato", sans-serif;
+  font-weight: light;
 }
 
 .navbar {
@@ -53,33 +53,55 @@ body {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+#description {
+  color: rgba(255, 255, 255, 1);
+  font-weight: 100;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  height: 250px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-content .col {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-#description {
-  color: rgba(255, 255, 255, 0.9);
+.header-content .col.upper {
+  align-items: flex-end;
+}
+
+.header-content .col.lower {
+  align-items: flex-start;
 }
 
 .main {
   width: 100%;
   margin: auto;
-  margin-top: 250px;
+  margin-top: 0px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
   padding: 18px;
   position: relative;
+  z-index: 3;
 }
 
-.main p {
-  font-weight: 300;
+.main p.paragraph {
+  font-weight: 100;
 }
 
-.headline {
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.876);
+.main h2.headline {
+  font-weight: 400;
 }
 
 @media screen and (min-width: 600px) {
