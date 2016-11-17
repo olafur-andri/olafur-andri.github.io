@@ -52,8 +52,8 @@ body {
   top: 0;
   left: 0;
   position: fixed;
-  height: 100%;
-  width: 105%;
+  height: 105%;
+  width: 100%;
   background-image: url("http://archpaper.com/wp-content/uploads/2011/11/best_towers_2011_01.jpg");
   background-repeat: no-repeat;
   background-size: cover;
