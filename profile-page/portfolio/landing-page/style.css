@@ -99,7 +99,8 @@ body {
   width: 100%;
   margin: auto;
   margin-top: 0px;
-  background-color: white;
+  margin-bottom: 30px;
+  background-color: rgb(240, 240, 240);
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
   padding: 18px;
@@ -109,14 +110,70 @@ body {
 
 .main p.paragraph {
   font-weight: 100;
+  margin-bottom: 40px;
+  line-height: 25px;
 }
 
 .main h2.headline {
+  font-weight: 600;
+}
+
+blockquote {
+  margin: auto;
+  width: 98%;
+  max-width: 400px;
+  padding: 10px 10px 10px 20px;
+}
+
+blockquote p {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  font-weight: 100;
+  padding-bottom: 15px;
+  font-size: 20px;
   font-weight: 400;
+}
+
+blockquote footer {
+  text-align: right;
+  padding-right: 15px;
+  color: rgb(100, 100, 100);
+  font-style: italic;
+  font-weight: 100;
+}
+
+.profile-picture {
+  width: 70px;
+  border-radius: 50%;
+  display: none;
+  margin-left: 20px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.profile {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.4);
+  display: none;
+  overflow: hidden;
+}
+
+.profile .profile-picture {
+  margin-left: 0;
 }
 
 @media screen and (min-width: 600px) {
   .main {
     width: 90%;
+  }
+
+  .profile-picture {
+    display: inline-block;
+  }
+
+  .profile {
+    display: inline-block;
   }
 }
