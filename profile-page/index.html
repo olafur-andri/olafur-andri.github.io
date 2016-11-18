@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
     <title>profilePage demo</title>
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,light" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
@@ -23,29 +23,43 @@
           </a>
         </div>
         <div class="col">
-          <i class="material-icons">menu</i>
+          <i class="material-icons" id="hamburger">menu</i>
+          <ul>
+            <li id="contact_link">
+              <a href="#">Contact</a>
+            </li>
+            <li>
+              <a href="#">Portfolio</a>
+            </li>
+            <li>
+              <a href="#">About Me</a>
+            </li>
+            <li>
+              <a href="#">Home</a>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="navbar-content">
         <ul>
           <li>
-            <a href="#">Index Page</a>
+            <a href="#">Home</a>
           </li>
           <li>
-            <a href="#">About Page</a>
+            <a href="about.html">About Me</a>
           </li>
           <li>
-            <a href="#">Portfolio Page</a>
+            <a href="portfolio.html">Portfolio</a>
           </li>
           <li>
-            <a href="#">Contact Info</a>
+            <a href="contact.html">Contact</a>
           </li>
         </ul>
       </div>
 
       <main class="main">
         <header class="header">
-          <h1 class="title">Hello, There!</h1>
+          <h1 class="title">Hello, there!</h1>
         </header>
         <i class="material-icons">info</i>
         <p>My name is Ólafur Andri Davíðsson and I have a great ambition towards web development. I live in Iceland and I use HTML5 and CSS3 to create fully-functional, responsive websites. They're also built with love and care. If you are in need of a web developer don't look further.</p>
@@ -58,7 +72,7 @@
         <div class="footer-content">
           <ul>
             <li>
-              <button type="button" class="language-button">Íslenska</button>
+              <button type="button" class="language-button" id="icelandic">Íslenska</button>
             </li>
             <li>
               <button type="button" class="language-button">English</button>

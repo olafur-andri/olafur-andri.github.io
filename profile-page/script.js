@@ -6,6 +6,7 @@ window.addEventListener("load", function() {
   var hamburger = document.querySelector(".navbar-header i");
   var navbar = document.querySelector(".navbar");
   var navbarContent = document.querySelector(".navbar-content");
+  var icelandic = document.getElementById("icelandic");
   var footerIconText = "";
   var counter = 1;
 
@@ -21,5 +22,9 @@ window.addEventListener("load", function() {
     e.preventDefault();
     navbarContent.classList.toggle("make-visible");
     navbar.classList.toggle("grow");
+  }, true);
+
+  icelandic.addEventListener("click", function() {
+    
   }, true);
 }, true);
