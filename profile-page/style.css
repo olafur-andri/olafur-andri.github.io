@@ -276,9 +276,30 @@ body {
   pointer-events: auto;
 }
 
-a.disabled {
+.disabled {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.fade-out {
+  will-change: transform;
+  transform: translateX(-30px);
+  opacity: 0;
+  transition: transform 400ms ease, opacity 400ms ease;
+}
+
+.fade-in {
+  will-change: transform;
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+}
+
+.english, .icelandic {
+  transition: transform 400ms ease, opacity 400ms ease;
+}
+
+.icelandic {
+  display: none;
 }
 
 @media screen and (max-width: 650px) and (orientation: landscape) {

@@ -1,4 +1,5 @@
 window.addEventListener("load", function() {
+  var main = document.querySelector("main.main");
   var languagesButton = document.getElementById("languages");
   var footer = document.querySelector(".footer");
   var footerContent = document.querySelector(".footer-content");
@@ -7,12 +8,17 @@ window.addEventListener("load", function() {
   var navbar = document.querySelector(".navbar");
   var navbarContent = document.querySelector(".navbar-content");
   var icelandic = document.getElementById("icelandic");
-  var footerIconText = "";
+  var english = document.getElementById("english")
+  var englishContent = document.querySelectorAll(".english");
+  var icelandicContent = document.querySelectorAll(".icelandic");
   var counter = 1;
 
-  languagesButton.addEventListener("click", function(e) {
-    footerIconText = footerIcon.textContent;
+  main.addEventListener("click", function() {
+    navbar.classList.remove("grow");
+    navbarContent.classList.remove("make-visible");
+  }, true);
 
+  languagesButton.addEventListener("click", function(e) {
     e.preventDefault();
     this.classList.toggle("grow");
     footerContent.classList.toggle("make-visible");
@@ -25,6 +31,61 @@ window.addEventListener("load", function() {
   }, true);
 
   icelandic.addEventListener("click", function() {
-    
+    languagesButton.classList.remove("grow");
+    footerContent.classList.remove("make-visible");
+    english.classList.remove("disabled");
+    icelandic.classList.add("disabled");
+
+    for (var i = 0; i < englishContent.length; i++) {
+      englishContent[i].classList.add("fade-out");
+    }
+
+    setTimeout(function() {
+      for (var i = 0; i < englishContent.length; i++) {
+        englishContent[i].style.display = "none";
+      }
+
+      for (var i = 0; i < icelandicContent.length; i++) {
+        icelandicContent[i].style.display = "block";
+      }
+
+      requestAnimationFrame(function() {
+
+        for (var i = 0; i < icelandicContent.length; i++) {
+          icelandicContent[i].classList.remove("fade-out");
+        }
+
+      });
+
+    }, 500);
+  }, true);
+
+  english.addEventListener("click", function(e) {
+    languagesButton.classList.remove("grow");
+    footerContent.classList.remove("make-visible");
+    english.classList.add("disabled");
+    icelandic.classList.remove("disabled");
+
+    for (var i = 0; i < icelandicContent.length; i++) {
+      icelandicContent[i].classList.add("fade-out");
+    }
+
+    setTimeout(function() {
+      for (var i = 0; i < icelandicContent.length; i++) {
+        icelandicContent[i].style.display = "none";
+      }
+
+      for (var i = 0; i < englishContent.length; i++) {
+        englishContent[i].style.display = "block";
+      }
+
+      requestAnimationFrame(function() {
+
+        for (var i = 0; i < englishContent.length; i++) {
+          englishContent[i].classList.remove("fade-out");
+        }
+
+      });
+    }, 500);
   }, true);
 }, true);

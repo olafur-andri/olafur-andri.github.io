@@ -26,16 +26,20 @@
           <i class="material-icons" id="hamburger">menu</i>
           <ul>
             <li id="contact_link">
-              <a href="#">Contact</a>
+              <a href="#" class="english">Contact</a>
+              <a href="#" class="icelandic fade-out">Hafðu Samband</a>
             </li>
             <li>
-              <a href="#">Portfolio</a>
+              <a href="#" class="english">Portfolio</a>
+              <a href="#" class="icelandic fade-out">Verkasafn</a>
             </li>
             <li>
-              <a href="#">About Me</a>
+              <a href="#" class="english">About Me</a>
+              <a href="#" class="icelandic fade-out">Um mig</a>
             </li>
             <li>
-              <a href="#">Home</a>
+              <a href="#" class="english disabled">Home</a>
+              <a href="#" class="icelandic fade-out">Heim</a>
             </li>
           </ul>
         </div>
@@ -43,29 +47,36 @@
       <div class="navbar-content">
         <ul>
           <li>
-            <a href="#" class="disabled">Home</a>
+            <a href="#" class="disabled english">Home</a>
+            <a href="#" class="icelandic fade-out">Heim</a>
           </li>
           <li>
-            <a href="about.html">About Me</a>
+            <a href="about.html" class="english">About Me</a>
+            <a href="#" class="icelandic fade-out">Um mig</a>
           </li>
           <li>
-            <a href="portfolio.html">Portfolio</a>
+            <a href="portfolio.html" class="english">Portfolio</a>
+            <a href="#" class="icelandic fade-out">Verkasafn</a>
           </li>
           <li>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html" class="english">Contact</a>
+            <a href="#" class="icelandic fade-out">Hafðu Samband</a>
           </li>
         </ul>
       </div>
 
       <main class="main">
         <header class="header">
-          <h1 class="title">Hello, there!</h1>
+          <h1 class="title english">Hello, there!</h1>
+          <h1 class="title icelandic fade-out">Halló!</h1>
         </header>
         <i class="material-icons">info</i>
-        <p>My name is Ólafur Andri Davíðsson and I have a great ambition towards web development. I live in Iceland and I use HTML5 and CSS3 to create fully-functional, responsive websites. They're also built with love and care. If you are in need of a web developer don't look further.</p>
+        <p class="english">My name is Ólafur Andri Davíðsson and I have a great ambition towards web development. I live in Iceland and I use HTML5 and CSS3 to create fully-functional, responsive websites. They're also built with love and care. If you are in need of a web developer don't look further.</p>
+        <p class="icelandic fade-out">Ég heiti Ólafur Andri Davíðsson og hef mikinn áhuga á vefforitun. Ég bý á Íslandi og nota HTML5 og CSS3 til að búa til vefsíður sem virka vel á tölvum sem og símum. Ég einnig legg mig allan fram í að forrita vefsíðurnar. Ef þig vantar vefforitara get ég komið til hjálpar.</p>
         <br />
         <i class="material-icons">work</i>
-        <p>My portfolio is, in its simplest form, a collection of demo sites I have created. There's a lot of websites you can take a look at, get ideas or get inspired from. I built them from the ground-up myself using HTML5 and CSS3. They look great on desktop as well as mobile and scale down nicely on smaller <a href="portfolio/landing-page/index.html">Landing page</a> screens. Win.</p>
+        <p class="english">My portfolio is, in its simplest form, a collection of demo sites I have created. There's a lot of websites you can take a look at, get ideas or get inspired from. I built them from the ground-up myself using HTML5 and CSS3. They look great on desktop as well as mobile and scale down nicely on smaller  screens. Win.</p>
+        <p class="icelandic fade-out">Verkasafnið mitt samanstendur af mörgum, litlum og stórum, síðum sem ég hef gert. Markmiðið með þeim síðum er að sýna fólki þekkingu mína á vefforritun. Einnig má líka sækja innblástur í þessar vefsíður og nýta upp á eigin spýtur. Þau virka frábærlega á stórum og litlum skjám. Verði ykkur bara að góðu.</p>
       </main>
 
       <footer class="footer">
@@ -75,7 +86,7 @@
               <button type="button" class="language-button" id="icelandic">Íslenska</button>
             </li>
             <li>
-              <button type="button" class="language-button">English</button>
+              <button type="button" class="language-button disabled" id="english">English</button>
             </li>
           </ul>
         </div>
