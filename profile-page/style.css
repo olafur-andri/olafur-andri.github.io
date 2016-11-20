@@ -276,6 +276,11 @@ body {
   pointer-events: auto;
 }
 
+a.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 @media screen and (max-width: 650px) and (orientation: landscape) {
   .navbar, .navbar-content, .navbar-header {
     position: absolute;
