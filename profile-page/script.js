@@ -12,6 +12,11 @@ window.addEventListener("load", function() {
   var englishContent = document.querySelectorAll(".english");
   var icelandicContent = document.querySelectorAll(".icelandic");
   var counter = 1;
+  var englishText = [];
+
+  for (var i = 0; i < englishContent.length; i++) {
+    englishText[i] = englishContent[i].textContent;
+  }
 
   main.addEventListener("click", function() {
     navbar.classList.remove("grow");
@@ -42,50 +47,27 @@ window.addEventListener("load", function() {
 
     setTimeout(function() {
       for (var i = 0; i < englishContent.length; i++) {
-        englishContent[i].style.display = "none";
+        englishContent[i].textContent = icelandicContent[i].textContent;
+        englishContent[i].classList.remove("fade-out");
       }
-
-      for (var i = 0; i < icelandicContent.length; i++) {
-        icelandicContent[i].style.display = "block";
-      }
-
-      requestAnimationFrame(function() {
-
-        for (var i = 0; i < icelandicContent.length; i++) {
-          icelandicContent[i].classList.remove("fade-out");
-        }
-
-      });
-
-    }, 500);
+    }, 400);
   }, true);
 
-  english.addEventListener("click", function(e) {
+  english.addEventListener("click", function() {
     languagesButton.classList.remove("grow");
     footerContent.classList.remove("make-visible");
     english.classList.add("disabled");
     icelandic.classList.remove("disabled");
 
-    for (var i = 0; i < icelandicContent.length; i++) {
-      icelandicContent[i].classList.add("fade-out");
+    for (var i = 0; i < englishContent.length; i++) {
+      englishContent[i].classList.add("fade-out");
     }
 
     setTimeout(function() {
-      for (var i = 0; i < icelandicContent.length; i++) {
-        icelandicContent[i].style.display = "none";
-      }
-
       for (var i = 0; i < englishContent.length; i++) {
-        englishContent[i].style.display = "block";
+        englishContent[i].textContent = englishText[i];
+        englishContent[i].classList.remove("fade-out");
       }
-
-      requestAnimationFrame(function() {
-
-        for (var i = 0; i < englishContent.length; i++) {
-          englishContent[i].classList.remove("fade-out");
-        }
-
-      });
     }, 500);
   }, true);
 }, true);
