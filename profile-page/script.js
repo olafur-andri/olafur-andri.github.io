@@ -92,6 +92,11 @@ window.addEventListener("load", function() {
     }
   }
 
+  // Make the wrapper fade-in on load
+  setTimeout(function() {
+    main.classList.add("visible");
+  }, 300);
+
   main.addEventListener("click", function() {
     navbar.classList.remove("grow");
     navbarContent.classList.remove("make-visible");

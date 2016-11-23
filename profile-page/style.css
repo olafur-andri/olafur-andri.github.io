@@ -148,6 +148,15 @@ body {
 .main {
   margin-top: -100px;
   margin-bottom: 100px;
+  will-change: transform;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 400ms ease, opacity 400ms ease;
+}
+
+.main.visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .main h1 {
