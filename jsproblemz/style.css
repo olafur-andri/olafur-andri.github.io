@@ -69,6 +69,7 @@ a, i, button {
   align-items: center;
   padding: 14px;
   position: relative;
+  cursor: pointer;
 }
 
 #hamburger_background {
@@ -163,6 +164,7 @@ a, i, button {
 
 #side_nav_close {
   padding: 10px;
+  cursor: pointer;
 }
 
 #title {
