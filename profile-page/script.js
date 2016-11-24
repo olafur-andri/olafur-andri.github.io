@@ -1,6 +1,6 @@
 'use strict';
 
-window.addEventListener("load", function() {
+document.addEventListener("DOMContentLoaded", function() {
   var main = document.querySelector("main.main");
   var languagesButton = document.getElementById("languages");
   var footer = document.querySelector(".footer");
