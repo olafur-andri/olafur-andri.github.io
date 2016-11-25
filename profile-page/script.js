@@ -1,6 +1,7 @@
 'use strict';
 
 document.addEventListener("DOMContentLoaded", function() {
+  var wrapper = document.querySelector(".wrapper");
   var main = document.querySelector("main.main");
   var languagesButton = document.getElementById("languages");
   var footer = document.querySelector(".footer");
@@ -94,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Make the wrapper fade-in on load
   setTimeout(function() {
-    main.classList.add("visible");
-  }, 300);
+    wrapper.classList.add("visible");
+  }, 100);
 
   main.addEventListener("click", function() {
     navbar.classList.remove("grow");
