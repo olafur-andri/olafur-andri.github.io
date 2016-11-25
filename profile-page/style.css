@@ -339,6 +339,86 @@ h3 {
   height: 50px;
 }
 
+.card {
+  display: block;
+  width: 90%;
+  max-width: 500px;
+  height: 300px;
+  margin: auto;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card .header {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  flex: 2.8;
+}
+
+.card .header#material_kit_pro {
+  background-image: url("img/thumbnail-1.png");
+}
+
+.card .header#material_dashboard_pro {
+  background-image: url("img/thumbnail-2.png");
+}
+
+.card .header#ididdit {
+  background-image: url("img/thumbnail-3.png");
+}
+
+.card .body {
+  width: 100%;
+  flex: 1;
+  display: flex;
+}
+
+.card .body .col {
+  display: flex;
+}
+
+.card .body .col p {
+  margin: 0;
+  margin-top: 10px;
+  margin-left: 0;
+  display: inline-block;
+  width: auto;
+}
+
+.card .body .col:first-child {
+  flex: 3;
+  text-align: left;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.card .body .col:last-child {
+  align-items: flex-end;
+  flex: 1;
+}
+
+.card .body .col .button {
+  -webkit-appearance: none;
+  border: 0;
+  background: 0;
+  color: #E91E63;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  background-color: transparent;
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 @media screen and (max-width: 650px) and (orientation: landscape) {
   .navbar, .navbar-content, .navbar-header {
     position: absolute;

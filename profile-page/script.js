@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
       request.onsuccess = function(e) {
         numRows = e.target.result;
-        console.log(numRows);
 
         request = store.get(numRows);
 

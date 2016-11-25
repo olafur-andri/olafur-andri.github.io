@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Ólafur Andri - Profile Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,light,li" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style type="text/css">
+      body {
+        background-color: #FAFAFA;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav class="navbar">
+
+      </nav>
+      <div class="navbar-header">
+        <div class="col">
+          <a href="index.html">
+            <svg height="80" width="80">
+              <circle r="20" cx="40" cy="40" stroke="white" stroke-width="7" fill="transparent" />
+              <path d="M40 40 L52.5 25 L62.5 35 L42.5 45 Z" fill="white" />
+            </svg>
+          </a>
+        </div>
+        <div class="col">
+          <i class="material-icons" id="hamburger">menu</i>
+          <ul>
+            <li id="contact_link">
+              <a href="contact.html" class="english">Contact</a>
+              <a href="contact.html" class="icelandic fade-out">Hafðu Samband</a>
+            </li>
+            <li>
+              <a href="#" class="english disabled">Portfolio</a>
+              <a href="#" class="icelandic fade-out disabled">Verkasafn</a>
+            </li>
+            <li>
+              <a href="about.html" class="english">About Me</a>
+              <a href="about.html" class="icelandic fade-out">Um Mig</a>
+            </li>
+            <li>
+              <a href="index.html" class="english">Home</a>
+              <a href="index.html" class="icelandic fade-out">Heim</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="navbar-content">
+        <ul>
+          <li>
+            <a href="index.html" class="english">Home</a>
+            <a href="index.html" class="icelandic fade-out">Heim</a>
+          </li>
+          <li>
+            <a href="about.html" class="english">About Me</a>
+            <a href="about.html" class="icelandic fade-out">Um Mig</a>
+          </li>
+          <li>
+            <a href="#" class="english disabled">Portfolio</a>
+            <a href="#" class="icelandic disabled fade-out">Verkasafn</a>
+          </li>
+          <li>
+            <a href="contact.html" class="english">Contact</a>
+            <a href="contact.html" class="icelandic fade-out">Hafðu Samband</a>
+          </li>
+        </ul>
+      </div>
+
+      <main class="main">
+        <header class="header">
+          <h1 class="title english">Portfolio</h1>
+          <h1 class="title icelandic fade-out">Verkasafn</h1>
+        </header>
+
+        <div class="card">
+          <div class="header" id="ididdit"></div>
+          <div class="body">
+            <div class="col">
+              <p>iDiddit</p>
+            </div>
+            <div class="col">
+              <a href="http://olafur.hol.es" class="button button-flat english">View</a>
+              <a href="http://olafur.hol.es" class="button button-flat icelandic fade-out">Skoða</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="header" id="material_kit_pro">
+
+          </div>
+          <div class="body">
+            <div class="col">
+              <p>The White Pepper</p>
+            </div>
+            <div class="col">
+              <a class="button button-flat english" href="portfolio/white-pepper/index.html">View</a>
+              <a class="button button-flat icelandic fade-out">Skoða</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="header" id="material_dashboard_pro"></div>
+          <div class="body">
+            <div class="col">
+              <p>Material Dashboard Pro</p>
+            </div>
+            <div class="col">
+              <a class="button button-flat english" href="#">View</a>
+              <a class="button button-flat icelandic fade-out">Skoða</a>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+          <ul>
+            <li>
+              <button type="button" class="language-button" id="icelandic">Íslenska</button>
+            </li>
+            <li>
+              <button type="button" class="language-button disabled" id="english">English</button>
+            </li>
+          </ul>
+        </div>
+        <button type="button" class="fab" id="languages"></button>
+        <i class="material-icons">language</div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
