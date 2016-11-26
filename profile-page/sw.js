@@ -1,7 +1,7 @@
 var CACHE_NAME = "cache-v1";
 var urlsToCache = [
   "/",
-  "/img/"
+  "/img/thumbnail-1.jpg"
 ];
 
 self.addEventListener('install', function(event) {
