@@ -4,7 +4,8 @@ var urlsToCache = [
   "/profile-page/img/thumbnail-1.jpg",
   "/profile-page/img/thumbnail-2.jpg",
   "/profile-page/img/thumbnail-3.jpg",
-  "/profile-page/img/towers.jpg"
+  "/profile-page/img/towers.jpg",
+  "/profile-page/img/white-pepper-logo.jpg"
 ];
 
 self.addEventListener('install', function(event) {
