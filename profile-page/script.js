@@ -105,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }).catch(function(err) {
       // Registration failed :(
       console.log("ServiceWorker registration failed: ", err);
-    )
     });
   }
 
