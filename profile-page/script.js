@@ -67,8 +67,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         request.onsuccess = function(e) {
           var results = e.target.result;
-          isIcelandic = results.icelandic;
-          console.dir(isIcelandic);
+          try {
+            isIcelandic = results.icelandic;
+            console.dir(isIcelandic);
+          } catch (e) {
+            
+          }
 
           if (isIcelandic) {
             for (var i = 0; i < englishContent.length; i++) {
