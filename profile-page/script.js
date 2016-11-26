@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
             isIcelandic = results.icelandic;
             console.dir(isIcelandic);
           } catch (e) {
-            
+
           }
 
           if (isIcelandic) {
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Service Worker!!!
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js").then(function(registration) {
+    navigator.serviceWorker.register("/profile-page/sw.js").then(function(registration) {
       // Registration was successful
       console.log("ServiceWorker registration successful with scope: ", registration.scope);
     }).catch(function(err) {
