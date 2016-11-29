@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Olafur's Profile Page",
+  "version": "1.0.0.0",
+  "default_locale": "en",
+  "description": "A page to showcase my web development skills",
+  "icons": {
+    "16": "img/logo-16-transparent.png",
+    "48": "img/logo-48-transparent.png",
+    "128": "img/logo-128-transparent.png"
+  },
+  "author": "Ólafur Andri Davíðsson",
+  "background": {
+    "persistent": false
+  },
+  "homepage_url": "https://olafur-andri.github.io/profile-page/index.html",
+  "offline_enabled": false
+}
