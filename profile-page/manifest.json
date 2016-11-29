@@ -21,6 +21,6 @@
   "background": {
     "persistent": false
   },
-  "homepage_url": "https://olafur-andri.github.io/profile-page/index.html",
+  "start_url": "https://olafur-andri.github.io/profile-page/index.html",
   "offline_enabled": false
 }
