@@ -4,11 +4,19 @@
   "version": "1.0.0.0",
   "default_locale": "en",
   "description": "A page to showcase my web development skills",
-  "icons": {
-    "16": "img/logo-16-transparent.png",
-    "48": "img/logo-48-transparent.png",
-    "128": "img/logo-128-transparent.png"
-  },
+  "icons": [{
+    "src": "img/logo-16-transparent.png",
+    "sizes": "16x16",
+    "type": "image/png"
+  }, {
+    "src": "img/logo-48-transparent.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }, {
+    "src": "img/logo-128-transparent.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  }],
   "author": "Ólafur Andri Davíðsson",
   "background": {
     "persistent": false
