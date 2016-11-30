@@ -20,5 +20,9 @@
     "src": "img/logo-128-transparent.png",
     "sizes": "128x128",
     "type": "image/png"
+  }, {
+    "src": "img/logo-150-transparent.png",
+    "sizes": "150x150",
+    "type": "image/png"
   }]
 }
