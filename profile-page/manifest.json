@@ -1,9 +1,10 @@
 {
-  "manifest_version": 2,
   "name": "Olafur's Profile Page",
-  "version": "1.0.0.0",
-  "default_locale": "en",
-  "description": "A page to showcase my web development skills",
+  "short_name": "Profile Page",
+  "start_url": "https://olafur-andri.github.io/profile-page/index.html",
+  "display": "standalone",
+  "background_color": "#FFF",
+  "description": "A website that showcases my web development skills",
   "icons": [{
     "src": "img/logo-16-transparent.png",
     "sizes": "16x16",
@@ -20,7 +21,5 @@
   "author": "Ólafur Andri Davíðsson",
   "background": {
     "persistent": false
-  },
-  "start_url": "https://olafur-andri.github.io/profile-page/index.html",
-  "offline_enabled": false
+  }
 }
