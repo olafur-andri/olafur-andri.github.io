@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var icelandicContent = document.querySelectorAll(".icelandic");
   var cards = document.querySelectorAll(".card");
   var cardObfuscators = document.querySelectorAll(".card .obfuscator");
+  var cardTitles = document.querySelectorAll(".card .title");
   var thumbnails = document.querySelectorAll(".card .header .thumbnail");
   var counter = 1;
   var englishText = [];
@@ -228,8 +229,26 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
 
-    if (counter == 3) {
+    if (counter === thumbnails.length) {
+
+      for (var i = 0; i < cardTitles.length; i++) {
+        cardTitles[i].style.display = "none";
+      }
+
       cancelAnimationFrame(requestId);
     }
+  }
+
+  // Loading animations
+  setTimeout(function() {
+    for (var i = 0; i < cardTitles.length; i++) {
+      cardTitles[i].classList.add("load");
+    }
+  }, 400);
+
+  for (var i = 0; i < cardTitles.length; i++) {
+    cardTitles[i].addEventListener("transitionend", function() {
+      this.classList.toggle("load");
+    }, true);
   }
 }, true);
