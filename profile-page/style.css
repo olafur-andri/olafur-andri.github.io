@@ -368,7 +368,7 @@ h3 {
 }
 
 .card .header img.thumbnail {
-  width: 349px;
+  width: 500px;
   height: 221px;
   object-fit: cover;
   opacity: 0;
