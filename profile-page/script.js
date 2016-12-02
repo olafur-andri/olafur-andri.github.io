@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
   var english = document.getElementById("english")
   var englishContent = document.querySelectorAll(".english");
   var icelandicContent = document.querySelectorAll(".icelandic");
+  var cards = document.querySelectorAll(".card");
+  var cardObfuscators = document.querySelectorAll(".card .obfuscator");
+  var thumbnails = document.querySelectorAll(".card .header .thumbnail");
   var counter = 1;
   var englishText = [];
   var icelandicText = [];
@@ -188,4 +191,51 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log("Icelandic changed to false");
     }
   }, true);
+
+  var thumbnails = document.querySelectorAll(".thumbnail");
+  /*
+  for (var i = 0; i < thumbnails.length; i++) {
+    thumbnails[i].addEventListener("load", function() {
+      this.classList.add("visible");
+    }, true);
+  }
+  */
+
+  // Portfolio images fade-in
+  requestAnimationFrame(imagesOnLoad);
+
+  function imagesOnLoad() {
+    var requestId = requestAnimationFrame(imagesOnLoad);
+    var loaded = [];
+    var counter = 0;
+
+    for (var i = 0; i < thumbnails.length; i++) {
+      loaded[i] = false;
+    }
+
+    for (var i = 0; i < thumbnails.length; i++) {
+      if (thumbnails[i].complete) {
+        thumbnails[i].classList.add("visible");
+        loaded[i] = true;
+      } else {
+        loaded[i] = false;
+      }
+    }
+
+    for (var i = 0; i < loaded.length; i++) {
+      if (loaded[i] == true) {
+        counter++;
+      }
+    }
+
+    if (counter == 3) {
+      cancelAnimationFrame(requestId);
+    }
+  }
+
+  if ("object-fit" in thumbnails[0].style) {
+    alert(true);
+  } else {
+    alert(false);
+  }
 }, true);

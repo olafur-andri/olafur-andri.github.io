@@ -356,22 +356,39 @@ h3 {
 
 .card .header {
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   width: 100%;
   flex: 2.8;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .header img.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.card .header img.thumbnail.visible {
+  opacity: 1;
 }
 
 .card .header#material_kit_pro {
-  background-image: url("img/thumbnail-1.jpg");
+  /*background-image: url("img/thumbnail-1.jpg");*/
 }
 
 .card .header#material_dashboard_pro {
-  background-image: url("img/thumbnail-2.jpg");
+  /*background-image: url("img/thumbnail-2.jpg");*/
 }
 
 .card .header#ididdit {
-  background-image: url("img/thumbnail-3.jpg");
+  /*background-image: url("img/thumbnail-3.jpg");*/
 }
 
 .card .body {
