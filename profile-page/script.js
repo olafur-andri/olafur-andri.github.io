@@ -232,10 +232,4 @@ document.addEventListener("DOMContentLoaded", function() {
       cancelAnimationFrame(requestId);
     }
   }
-
-  if ("object-fit" in thumbnails[0].style) {
-    alert(true);
-  } else {
-    alert(false);
-  }
 }, true);
