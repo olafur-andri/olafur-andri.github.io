@@ -371,12 +371,10 @@ h3 {
 .card .header img.thumbnail {
   width: 500px;
   height: 221px;
-  min-width: 500px;
-  min-height: 221px;
   opacity: 0;
   transition: opacity 300ms ease;
   position: relative;
-  /*z-index: 1;*/
+  z-index: 3;
 }
 
 .card .header img.thumbnail.visible {
