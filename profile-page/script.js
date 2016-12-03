@@ -226,13 +226,15 @@ document.addEventListener("DOMContentLoaded", function() {
     for (var i = 0; i < loaded.length; i++) {
       if (loaded[i] == true) {
         counter++;
+      } else {
+        counter = 0;
       }
     }
 
-    if (counter === thumbnails.length) {
+    if (counter === (thumbnails.length)) {
 
       for (var i = 0; i < cardTitles.length; i++) {
-        cardTitles[i].style.display = "none";
+        cardTitles[i].removeEventListener("transitionend", toggleOpacity, true);
       }
 
       cancelAnimationFrame(requestId);
@@ -247,8 +249,10 @@ document.addEventListener("DOMContentLoaded", function() {
   }, 400);
 
   for (var i = 0; i < cardTitles.length; i++) {
-    cardTitles[i].addEventListener("transitionend", function() {
-      this.classList.toggle("load");
-    }, true);
+    cardTitles[i].addEventListener("transitionend", toggleOpacity, true);
+  }
+
+  function toggleOpacity() {
+    this.classList.toggle("load");
   }
 }, true);
