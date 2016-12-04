@@ -142,10 +142,6 @@ body {
   transition: opacity 400ms ease;
 }
 
-.footer i.fade {
-  opacity: 0;
-}
-
 .fab i {
   color: white;
   font-size: 38px;
