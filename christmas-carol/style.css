@@ -36,7 +36,26 @@ body {
 }
 
 #logo {
-  height: 100%;
+  height: 175px;
   width: 100%;
-  border: 1px solid white;
+  display: block;
+  margin: auto;
 }
+
+#logo text {
+  font-family: "Roboto Slab", sans-serif;
+  font-style: normal;
+}
+/*
+@media screen and (max-width: 555px) and (min-width: 336px) {
+  #logo {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 335px) {
+  #logo {
+    width: 250px;
+  }
+}
+*/
