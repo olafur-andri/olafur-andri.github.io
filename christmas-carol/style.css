@@ -7,6 +7,7 @@ body, html {
   padding: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -39,10 +40,27 @@ body {
   height: 175px;
   width: 100%;
   display: block;
-  margin: auto;
+  position: absolute;
+  left: 0;
+  transform: translateX(-100%);
+  transition: transform 1s ease;
+  will-change: transform;
+}
+
+#logo.visible {
+  transform: translateX(0);
 }
 
 #logo text {
-  font-family: "Roboto Slab", sans-serif;
+  font-family:  Consolas, "Roboto Slab", sans-serif;
   font-style: normal;
+}
+
+#cursor {
+  opacity: 1;
+  transition: opacity 30ms 400ms linear;
+}
+
+#cursor.invisible {
+  opacity: 0;
 }
