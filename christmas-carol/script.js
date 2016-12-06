@@ -5,7 +5,7 @@ window.addEventListener("load", function() {
   var wrapper = document.querySelector(".wrapper");
   var bells = document.getElementById("bells");
   var text = document.createElement("P");
-  var content = "Þessi saga fjallar um fjölskyldu sem býr í Lóuási 20 sem lenda í jólaævintýri. Þau læra meira um sjálfa sig eftir á og kynnast betur þeirra hlutverkum innan fjölskyldunnar.";
+  var content = "Þessi saga fjallar um fjölskyldu sem býr í Lóuási 20 er lendir í jólaævintýri. Meðlimir hennar læra meira um sjálfa sig eftir á og kynnast betur þeirra hlutverkum innan fjölskyldunnar.";
   var counter = 0;
   var scene = 0;
 
