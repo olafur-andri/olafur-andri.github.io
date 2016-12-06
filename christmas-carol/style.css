@@ -40,19 +40,18 @@ body {
   height: 175px;
   width: 100%;
   display: block;
-  position: absolute;
   left: 0;
   transform: translateX(-100%);
-  transition: transform 1s ease;
+  transition: transform 3s cubic-bezier(.03,.93,1,.12);
   will-change: transform;
 }
 
 #logo.visible {
-  transform: translateX(0);
+  transform: translateX(100%);
 }
 
 #logo text {
-  font-family:  Consolas, "Roboto Slab", sans-serif;
+  font-family:  "Roboto Slab", sans-serif;
   font-style: normal;
 }
 
