@@ -2,10 +2,16 @@ window.addEventListener("load", function() {
   var logo = document.getElementById("logo");
   var cursor = document.getElementById("cursor");
   var container = document.querySelector(".container");
+  var wrapper = document.querySelector(".wrapper");
   var bells = document.getElementById("bells");
-  var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  var oscillator = audioCtx.createOscillator();
-  var gainNode = audioCtx.createGain();
+  var text = document.createElement("P");
+  var content = "Þessi saga fjallar um fjölskyldu sem býr í Lóuási 20 sem lenda í jólaævintýri. Þau læra meira um sjálfa sig eftir á og kynnast betur þeirra hlutverkum innan fjölskyldunnar.";
+  var counter = 0;
+  var scene = 0;
+
+  // Preperations for text
+  text.id = "story";
+  // text.innerHTML = "&bdquo;&rdquo;";
 
   // Fade in for logo
   setTimeout(function() {
@@ -13,6 +19,18 @@ window.addEventListener("load", function() {
 
     setTimeout(function() {
       container.removeChild(logo);
+
+      setTimeout(function() {
+        wrapper.style.display = "block";
+        container.style.display = "block";
+        container.insertBefore(text, null);
+
+        setTimeout(function() {
+          text.classList.add("visible");
+
+          type();
+        }, 200);
+      }, 900);
     }, 3000);
   }, 1000);
 
@@ -25,24 +43,41 @@ window.addEventListener("load", function() {
     }, 200);
   }, true);
 
-  // Playing sounds with the Web Sound API
-  var dogBarkingBuffer = null;
-  // Fix up prefixing
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
-  var context = new AudioContext();
-  loadDogSound("https://olafur-andri.github.io/christmas-carol/sounds/bells.mp3");
+  bells.play();
 
-  function loadDogSound(url) {
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.responseType = 'arraybuffer';
+  function type() {
+    text.innerHTML += content.substring(counter, (counter + 1));
 
-    // Decode asynchronously
-    request.onload = function() {
-      context.decodeAudioData(request.response, function(buffer) {
-        dogBarkingBuffer = buffer;
-      });
+    if (counter < content.length) {
+      setTimeout(function() {
+        type();
+      }, 40);
+    } else {
+      scene++;
     }
-    request.send();
+
+    if (scene === 1) {
+      var space = document.createElement("P");
+      space.id = "space";
+      space.textContent = "Press space or touch screen to continue...";
+
+      text.appendChild(space, null);
+
+      setTimeout(function() {
+        space.classList.add("visible");
+      }, 2000);
+    }
+
+    counter++;
   }
+
+  document.addEventListener("keypress", function(e) {
+    if (e.keyCode === 32) {
+      wrapper.classList.add("fade-out");
+    }
+  }, true);
+
+  document.addEventListener("touchstart", function() {
+    wrapper.classList.add("fade-out");
+  }, true);
 }, true);

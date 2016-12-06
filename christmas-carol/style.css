@@ -11,7 +11,7 @@ body, html {
 }
 
 body {
-  background-color: #2196F3;
+
 }
 
 .wrapper {
@@ -21,6 +21,16 @@ body {
   font-weight: 300;
   display: flex;
   align-items: center;
+  opacity: 1;
+  will-change: opacity;
+  transition: opacity 500ms ease;
+  background-color: #2196F3;
+  margin-top: 0;
+  padding-top: 50px;
+}
+
+.wrapper.fade-out {
+  opacity: 0;
 }
 
 .container {
@@ -28,12 +38,6 @@ body {
   height: 500px;
   display: flex;
   align-items: center;
-}
-
-#text {
-  text-align: center;
-  color: white;
-  flex: 1;
 }
 
 #logo {
@@ -62,4 +66,36 @@ body {
 
 #cursor.invisible {
   opacity: 0;
+}
+
+#story {
+  height: auto;
+  width: 100%;
+  display: block;
+  color: white;
+  width: 90%;
+  margin: auto;
+  text-align: left;
+  font-size: 24px;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
+  line-height: 40px;
+}
+
+#story.visible {
+  opacity: 1;
+}
+
+p {
+  color: white;
+}
+
+#space {
+  opacity: 0;
+  font-style: italic;
+  transition: opacity 400ms ease;
+}
+
+#space.visible {
+  opacity: 0.9;
 }
