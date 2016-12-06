@@ -4,6 +4,8 @@ window.addEventListener("load", function() {
   var container = document.querySelector(".container");
   var wrapper = document.querySelector(".wrapper");
   var bells = document.getElementById("bells");
+  var windHowling = document.getElementById("wind_howling");
+  var clickSound = document.getElementById("click");
   var text = document.createElement("P");
   var content = "Þessi saga fjallar um fjölskyldu sem býr í Lóuási 20 er lendir í jólaævintýri. Meðlimir hennar læra meira um sjálfa sig eftir á og kynnast betur þeirra hlutverkum innan fjölskyldunnar.";
   var counter = 0;
@@ -24,6 +26,7 @@ window.addEventListener("load", function() {
         wrapper.style.display = "block";
         container.style.display = "block";
         container.insertBefore(text, null);
+        windHowling.play();
 
         setTimeout(function() {
           text.classList.add("visible");
@@ -74,10 +77,24 @@ window.addEventListener("load", function() {
   document.addEventListener("keypress", function(e) {
     if (e.keyCode === 32) {
       wrapper.classList.add("fade-out");
+      clickSound.play();
     }
   }, true);
 
   document.addEventListener("touchstart", function() {
     wrapper.classList.add("fade-out");
+    clickSound.play();
   }, true);
+
+  wrapper.addEventListener("transitionend", function(e) {
+    if (e.target !== this) {
+      return;
+    }
+
+    scene2();
+  }, true);
+
+  function scene2() {
+
+  }
 }, true);
