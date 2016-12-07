@@ -8,6 +8,7 @@ window.addEventListener("load", function() {
   var clickSound = document.getElementById("click");
   var adventureMusic = document.getElementById("adventure");
   var text = document.createElement("P");
+  var i = 0;
 
   // Preperations for text
   text.id = "story";
@@ -84,6 +85,14 @@ window.addEventListener("load", function() {
   }
 
   function scene2() {
+    i++;
+
+    if (i === 2) {
+      return;
+    }
+
+    console.log("Scene over");
+
     // Remove document event listeners!!!
     document.removeEventListener("touchstart", scene1EventListener, true);
     document.removeEventListener("keypress", scene1EventListener, true);
@@ -101,20 +110,17 @@ window.addEventListener("load", function() {
     }, 400);
 
     // Create another paragraph and type() content
-    var text = document.createElement("P");
+    text = document.createElement("P");
     text.id = "story";
     container.insertBefore(text, null);
 
     setTimeout(function() {
       text.classList.add("visible");
-
-      setTimeout(function() {
-        type(text, "Fjölskyldumeðlimirnir eru sex talsins. Ein mamma, einn pabbi, þrír synir og þar á meðal, einn hundur. Öll sátu þau í hring og héldu sér kvöldstund.", 0, function() {
-          console.log("Búinn að skrifa!");
-          console.log("Hananú");
-        });
-      }, 200);
     }, 1000);
+
+    setTimeout(function() {
+     type(text, "Fjölskyldumeðlimirnir eru sex talsins. Ein mamma, einn pabbi, þrír synir og þar á meðal, einn hundur. Tveir sonanna eru tvíburabræður. Á þeim tiltekna degi sem sagan gerist var fjölskyldan mjög upptekin. Mamman var á ferð út um allt hús að þrífa allt sem hún fann. Pabbinn var að róta í gegnum allt dótið sitt inni í bílskúr til að finna fjöltengi. Einn tvíburanna var hlustandi á tónlist á fullu en hinn að forrita eins og enginn væri morgundagurinn. Yngsti bróðirinn var á fullu að leika sér að tölvuleikjum og vera truflaður af fjölskylduhundinum.", 0, scene2Paragraph2);
+    }, 1200);
   }
 
   function type(element, content, counter, callback) {
@@ -133,9 +139,82 @@ window.addEventListener("load", function() {
       }
       counter++;
     } else {
-      counter = 0;
       callback();
+      counter = 0;
       return;
+    }
+  }
+
+  function scene2Paragraph2() {
+    // Test for debugging
+    console.log("Búinn að skrifa!");
+
+    // Create another paragraph and type() content
+    var text2 = document.createElement("P");
+    text2.id = "story";
+    container.appendChild(text2, null);
+
+    setTimeout(function() {
+      text2.classList.add("visible");
+    }, 200);
+
+    setTimeout(function() {
+      type(text2, "Að loknu þrifi stekkur mamman upp og stingur upp á að allir komi sér saman í hring og haldi smá kvöldstund.", 0, scene2Choice);
+    }, 1000);
+  }
+
+  function scene2Choice() {
+    // Create container
+    var choiceContainer = document.createElement("DIV");
+    choiceContainer.classList.add("container");
+    var noButton = document.createElement("BUTTON");
+    var yesButton = document.createElement("BUTTON");
+    var fartButton = document.createElement("BUTTON");
+    var answer = document.createElement("P");
+
+    noButton.classList.add("choice");
+    yesButton.classList.add("choice");
+    fartButton.classList.add("choice");
+    answer.id = "story";
+
+    noButton.textContent = "Tökum ekki þátt";
+    yesButton.textContent = "Tökum smá kvöldstund";
+    fartButton.textContent = "Borðum fullt af nammi";
+
+    noButton.style.color = "#4CAF50";
+    yesButton.style.color = "#4CAF50";
+    fartButton.style.color = "#4CAF50";
+
+    container.appendChild(choiceContainer);
+    container.appendChild(answer);
+    choiceContainer.appendChild(noButton);
+    choiceContainer.appendChild(yesButton);
+    choiceContainer.appendChild(fartButton);
+
+    setTimeout(function() {
+      noButton.classList.add("visible");
+      yesButton.classList.add("visible");
+      fartButton.classList.add("visible");
+      answer.classList.add("visible");
+
+      noButton.addEventListener("click", scene2NoButton, true);
+      yesButton.addEventListener("click", scene2YesButton, true);
+      fartButton.addEventListener("click", scene2FartButton, true);
+    }, 1000);
+
+    function scene2NoButton() {
+
+      // Fade out buttons
+      noButton.classList.remove("visible");
+      yesButton.classList.remove("visible");
+      fartButton.classList.remove("visible");
+
+      // Type content to paragraph
+      setTimeout(function() {
+        type(answer, "Það verður ákveðið að halda ekki kvöldstund. Mamman stendur þó fast á sínu og skipar öllum að koma sér í hring.", 0, function() {
+          console.log("Þú valdir nei");
+        });
+      }, 1000);
     }
   }
 }, true);
