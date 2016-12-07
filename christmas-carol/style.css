@@ -127,3 +127,22 @@ p {
 #space.visible {
   opacity: 0.9;
 }
+
+.story {
+  height: auto;
+  width: 100%;
+  display: block;
+  color: white !important;
+  width: 90%;
+  margin: auto;
+  text-align: left;
+  font-size: 24px;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
+  line-height: 40px;
+  margin-bottom: 30px;
+}
+
+.story.visible {
+  opacity: 1;
+}

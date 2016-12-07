@@ -30,21 +30,7 @@ window.addEventListener("load", function() {
         setTimeout(function() {
           text.classList.add("visible");
           type(text, "Saga þessi fjallar um fjölskyldu sem býr í Lóuási 20 er lendir í jólaævintýri. Meðlimir hennar læra meira um sjálfa sig eftir á og kynnast betur þeirra hlutverkum innan fjölskyldunnar.", 0, function() {
-            /**********************************************************
-             HEYYYYY
-            ***********************************************************/
-            var space = document.createElement("P");
-            space.id = "space";
-            space.textContent = "Press space or touch screen to continue...";
-
-            text.appendChild(space, null);
-
-            setTimeout(function() {
-              space.classList.add("visible");
-
-              document.addEventListener("touchstart", scene1EventListener, true);
-              document.addEventListener("keypress", scene1EventListener, true);
-            }, 2000);
+            addSpace(1);
           });
         }, 200);
       }, 900);
@@ -62,15 +48,7 @@ window.addEventListener("load", function() {
 
   bells.play();
 
-  wrapper.addEventListener("transitionend", function(e) {
-    if (e.target !== this) {
-      return;
-    }
-
-    scene2();
-  }, true);
-
-  function scene1EventListener(e) {
+  /*function scene1EventListener(e) {
 
     if (!e.keyCode) {
       wrapper.classList.add("fade-out");
@@ -82,45 +60,41 @@ window.addEventListener("load", function() {
         clickSound.play();
       }
     }
-  }
+  }*/
 
-  function scene2() {
-    i++;
-
-    if (i === 2) {
+  function sceneTwo(e) {
+    if (e.keyCode !== 32) {
       return;
     }
-
-    console.log("Scene over");
+    console.log("Scene 2 ready");
+    clickSound.play();
 
     // Remove document event listeners!!!
-    document.removeEventListener("touchstart", scene1EventListener, true);
-    document.removeEventListener("keypress", scene1EventListener, true);
+    document.removeEventListener("keypress", sceneTwo, true);
 
-    // Change background
-    wrapper.style.backgroundColor = "#4CAF50";
-
-    // Delete all child element of the container
-    container.innerHTML = "";
-
-    // Fade wrapper in again and play song!!
-    setTimeout(function() {
-      wrapper.classList.remove("fade-out");
-      adventureMusic.play();
-    }, 400);
-
-    // Create another paragraph and type() content
-    text = document.createElement("P");
-    text.id = "story";
-    container.insertBefore(text, null);
+    wrapper.classList.add("fade-out");
 
     setTimeout(function() {
-      text.classList.add("visible");
-    }, 1000);
+      wrapper.style.backgroundColor = "#4CAF50";
+      container.innerHTML = "";
 
-    setTimeout(function() {
-     type(text, "Fjölskyldumeðlimirnir eru sex talsins. Ein mamma, einn pabbi, þrír synir og þar á meðal, einn hundur. Tveir sonanna eru tvíburabræður. Á þeim tiltekna degi sem sagan gerist var fjölskyldan mjög upptekin. Mamman var á ferð út um allt hús að þrífa allt sem hún fann. Pabbinn var að róta í gegnum allt dótið sitt inni í bílskúr til að finna fjöltengi. Einn tvíburanna var hlustandi á tónlist á fullu en hinn að forrita eins og enginn væri morgundagurinn. Yngsti bróðirinn var á fullu að leika sér að tölvuleikjum og vera truflaður af fjölskylduhundinum.", 0, scene2Paragraph2);
-    }, 1200);
+      setTimeout(function() {
+        wrapper.classList.remove("fade-out");
+        adventureMusic.play();
+
+        setTimeout(function() {
+          var text = document.createElement("P");
+
+          text.classList.add("story");
+          container.appendChild(text, null);
+
+          setTimeout(function() {
+            text.classList.add("visible");
+            type(text, "Fjölskyldumeðlimirnir eru sex talsins. Ein mamma, einn pabbi, þrír synir og þar á meðal, einn hundur. Tveir sonanna eru tvíburabræður. Á þeim tiltekna degi sem sagan gerist var fjölskyldan mjög upptekin. Mamman var á ferð út um allt hús að þrífa allt sem hún fann. Pabbinn var að róta í gegnum allt dótið sitt inni í bílskúr til að finna fjöltengi. Einn tvíburanna var hlustandi á tónlist á fullu en hinn að forrita eins og enginn væri morgundagurinn. Yngsti bróðirinn var á fullu að leika sér að tölvuleikjum og vera truflaður af fjölskylduhundinum.", 0, sceneTwoParagraph2);
+          }, 200);
+        }, 1000);
+      }, 200);
+    }, 500);
   }
 
   function type(element, content, counter, callback) {
@@ -131,21 +105,20 @@ window.addEventListener("load", function() {
       if (char === ".") {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 800);
+        }, 400);
       } else {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 40);
+        }, 20);
       }
       counter++;
     } else {
       callback();
       counter = 0;
-      return;
     }
   }
 
-  function scene2Paragraph2() {
+  function sceneTwoParagraph2() {
     // Test for debugging
     console.log("Búinn að skrifa!");
 
@@ -159,11 +132,11 @@ window.addEventListener("load", function() {
     }, 200);
 
     setTimeout(function() {
-      type(text2, "Að loknu þrifi stekkur mamman upp og stingur upp á að allir komi sér saman í hring og haldi smá kvöldstund.", 0, scene2Choice);
+      type(text2, "Að loknu þrifi stekkur mamman upp og stingur upp á að allir komi sér saman í hring og haldi smá kvöldstund.", 0, sceneTwoChoice);
     }, 1000);
   }
 
-  function scene2Choice() {
+  function sceneTwoChoice() {
     // Create container
     var choiceContainer = document.createElement("DIV");
     choiceContainer.classList.add("container");
@@ -177,9 +150,9 @@ window.addEventListener("load", function() {
     fartButton.classList.add("choice");
     answer.id = "story";
 
-    noButton.textContent = "Tökum ekki þátt";
-    yesButton.textContent = "Tökum smá kvöldstund";
-    fartButton.textContent = "Borðum fullt af nammi";
+    noButton.textContent = "(1) Tökum ekki þátt";
+    yesButton.textContent = "(2) Tökum smá kvöldstund";
+    fartButton.textContent = "(3) Borðum fullt af nammi";
 
     noButton.style.color = "#4CAF50";
     yesButton.style.color = "#4CAF50";
@@ -197,12 +170,23 @@ window.addEventListener("load", function() {
       fartButton.classList.add("visible");
       answer.classList.add("visible");
 
-      noButton.addEventListener("click", scene2NoButton, true);
-      yesButton.addEventListener("click", scene2YesButton, true);
-      fartButton.addEventListener("click", scene2FartButton, true);
+      noButton.addEventListener("click", sceneTwoNoButton, true);
+      document.addEventListener("keypress", sceneTwoKeypress, true);
+      yesButton.addEventListener("click", sceneTwoYesButton, true);
+      fartButton.addEventListener("click", sceneTwoFartButton, true);
     }, 1000);
 
-    function scene2NoButton() {
+    function sceneTwoKeypress(e) {
+      if (e.keyCode === 49) {
+        sceneTwoNoButton();
+      } else if (e.keyCode === 50) {
+        sceneTwoYesButton();
+      } else if (e.keyCode === 51) {
+        sceneTwoFartButton();
+      }
+    }
+
+    function sceneTwoNoButton() {
 
       // Fade out buttons
       noButton.classList.remove("visible");
@@ -211,10 +195,107 @@ window.addEventListener("load", function() {
 
       // Type content to paragraph
       setTimeout(function() {
-        type(answer, "Það verður ákveðið að halda ekki kvöldstund. Mamman stendur þó fast á sínu og skipar öllum að koma sér í hring.", 0, function() {
-          console.log("Þú valdir nei");
+        type(answer, "Það verður ákveðið að halda ekki kvöldstund. Mamman stendur þó fast á sínu og fær fjölskyldu sína til að skipta um skoðun. Þið haldið þá kvöldstund eftir allt saman.", 0, function() {
+          addSpace(2);
         });
       }, 1000);
+
+      // Remove all event listeners!!
+      noButton.removeEventListener("click", sceneTwoNoButton, true);
+      document.removeEventListener("keypress", sceneTwoKeypress, true);
+      yesButton.removeEventListener("click", sceneTwoYesButton, true);
+      fartButton.removeEventListener("click", sceneTwoFartButton, true);
     }
+
+    function sceneTwoYesButton() {
+
+      // Fade out buttons
+      noButton.classList.remove("visible");
+      yesButton.classList.remove("visible");
+      fartButton.classList.remove("visible");
+
+      // Type content to paragraph
+      setTimeout(function() {
+        type(answer, "Þið eruð öll samtaka þessari góðri hugmynd og eru spennt fyrir því að fá að setjast niður og spjalla saman. Til allra hamingju er boðið upp á nammi með og er kvöldstundin skemmtileg.", 0, function() {
+          addSpace(2);
+        });
+      }, 1000);
+
+      // Remove all event listeners!!
+      noButton.removeEventListener("click", sceneTwoNoButton, true);
+      document.removeEventListener("keypress", sceneTwoKeypress, true);
+      yesButton.removeEventListener("click", sceneTwoYesButton, true);
+      fartButton.removeEventListener("click", sceneTwoFartButton, true);
+    }
+
+    function sceneTwoFartButton() {
+
+      // Fade out buttons
+      noButton.classList.remove("visible");
+      yesButton.classList.remove("visible");
+      fartButton.classList.remove("visible");
+
+      // Type content to paragraph
+      setTimeout(function() {
+        type(answer, "Meðlimir fjölskyldunnar ákveða að halda kvöldstundina en aðeins ef boðið eru upp á eitthvað gotterí með. Til allra hamingju er nóg til af nammi og er kvöldstundin fín.", 0, function() {
+          addSpace(2);
+        });
+      }, 1000);
+
+      // Remove all event listeners!!
+      noButton.removeEventListener("click", sceneTwoNoButton, true);
+      document.removeEventListener("keypress", sceneTwoKeypress, true);
+      yesButton.removeEventListener("click", sceneTwoYesButton, true);
+      fartButton.removeEventListener("click", sceneTwoFartButton, true);
+    }
+  }
+
+  function addSpace(scene) {
+    // Initiate space sequence!
+    var space = document.createElement("P");
+    space.id = "space";
+    space.classList.add("story");
+    space.textContent = "Press space or touch screen to continue...";
+
+    container.appendChild(space, null);
+
+    setTimeout(function() {
+      space.classList.add("visible");
+    }, 1000);
+
+    // Add event listener for space relative to current scene
+    switch (scene) {
+      case 1:
+        document.addEventListener("keypress", sceneTwo, true);
+        break;
+      case 2:
+        document.addEventListener("keypress", sceneThree, true);
+        break;
+    }
+  }
+
+  function sceneThree(e) {
+
+    if (e.keyCode !== 32) {
+      return;
+    }
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+    adventureMusic.pause();
+
+    // Remove event listeners
+    document.removeEventListener("keypress", sceneThree, true);
+
+    wrapper.classList.add("fade-out");
+
+    setTimeout(function() {
+      wrapper.style.backgroundColor = "#000";
+      container.innerHTML = "";
+
+      setTimeout(function() {
+        wrapper.classList.remove("fade-out");
+      }, 500);
+    }, 500);
   }
 }, true);
