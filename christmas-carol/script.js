@@ -9,6 +9,8 @@ window.addEventListener("load", function() {
   var adventureMusic = document.getElementById("adventure");
   var lullabyMusic = document.getElementById("lullaby");
   var dangerMusic = document.getElementById("danger");
+  var heroMusic = document.getElementById("hero");
+  var fairyFountain = document.getElementById("fairy");
   var text = document.createElement("P");
   var i = 0;
 
@@ -107,11 +109,11 @@ window.addEventListener("load", function() {
       if (char === ".") {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 0);
+        }, 800);
       } else {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 0);
+        }, 40);
       }
       counter++;
     } else {
@@ -289,6 +291,9 @@ window.addEventListener("load", function() {
         break;
       case 4:
         document.addEventListener("keypress", sceneFive, true);
+        break;
+      case 5:
+        document.addEventListener("keypress", sceneSix, true);
         break;
     }
   }
@@ -545,7 +550,6 @@ window.addEventListener("load", function() {
       fartButton.style.color = "#F44336";
 
       container.appendChild(choiceContainer);
-      container.appendChild(answer);
       choiceContainer.appendChild(noButton);
       choiceContainer.appendChild(yesButton);
       choiceContainer.appendChild(fartButton);
@@ -589,12 +593,22 @@ window.addEventListener("load", function() {
         noButton.classList.remove("visible");
         yesButton.classList.remove("visible");
         fartButton.classList.remove("visible");
+        container.classList.add("fade-out");
+
+        setTimeout(function() {
+          container.innerHTML = "";
+          container.appendChild(answer);
+
+          setTimeout(function() {
+            container.classList.remove("fade-out");
+          }, 500);
+        }, 500);
 
         setTimeout(function() {
           type(answer, "Pabbinn labbar upp að skugganum.. og lemur hann!!! Skugginn hefur ekki hugmynd um hvað kom yfir sig og fellur á jörðina með miklum dunki. \"Vá hvað hann er feitur!\" segir yngsti sonurinn og horfir furðulega á skuggann.", 0, function() {
             addSpace(4);
           });
-        }, 1000);
+        }, 1500);
       }
 
       function sceneFourYesButton2() {
@@ -609,12 +623,22 @@ window.addEventListener("load", function() {
         noButton.classList.remove("visible");
         yesButton.classList.remove("visible");
         fartButton.classList.remove("visible");
+        container.classList.add("fade-out");
+
+        setTimeout(function() {
+          container.innerHTML = "";
+          container.appendChild(answer);
+
+          setTimeout(function() {
+            container.classList.remove("fade-out");
+          }, 500);
+        }, 500);
 
         setTimeout(function() {
           type(answer, "Öll fjölskyldan byrjar að öskra með miklum æsingi. Skugginn var greinilega ekki að búast við þessu þar sem hann byrjar líka að öskra. Þið öskrið öll saman í kór þar til þið róið ykkur aðeins niður. \"Vá hvað hann er feitur!\" segir yngsti sonurinn og horfir skringilega á þessa veru sem stendur fyrir framan hann.", 0, function() {
             addSpace(4);
           });
-        }, 1000);
+        }, 1500);
       }
 
       function sceneFourFartButton2() {
@@ -629,12 +653,22 @@ window.addEventListener("load", function() {
         noButton.classList.remove("visible");
         yesButton.classList.remove("visible");
         fartButton.classList.remove("visible");
+        container.classList.add("fade-out");
+
+        setTimeout(function() {
+          container.innerHTML = "";
+          container.appendChild(answer);
+
+          setTimeout(function() {
+            container.classList.remove("fade-out");
+          }, 500);
+        }, 500);
 
         setTimeout(function() {
           type(answer, "Fjölskyldan horfir á hvert annað og skilur ekkert í þessu. Yngsti sonurinn stingur upp á hvort þau eigi bara ekki öll að fara að sofa. Fjölskyldan tekur undir því og gleymir öllu því sem þau höfðu lent í seinustu mínúturnar... Æi! Einn tvíburanna rekur sig í á leiðinni upp aftur og nær þannig athygli skuggans. Það er ekki fyrr en þá þar sem fjölskyldan virðir skuggann vel fyrir sér. \"Vá hvað þú ert feitur!\" segir yngsta barnið og byrjar að hlæja eins og ekkert sé.", 0, function() {
             addSpace(4);
           });
-        }, 1000);
+        }, 1500);
       }
     }
   }
@@ -644,7 +678,15 @@ window.addEventListener("load", function() {
       return;
     }
 
+    document.removeEventListener("keypress", sceneFive, true);
+
     dangerMusic.pause();
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    setTimeout(function() {
+      fairyFountain.play();
+    }, 500);
 
     wrapper.classList.add("fade-out");
 
@@ -654,7 +696,354 @@ window.addEventListener("load", function() {
 
       setTimeout(function() {
         wrapper.classList.remove("fade-out");
+
+        setTimeout(scene5Paragraph1, 750);
       }, 500);
     }, 500);
+
+    function scene5Paragraph1() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Pabbinn kveikir á ljósunum og þá sjáum við að þetta er jólasveinninn. Litli bróðirinn stekkur upp af gleði og segir “Ég sagði ykkur að hann væri til! Ég sagði ykkur það!” en jólasveinninn gleðst ekki. Hann verður mjög fúll. Fjölskyldan átti aldrei að hitta hann og hann kennir þeim um. Fjölskyldan verður öskureið á móti, kennandi honum um þetta. Einn tvíburanna öskrar skyndilega hærra en allir svo það verður hljótt. Hann segir “Jesús kristur, slakið freaking á!”. Þá róast allir aðeins niður en að lokum segir hann “Vitið þið hvað snjókörlum finnst gott að gera um helgar?”. Allir horfa ringlaðir á tvíburann og spyrja “Hvað?”. “Að chilla!”. Þetta rosalega fyndna grín lét þau öll fara að hlæja og þá léttist andrúmsloftið mjög.", 0, scene5Paragraph2);
+        }, 900);
+      }, 100);
+    }
+
+    function scene5Paragraph2() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Eftir gott spjall við jólasveininn komst fjölskyldan að því að jólasveinninn er ekki að nenna að gefa gjafir í ár því hann fær því miður ekki neitt til baka. Fjölskyldan hugsar sig vel um…", 0, scene5Choice);
+        }, 900);
+      }, 100);
+    }
+
+    function scene5Choice() {
+      // Create container
+      var choiceContainer = document.createElement("DIV");
+      choiceContainer.classList.add("container");
+      var noButton = document.createElement("BUTTON");
+      var yesButton = document.createElement("BUTTON");
+      var fartButton = document.createElement("BUTTON");
+      var answer = document.createElement("P");
+
+      noButton.classList.add("choice");
+      yesButton.classList.add("choice");
+      fartButton.classList.add("choice");
+      answer.id = "story";
+
+      noButton.textContent = "(1) Jólasveinninn hefur rangt fyrir sér!";
+      yesButton.textContent = "(2) Sammála...";
+      fartButton.textContent = "(3) Berjum hann!!";
+
+      noButton.style.color = "#9C27B0";
+      yesButton.style.color = "#9C27B0";
+      fartButton.style.color = "#9C27B0";
+
+      container.appendChild(choiceContainer);
+      choiceContainer.appendChild(noButton);
+      choiceContainer.appendChild(yesButton);
+      choiceContainer.appendChild(fartButton);
+
+      setTimeout(function() {
+        noButton.classList.add("visible");
+        yesButton.classList.add("visible");
+        fartButton.classList.add("visible");
+        answer.classList.add("visible");
+
+        document.addEventListener("keypress", sceneFourKeypress2, true);
+        noButton.addEventListener("click", sceneFourNoButton2, true);
+        yesButton.addEventListener("click", sceneFourYesButton2, true);
+        fartButton.addEventListener("click", sceneFourFartButton2, true);
+      }, 1000);
+
+      function sceneFourKeypress2(e) {
+
+        switch (e.keyCode) {
+          case 49:
+            sceneFourNoButton2();
+            break;
+          case 50:
+            sceneFourYesButton2();
+            break;
+          case 51:
+            sceneFourFartButton2();
+            break;
+        }
+      }
+
+      function sceneFourNoButton2() {
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        document.removeEventListener("keypress", sceneFourKeypress2, true);
+        noButton.removeEventListener("click", sceneFourNoButton2, true);
+        yesButton.removeEventListener("click", sceneFourYesButton2, true);
+        fartButton.removeEventListener("click", sceneFourFartButton2, true);
+
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
+        fartButton.classList.remove("visible");
+        container.classList.add("fade-out");
+
+        setTimeout(function() {
+          container.innerHTML = "";
+          container.appendChild(answer);
+
+          setTimeout(function() {
+            container.classList.remove("fade-out");
+            fairyFountain.pause();
+            heroMusic.play();
+          }, 500);
+        }, 500);
+
+        setTimeout(function() {
+          type(answer, "Litli bróðirinn hleypur til jólasveinsins og segir “Hvað ertu að bulla maður?! Taktu þér tak! Þú ert Jólasveinninn! Allir krakkar elska þig um allan heim. Að þú fáir ekki neitt er algjör lygi. Þú færð ást okkar allra og það ert þú sem heldur upp meiningu jólanna!”", 0, scene5Paragraph3);
+        }, 1500);
+      }
+
+      function sceneFourYesButton2() {
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        document.removeEventListener("keypress", sceneFourKeypress2, true);
+        noButton.removeEventListener("click", sceneFourNoButton2, true);
+        yesButton.removeEventListener("click", sceneFourYesButton2, true);
+        fartButton.removeEventListener("click", sceneFourFartButton2, true);
+
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
+        fartButton.classList.remove("visible");
+        container.classList.add("fade-out");
+
+        setTimeout(function() {
+          container.innerHTML = "";
+          container.appendChild(answer);
+
+          setTimeout(function() {
+            container.classList.remove("fade-out");
+            fairyFountain.pause();
+            heroMusic.play();
+          }, 500);
+        }, 500);
+
+        setTimeout(function() {
+          type(answer, "Allir taka undir jólasveininum og skilja hann vel… nema yngsti sonurinn. Hann hleypur til jólasveinsins og segir “Hvað er að ykkur öllum?! Sveinki, þú er Jólasveinninn! Allir krakkar elska þig um allan heim. Að þú fáir eikki neitt er algjör lygi. Þú færð ást okkar allra og það ert þú sem heldur upp meiningu jólanna!”", 0, scene5Paragraph3);
+        }, 1500);
+      }
+
+      function sceneFourFartButton2() {
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        document.removeEventListener("keypress", sceneFourKeypress2, true);
+        noButton.removeEventListener("click", sceneFourNoButton2, true);
+        yesButton.removeEventListener("click", sceneFourYesButton2, true);
+        fartButton.removeEventListener("click", sceneFourFartButton2, true);
+
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
+        fartButton.classList.remove("visible");
+        container.classList.add("fade-out");
+
+        setTimeout(function() {
+          container.innerHTML = "";
+          container.appendChild(answer);
+
+          setTimeout(function() {
+            container.classList.remove("fade-out");
+            fairyFountain.pause();
+            heroMusic.play();
+          }, 500);
+        }, 500);
+
+        setTimeout(function() {
+          type(answer, "Allir í fjölskyldunni horfa á hvort annað og eru tilbúin til að berja hann í kássu… nema yngsti sonurinn. Hann stendur upp og segir “Bíðið aðeins, hvað er að ykkur! Sveinki, þú ert Jólasveinninn!...”", 0, scene5Paragraph3);
+        }, 1500);
+      }
+    }
+
+    function scene5Paragraph3() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Jólasveinninn stendur upp og segir með miklum ákafa “Það er rétt! Ég er jólasveinninn og það er skylda mín að gefa gjafir!” Fjölskyldan öskrar af gleði og þetta er mjög tilfinningaþrungin stund og þess vegna fékk fjölskyldan að koma með. Þau öll hittu hreindýrin hans Sveinka og hoppuðu upp á sleðann hans.", 0, function() {
+            addSpace(5);
+          });
+        }, 900);
+      }, 100);
+    }
+  }
+
+  function sceneSix(e) {
+    if (e.keyCode !== 32) {
+      return;
+    }
+
+
+    document.removeEventListener("keypress", sceneSix, true);
+    clickSound.currentTime = 0;
+    clickSound.play();
+    heroMusic.pause();
+    wrapper.classList.add("fade-out");
+
+    setTimeout(function() {
+      wrapper.style.backgroundColor = "#2196F3";
+      container.innerHTML = "";
+
+      setTimeout(function() {
+        wrapper.classList.remove("fade-out");
+        setTimeout(scene6Paragraph1, 750);
+      }, 500);
+    }, 500);
+
+    function scene6Paragraph1() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "/* Fjölskyldan hoppar upp á sleðann og synirnir finna gjafir sem þeim langar mjög í. Þeir eru ekki alveg vissir um það sem þeir ætla að gera... Choice Time!!!*/", 0, scene6Choice);
+        }, 900);
+      }, 100);
+    }
+
+    function scene6Choice() {
+      // Create container
+      var choiceContainer = document.createElement("DIV");
+      choiceContainer.classList.add("container");
+      var noButton = document.createElement("BUTTON");
+      var yesButton = document.createElement("BUTTON");
+      var fartButton = document.createElement("BUTTON");
+      var answer = document.createElement("P");
+
+      noButton.classList.add("choice");
+      yesButton.classList.add("choice");
+      fartButton.classList.add("choice");
+      answer.id = "story";
+
+      noButton.textContent = "(1) Stelum þeim";
+      yesButton.textContent = "(2) Látum þær vera";
+      fartButton.textContent = "(3) Stelum bara einni gjöf";
+
+      noButton.style.color = "#2196F3";
+      yesButton.style.color = "#2196F3";
+      fartButton.style.color = "#2196F3";
+
+      container.appendChild(choiceContainer);
+      container.appendChild(answer);
+      choiceContainer.appendChild(noButton);
+      choiceContainer.appendChild(yesButton);
+      choiceContainer.appendChild(fartButton);
+
+      setTimeout(function() {
+        noButton.classList.add("visible");
+        yesButton.classList.add("visible");
+        fartButton.classList.add("visible");
+        answer.classList.add("visible");
+
+        document.addEventListener("keypress", sceneSixKeypress, true);
+        noButton.addEventListener("click", sceneSixNoButton, true);
+        yesButton.addEventListener("click", sceneSixYesButton, true);
+        fartButton.addEventListener("click", sceneSixFartButton, true);
+      }, 1000);
+
+      function sceneSixKeypress(e) {
+        if (e.keyCode === 49) {
+          sceneSixNoButton();
+        } else if (e.keyCode === 50) {
+          sceneSixYesButton();
+        } else if (e.keyCode === 51) {
+          sceneSixFartButton();
+        }
+      }
+
+      function sceneSixNoButton() {
+        // Play sound
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        // Fade out buttons
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
+        fartButton.classList.remove("visible");
+
+        // Type content to paragraph
+        setTimeout(function() {
+          type(answer, "/* Annar tvíburinn og yngsti sonurinn ætla að taka gjafirnar en hinn tvíburinn stöðvar þá. */", 0, function() {});
+        }, 1000);
+
+        // Remove all event listeners!!
+        noButton.removeEventListener("click", sceneSixNoButton, true);
+        document.removeEventListener("keypress", sceneSixKeypress, true);
+        yesButton.removeEventListener("click", sceneSixYesButton, true);
+        fartButton.removeEventListener("click", sceneSixFartButton, true);
+      }
+
+      function sceneSixYesButton() {
+
+        // Play sound
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        // Fade out buttons
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
+        fartButton.classList.remove("visible");
+
+        // Type content to paragraph
+        setTimeout(function() {
+          type(answer, "/* Annar tvíburinn lætur til sín heyra og biður bræður sína að vera ekki að fikta í dóti Jólasveinsins */", 0, function() {});
+        }, 1000);
+
+        // Remove all event listeners!!
+        noButton.removeEventListener("click", sceneSixNoButton, true);
+        document.removeEventListener("keypress", sceneSixKeypress, true);
+        yesButton.removeEventListener("click", sceneSixYesButton, true);
+        fartButton.removeEventListener("click", sceneSixFartButton, true);
+      }
+
+      function sceneSixFartButton() {
+
+        // Play sound
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        // Fade out buttons
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
+        fartButton.classList.remove("visible");
+
+        // Type content to paragraph
+        setTimeout(function() {
+          type(answer, "/* Tveir bræðranna vilja aðeins taka eina gjöf, en annar tvíburinn slær þá báða og skammar þá fyrir að haga sér svona. */", 0, function() {});
+        }, 1000);
+
+        // Remove all event listeners!!
+        noButton.removeEventListener("click", sceneSixNoButton, true);
+        document.removeEventListener("keypress", sceneSixKeypress, true);
+        yesButton.removeEventListener("click", sceneSixYesButton, true);
+        fartButton.removeEventListener("click", sceneSixFartButton, true);
+      }
+    }
   }
 }, true);

@@ -39,6 +39,12 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  opacity: 1;
+  transition: opacity 400ms ease;
+}
+
+.container.fade-out {
+  opacity: 0;
 }
 
 .choice {
