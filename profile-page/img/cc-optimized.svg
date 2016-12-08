@@ -11,7 +11,7 @@
   </rdf:RDF>
  </metadata>
  <g id="layer1" transform="translate(0 -877.36)">
-  <text id="text4136" style="word-spacing:0px;letter-spacing:0px" font-weight="600" xml:space="preserve" font-size="46.429px" line-height="125%" y="980.24133" x="61.063908" font-family="Consolas, Calibri" font-style="italic" fill="#ffffff"><tspan id="tspan4138" x="61.063908" y="980.24133">Christmas Carol</tspan></text>
+  <text id="text4136" style="word-spacing:0px;letter-spacing:0px" font-weight="600" xml:space="preserve" font-size="46.429px" line-height="125%" y="980.24133" x="61.063908" font-family="Consolas, Calibri, Georgia" font-style="italic" fill="#ffffff"><tspan id="tspan4138" x="61.063908" y="980.24133">Christmas Carol</tspan></text>
   <g fill-rule="evenodd">
    <path id="path4142" d="m76.004 942.43c-30.93-2.6247-45.661 5.4947-47.433 22.21 7.262-5.5906 14.172-11.795 29.241-3.7946z" fill="#f44336"/>
    <path id="path4144" d="m57.924 960.84c-16.872-8.1775-22.309-0.97391-29.464 3.683 2.6092-10.903 12.028-16.021 34.821-8.817z" fill-opacity=".30196"/>
