@@ -235,6 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       for (var i = 0; i < cardTitles.length; i++) {
         cardTitles[i].removeEventListener("transitionend", toggleOpacity, true);
+        cardTitles[i].style.opacity = 0;
       }
 
       cancelAnimationFrame(requestId);
