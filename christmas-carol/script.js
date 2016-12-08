@@ -107,11 +107,11 @@ window.addEventListener("load", function() {
       if (char === ".") {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 800);
+        }, 0);
       } else {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 40);
+        }, 0);
       }
       counter++;
     } else {
@@ -287,6 +287,9 @@ window.addEventListener("load", function() {
       case 3:
         document.addEventListener("keypress", sceneFour, true);
         break;
+      case 4:
+        document.addEventListener("keypress", sceneFive, true);
+        break;
     }
   }
 
@@ -451,7 +454,7 @@ window.addEventListener("load", function() {
       fartButton.classList.remove("visible");
 
       setTimeout(function() {
-        type(answer, "Allir fjölskyldumeðlimirnir ákveða að gera ekkert í þessu... nema pabbinn! Hann stekkur niður og ætlar að góma innbrotsmanninn!!!! Allir aðrir verða svo fyrir áhrifum pabbans að þau hlaupa niður með honum.", 0, function() {});
+        type(answer, "Allir fjölskyldumeðlimirnir ákveða að gera ekkert í þessu... nema pabbinn! Hann stekkur niður og ætlar að góma innbrotsmanninn!!!! Allir aðrir verða svo fyrir áhrifum pabbans að þau hlaupa niður með honum.", 0, scene4Paragraph2);
       }, 1000);
     }
 
@@ -469,7 +472,7 @@ window.addEventListener("load", function() {
       fartButton.classList.remove("visible");
 
       setTimeout(function() {
-        type(answer, "Allir fjölskyldumeðlimirnir eru harðákveðnir í að gera eitthvað í málinu. Allir skjótast niður á miklum hraða til að góma innbrotsmanninn.", 0, function() {});
+        type(answer, "Pabbinn er fyrstur til að koma sér niður til að kíkja á málið. Hinir fylgja eftir en þora alls ekki að fara á undan pabbanum.", 0, scene4Paragraph2);
       }, 1000);
     }
 
@@ -487,8 +490,171 @@ window.addEventListener("load", function() {
       fartButton.classList.remove("visible");
 
       setTimeout(function() {
-        type(answer, "Allir fjölskyldumennirnir hringa sig saman og gefa sér tíma til að spjalla saman aftur. Þau fara yfir sálfræðileg viðhorf gagnvart þeim vanda sem þau standa fyrir en drífa sig svo niður að lokum.", 0, function() {});
+        type(answer, "Allir fjölskyldumeðlimirnir hringa sig saman og gefa sér tíma til að spjalla saman aftur. Þau fara yfir sálfræðileg viðhorf gagnvart þeim vanda sem þau standa fyrir og tjá sig með mikillri innlifun. Pabbinn vill ekki taka neinn þátt í þessu og stekkur upp í miðri tjáningu. Hann fer á harðaspretti niður stigann og ætlar að góma kauða! Hinir fylgja fast á eftir.", 0, scene4Paragraph2);
       }, 1000);
     }
+
+    function scene4Paragraph2() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, ".......", 0, scene4Paragraph3);
+        }, 900);
+      }, 100);
+    }
+
+    function scene4Paragraph3() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Þau sjá einhvern skugga.. í horninu niðri í stofu... Þau labba upp að honum.. þau vita samt ekkert hvað skal gera.", 0, scene4Choice2);
+        }, 900);
+      }, 100);
+    }
+
+    function scene4Choice2() {
+      // Create container
+      var choiceContainer = document.createElement("DIV");
+      choiceContainer.classList.add("container");
+      var noButton = document.createElement("BUTTON");
+      var yesButton = document.createElement("BUTTON");
+      var fartButton = document.createElement("BUTTON");
+      var answer = document.createElement("P");
+
+      noButton.classList.add("choice");
+      yesButton.classList.add("choice");
+      fartButton.classList.add("choice");
+      answer.id = "story";
+
+      noButton.textContent = "(1) Lemjum skuggann!";
+      yesButton.textContent = "(2) Öskrum á hann!";
+      fartButton.textContent = "(3) Förum aftur upp að sofa";
+
+      noButton.style.color = "#F44336";
+      yesButton.style.color = "#F44336";
+      fartButton.style.color = "#F44336";
+
+      container.appendChild(choiceContainer);
+      container.appendChild(answer);
+      choiceContainer.appendChild(noButton);
+      choiceContainer.appendChild(yesButton);
+      choiceContainer.appendChild(fartButton);
+
+      setTimeout(function() {
+        noButton.classList.add("visible");
+        yesButton.classList.add("visible");
+        fartButton.classList.add("visible");
+        answer.classList.add("visible");
+
+        document.addEventListener("keypress", sceneFourKeypress2, true);
+        noButton.addEventListener("click", sceneFourNoButton2, true);
+        yesButton.addEventListener("click", sceneFourYesButton2, true);
+        fartButton.addEventListener("click", sceneFourFartButton2, true);
+      }, 1000);
+
+      function sceneFourKeypress2(e) {
+
+        switch (e.keyCode) {
+          case 49:
+            sceneFourNoButton2();
+            break;
+          case 50:
+            sceneFourYesButton2();
+            break;
+          case 51:
+            sceneFourFartButton2();
+            break;
+        }
+      }
+
+      function sceneFourNoButton2() {
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        document.removeEventListener("keypress", sceneFourKeypress2, true);
+        noButton.removeEventListener("click", sceneFourNoButton2, true);
+        yesButton.removeEventListener("click", sceneFourYesButton2, true);
+        fartButton.removeEventListener("click", sceneFourFartButton2, true);
+
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
+        fartButton.classList.remove("visible");
+
+        setTimeout(function() {
+          type(answer, "Pabbinn labbar upp að skugganum.. og lemur hann!!! Skugginn hefur ekki hugmynd um hvað kom yfir sig og fellur á jörðina með miklum dunki. \"Vá hvað hann er feitur!\" segir yngsti sonurinn og horfir furðulega á skuggann.", 0, function() {
+            addSpace(4);
+          });
+        }, 1000);
+      }
+
+      function sceneFourYesButton2() {
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        document.removeEventListener("keypress", sceneFourKeypress2, true);
+        noButton.removeEventListener("click", sceneFourNoButton2, true);
+        yesButton.removeEventListener("click", sceneFourYesButton2, true);
+        fartButton.removeEventListener("click", sceneFourFartButton2, true);
+
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
+        fartButton.classList.remove("visible");
+
+        setTimeout(function() {
+          type(answer, "Öll fjölskyldan byrjar að öskra með miklum æsingi. Skugginn var greinilega ekki að búast við þessu þar sem hann byrjar líka að öskra. Þið öskrið öll saman í kór þar til þið róið ykkur aðeins niður. \"Vá hvað hann er feitur!\" segir yngsti sonurinn og horfir skringilega á þessa veru sem stendur fyrir framan hann.", 0, function() {
+            addSpace(4);
+          });
+        }, 1000);
+      }
+
+      function sceneFourFartButton2() {
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        document.removeEventListener("keypress", sceneFourKeypress2, true);
+        noButton.removeEventListener("click", sceneFourNoButton2, true);
+        yesButton.removeEventListener("click", sceneFourYesButton2, true);
+        fartButton.removeEventListener("click", sceneFourFartButton2, true);
+
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
+        fartButton.classList.remove("visible");
+
+        setTimeout(function() {
+          type(answer, "Fjölskyldan horfir á hvert annað og skilur ekkert í þessu. Yngsti sonurinn stingur upp á hvort þau eigi bara ekki öll að fara að sofa. Fjölskyldan tekur undir því og gleymir öllu því sem þau höfðu lent í seinustu mínúturnar... Æi! Einn tvíburanna rekur sig í á leiðinni upp aftur og nær þannig athygli skuggans. Það er ekki fyrr en þá þar sem fjölskyldan virðir skuggann vel fyrir sér. \"Vá hvað þú ert feitur!\" segir yngsta barnið og byrjar að hlæja eins og ekkert sé.", 0, function() {
+            addSpace(4);
+          });
+        }, 1000);
+      }
+    }
+  }
+
+  function sceneFive(e) {
+    if (e.keyCode !== 32) {
+      return;
+    }
+
+    dangerMusic.pause();
+
+    wrapper.classList.add("fade-out");
+
+    setTimeout(function() {
+      wrapper.style.backgroundColor = "#9C27B0";
+      container.innerHTML = "";
+
+      setTimeout(function() {
+        wrapper.classList.remove("fade-out");
+      }, 500);
+    }, 500);
   }
 }, true);
