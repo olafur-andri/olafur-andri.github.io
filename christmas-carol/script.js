@@ -7,6 +7,8 @@ window.addEventListener("load", function() {
   var windHowling = document.getElementById("wind_howling");
   var clickSound = document.getElementById("click");
   var adventureMusic = document.getElementById("adventure");
+  var lullabyMusic = document.getElementById("lullaby");
+  var dangerMusic = document.getElementById("danger");
   var text = document.createElement("P");
   var i = 0;
 
@@ -170,8 +172,8 @@ window.addEventListener("load", function() {
       fartButton.classList.add("visible");
       answer.classList.add("visible");
 
-      noButton.addEventListener("click", sceneTwoNoButton, true);
       document.addEventListener("keypress", sceneTwoKeypress, true);
+      noButton.addEventListener("click", sceneTwoNoButton, true);
       yesButton.addEventListener("click", sceneTwoYesButton, true);
       fartButton.addEventListener("click", sceneTwoFartButton, true);
     }, 1000);
@@ -187,6 +189,9 @@ window.addEventListener("load", function() {
     }
 
     function sceneTwoNoButton() {
+      // Play sound
+      clickSound.currentTime = 0;
+      clickSound.play();
 
       // Fade out buttons
       noButton.classList.remove("visible");
@@ -209,6 +214,10 @@ window.addEventListener("load", function() {
 
     function sceneTwoYesButton() {
 
+      // Play sound
+      clickSound.currentTime = 0;
+      clickSound.play();
+
       // Fade out buttons
       noButton.classList.remove("visible");
       yesButton.classList.remove("visible");
@@ -229,6 +238,10 @@ window.addEventListener("load", function() {
     }
 
     function sceneTwoFartButton() {
+
+      // Play sound
+      clickSound.currentTime = 0;
+      clickSound.play();
 
       // Fade out buttons
       noButton.classList.remove("visible");
@@ -271,6 +284,9 @@ window.addEventListener("load", function() {
       case 2:
         document.addEventListener("keypress", sceneThree, true);
         break;
+      case 3:
+        document.addEventListener("keypress", sceneFour, true);
+        break;
     }
   }
 
@@ -284,7 +300,11 @@ window.addEventListener("load", function() {
     clickSound.play();
     adventureMusic.pause();
 
-    // Remove event listeners
+    setTimeout(function() {
+      lullabyMusic.play();
+    }, 1000);
+
+    // Remove event listeners!!
     document.removeEventListener("keypress", sceneThree, true);
 
     wrapper.classList.add("fade-out");
@@ -295,7 +315,180 @@ window.addEventListener("load", function() {
 
       setTimeout(function() {
         wrapper.classList.remove("fade-out");
+
+        scene3Paragraph1();
       }, 500);
     }, 500);
+  }
+
+  function scene3Paragraph1() {
+    var text = document.createElement("P");
+
+    text.classList.add("story");
+    container.appendChild(text, null);
+
+    setTimeout(function() {
+      text.classList.add("visible");
+      type(text, "Nú er kominn tími til að sofa. Það er áliðið og eftir góða kvöldstund er fjölskyldan orðin yfir sig þreytt. Allir taka til eftir sig og labba upp á efri hæð hússins. Þau bursta í sér tennurnar og klæða sig í náttföt. Yngsti sonurinn virðist þó eiga mjög erfitt með að fara að sofa...", 0, scene3Paragraph2);
+    }, 200);
+  }
+
+  function scene3Paragraph2() {
+    var text = document.createElement("P");
+    text.classList.add("story");
+    container.appendChild(text, null);
+
+    setTimeout(function() {
+      text.classList.add("visible");
+      type(text, "Þeim tekst þó öllum að koma sér í rúmið.", 0, function() {
+        addSpace(3);
+      });
+    }, 800);
+  }
+
+  function sceneFour(e) {
+
+    if (e.keyCode !== 32) {
+      return;
+    }
+
+    document.removeEventListener("keypress", sceneFour, true);
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+    lullabyMusic.pause();
+
+    wrapper.classList.add("fade-out");
+
+    setTimeout(function() {
+      container.innerHTML = "";
+      wrapper.style.backgroundColor = "#F44336";
+      dangerMusic.play();
+
+      setTimeout(function() {
+        wrapper.classList.remove("fade-out");
+
+        setTimeout(function() {
+          var text = document.createElement("P");
+          text.classList.add("story");
+          container.appendChild(text, null);
+
+          setTimeout(function() {
+            text.classList.add("visible");
+            type(text, "Lífið er samt ekki svo gott. Á neðri hæðinni heyrast einhver skringileg hljóð, eins og einhver sé þar... Fjölskyldan reynir að átta sig á hvað skyldi gera.", 0, scene4Choice);
+          }, 200);
+        }, 500);
+      }, 500);
+    }, 500);
+  }
+
+  function scene4Choice() {
+    // Create container
+    var choiceContainer = document.createElement("DIV");
+    choiceContainer.classList.add("container");
+    var noButton = document.createElement("BUTTON");
+    var yesButton = document.createElement("BUTTON");
+    var fartButton = document.createElement("BUTTON");
+    var answer = document.createElement("P");
+
+    noButton.classList.add("choice");
+    yesButton.classList.add("choice");
+    fartButton.classList.add("choice");
+    answer.id = "story";
+
+    noButton.textContent = "(1) Gerum ekkert";
+    yesButton.textContent = "(2) Kíkjum á þetta!";
+    fartButton.textContent = "(3) Tökum kvöldstund til að ræða þetta";
+
+    noButton.style.color = "#F44336";
+    yesButton.style.color = "#F44336";
+    fartButton.style.color = "#F44336";
+
+    container.appendChild(choiceContainer);
+    container.appendChild(answer);
+    choiceContainer.appendChild(noButton);
+    choiceContainer.appendChild(yesButton);
+    choiceContainer.appendChild(fartButton);
+
+    setTimeout(function() {
+      noButton.classList.add("visible");
+      yesButton.classList.add("visible");
+      fartButton.classList.add("visible");
+      answer.classList.add("visible");
+
+      document.addEventListener("keypress", sceneFourKeypress, true);
+      noButton.addEventListener("click", sceneFourNoButton, true);
+      yesButton.addEventListener("click", sceneFourYesButton, true);
+      fartButton.addEventListener("click", sceneFourFartButton, true);
+    }, 1000);
+
+    function sceneFourKeypress(e) {
+
+      switch (e.keyCode) {
+        case 49:
+          sceneFourNoButton();
+          break;
+        case 50:
+          sceneFourYesButton();
+          break;
+        case 51:
+          sceneFourFartButton();
+          break;
+      }
+    }
+
+    function sceneFourNoButton() {
+      clickSound.currentTime = 0;
+      clickSound.play();
+
+      document.removeEventListener("keypress", sceneFourKeypress, true);
+      noButton.removeEventListener("click", sceneFourNoButton, true);
+      yesButton.removeEventListener("click", sceneFourYesButton, true);
+      fartButton.removeEventListener("click", sceneFourFartButton, true);
+
+      noButton.classList.remove("visible");
+      yesButton.classList.remove("visible");
+      fartButton.classList.remove("visible");
+
+      setTimeout(function() {
+        type(answer, "Allir fjölskyldumeðlimirnir ákveða að gera ekkert í þessu... nema pabbinn! Hann stekkur niður og ætlar að góma innbrotsmanninn!!!! Allir aðrir verða svo fyrir áhrifum pabbans að þau hlaupa niður með honum.", 0, function() {});
+      }, 1000);
+    }
+
+    function sceneFourYesButton() {
+      clickSound.currentTime = 0;
+      clickSound.play();
+
+      document.removeEventListener("keypress", sceneFourKeypress, true);
+      noButton.removeEventListener("click", sceneFourNoButton, true);
+      yesButton.removeEventListener("click", sceneFourYesButton, true);
+      fartButton.removeEventListener("click", sceneFourFartButton, true);
+
+      noButton.classList.remove("visible");
+      yesButton.classList.remove("visible");
+      fartButton.classList.remove("visible");
+
+      setTimeout(function() {
+        type(answer, "Allir fjölskyldumeðlimirnir eru harðákveðnir í að gera eitthvað í málinu. Allir skjótast niður á miklum hraða til að góma innbrotsmanninn.", 0, function() {});
+      }, 1000);
+    }
+
+    function sceneFourFartButton() {
+      clickSound.currentTime = 0;
+      clickSound.play();
+
+      document.removeEventListener("keypress", sceneFourKeypress, true);
+      noButton.removeEventListener("click", sceneFourNoButton, true);
+      yesButton.removeEventListener("click", sceneFourYesButton, true);
+      fartButton.removeEventListener("click", sceneFourFartButton, true);
+
+      noButton.classList.remove("visible");
+      yesButton.classList.remove("visible");
+      fartButton.classList.remove("visible");
+
+      setTimeout(function() {
+        type(answer, "Allir fjölskyldumennirnir hringa sig saman og gefa sér tíma til að spjalla saman aftur. Þau fara yfir sálfræðileg viðhorf gagnvart þeim vanda sem þau standa fyrir en drífa sig svo niður að lokum.", 0, function() {});
+      }, 1000);
+    }
   }
 }, true);
