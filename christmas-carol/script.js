@@ -111,11 +111,11 @@ window.addEventListener("load", function() {
       if (char === ".") {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 0);
+        }, 800);
       } else {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 0);
+        }, 40);
       }
       counter++;
     } else {
