@@ -11,6 +11,8 @@ window.addEventListener("load", function() {
   var dangerMusic = document.getElementById("danger");
   var heroMusic = document.getElementById("hero");
   var fairyFountain = document.getElementById("fairy");
+  var voyageMusic = document.getElementById("voyage");
+  var endMusic = document.getElementById("end");
   var text = document.createElement("P");
   var i = 0;
 
@@ -109,11 +111,11 @@ window.addEventListener("load", function() {
       if (char === ".") {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 800);
+        }, 0);
       } else {
         setTimeout(function() {
           type(element, content, counter, callback);
-        }, 40);
+        }, 0);
       }
       counter++;
     } else {
@@ -294,6 +296,18 @@ window.addEventListener("load", function() {
         break;
       case 5:
         document.addEventListener("keypress", sceneSix, true);
+        break;
+      case 6:
+        document.addEventListener("keypress", sceneSeven, true);
+        break;
+      case 7:
+        document.addEventListener("keypress", sceneEight, true);
+        break;
+      case 8:
+        document.addEventListener("keypress", sceneNine, true);
+        break;
+      case 9:
+        document.addEventListener("keypress", sceneTen, true);
         break;
     }
   }
@@ -605,7 +619,7 @@ window.addEventListener("load", function() {
         }, 500);
 
         setTimeout(function() {
-          type(answer, "Pabbinn labbar upp að skugganum.. og lemur hann!!! Skugginn hefur ekki hugmynd um hvað kom yfir sig og fellur á jörðina með miklum dunki. \"Vá hvað hann er feitur!\" segir yngsti sonurinn og horfir furðulega á skuggann.", 0, function() {
+          type(answer, "Pabbinn labbar upp að skugganum.. og lemur hann!!! Skugginn hefur ekki hugmynd um hvað kom yfir sig og fellur á jörðina með miklum dunk. \"Vá hvað hann er feitur!\" segir yngsti sonurinn og horfir furðulega á skuggann.", 0, function() {
             addSpace(4);
           });
         }, 1500);
@@ -839,7 +853,7 @@ window.addEventListener("load", function() {
         }, 500);
 
         setTimeout(function() {
-          type(answer, "Allir taka undir jólasveininum og skilja hann vel… nema yngsti sonurinn. Hann hleypur til jólasveinsins og segir “Hvað er að ykkur öllum?! Sveinki, þú er Jólasveinninn! Allir krakkar elska þig um allan heim. Að þú fáir eikki neitt er algjör lygi. Þú færð ást okkar allra og það ert þú sem heldur upp meiningu jólanna!”", 0, scene5Paragraph3);
+          type(answer, "Allir taka undir jólasveininum og skilja hann vel… nema yngsti sonurinn. Hann hleypur til jólasveinsins og segir “Hvað er að ykkur öllum?! Sveinki, þú er Jólasveinninn! Allir krakkar elska þig um allan heim. Að þú fáir ekki neitt er algjör lygi. Þú færð ást okkar allra og það ert þú sem heldur upp meiningu jólanna!”", 0, scene5Paragraph3);
         }, 1500);
       }
 
@@ -906,6 +920,7 @@ window.addEventListener("load", function() {
     setTimeout(function() {
       wrapper.style.backgroundColor = "#2196F3";
       container.innerHTML = "";
+      voyageMusic.play();
 
       setTimeout(function() {
         wrapper.classList.remove("fade-out");
@@ -922,7 +937,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function() {
-          type(text, "/* Fjölskyldan hoppar upp á sleðann og synirnir finna gjafir sem þeim langar mjög í. Þeir eru ekki alveg vissir um það sem þeir ætla að gera... Choice Time!!!*/", 0, scene6Choice);
+          type(text, "Sleðinn skaust af stað með svo miklu afli að fjölskyldan öskraði með öllu afli á meðan Jólasveinninn hló “hó hó hó!”. Það var einmitt á því tímabili þar sem einn tvíburana fattaði að hann væri lofthræddur og gat ekki notið jólatöfrana sem blasti við þeim eins mikið og allir hinir. Eftir að hafa flogið yfir Bretland og Spán taka þau eftir gjöfunum á sleðanum. Þar voru einmitt fimm hlutir sem fjölskyldumeðlimirnir langa mjög í. Einnig var fullt af hundanammi þarna líka svo hundurinn var líka mjög spenntur. Það er mjög freistandi að taka með sér gjafirnar og stela þeim, ég meina enginn mun taka eftir því... ", 0, scene6Choice);
         }, 900);
       }, 100);
     }
@@ -941,9 +956,9 @@ window.addEventListener("load", function() {
       fartButton.classList.add("choice");
       answer.id = "story";
 
-      noButton.textContent = "(1) Stelum þeim";
-      yesButton.textContent = "(2) Látum þær vera";
-      fartButton.textContent = "(3) Stelum bara einni gjöf";
+      noButton.textContent = "(1) Stela þeim";
+      yesButton.textContent = "(2) Láta þær vera";
+      fartButton.textContent = "(3) Stela bara einni";
 
       noButton.style.color = "#2196F3";
       yesButton.style.color = "#2196F3";
@@ -989,7 +1004,9 @@ window.addEventListener("load", function() {
 
         // Type content to paragraph
         setTimeout(function() {
-          type(answer, "/* Annar tvíburinn og yngsti sonurinn ætla að taka gjafirnar en hinn tvíburinn stöðvar þá. */", 0, function() {});
+          type(answer, "Fjölskyldan býr sig undir að stela gjöfunum þangað til að eldri tvíburinn segir þeim öllum að hætta. “Við erum ekki þjófar og sérstaklega um jólin, leyfum þeim sem eiga að fá gjafirnar að fá þær”", 0, function() {
+            addSpace(6);
+          });
         }, 1000);
 
         // Remove all event listeners!!
@@ -1012,7 +1029,9 @@ window.addEventListener("load", function() {
 
         // Type content to paragraph
         setTimeout(function() {
-          type(answer, "/* Annar tvíburinn lætur til sín heyra og biður bræður sína að vera ekki að fikta í dóti Jólasveinsins */", 0, function() {});
+          type(answer, "Eldri tvíburinn segir að við séum ekki þjófar og við ættum ekki að stela þeim “Jólin væru ekki jafn góð ef við myndum stela þeim heldur en að láta þær vera”", 0, function() {
+            addSpace(6);
+          });
         }, 1000);
 
         // Remove all event listeners!!
@@ -1035,7 +1054,9 @@ window.addEventListener("load", function() {
 
         // Type content to paragraph
         setTimeout(function() {
-          type(answer, "/* Tveir bræðranna vilja aðeins taka eina gjöf, en annar tvíburinn slær þá báða og skammar þá fyrir að haga sér svona. */", 0, function() {});
+          type(answer, "Yngsti bróðirinn tekur utan um gjöfina sem honu langar í en þá segir eldri bróðirinn honum að hætta. “Við erum ekki þjófar og heldur ekki þú. Það að stela gjöfum gerir jólunum engan greiða” og leggur pakkann niður.", 0, function() {
+            addSpace(6);
+          });
         }, 1000);
 
         // Remove all event listeners!!
@@ -1045,5 +1066,347 @@ window.addEventListener("load", function() {
         fartButton.removeEventListener("click", sceneSixFartButton, true);
       }
     }
+  }
+
+  function sceneSeven(e) {
+    if (e.keyCode !== 32) {
+      return;
+    }
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    document.removeEventListener("keypress", sceneSeven, true);
+    container.classList.add("fade-out");
+
+    setTimeout(function() {
+      container.innerHTML = "";
+
+      setTimeout(function() {
+        container.classList.remove("fade-out");
+
+        setTimeout(paragraph1, 500);
+      }, 500);
+    }, 500);
+
+    function paragraph1() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Allir láta pakkana vera fyrir fullt og allt og fylgjast meira með hvað Jólasveinninn er góður að gefa gjafir og jólatöfrana sem umkringja þau.", 0, paragraph2);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph2() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Seinna um nóttina lenda þau aftur heima hjá sér og þá mælir Jólasveinninn “Þið sýnduð mér aftur meiningu Jólanna og hvað það er mikilvægt að ég held áfram með starf mitt, takk kærlega fyrir. Einnig er ég búinn að taka eftir hlutverkum ykkar í fjölskyldunni”.", 0, function() {
+            addSpace(7);
+          });
+        }, 900);
+      }, 100);
+    }
+  }
+
+  function sceneEight(e) {
+    if (e.keyCode !== 32) {
+      return;
+    }
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+    document.removeEventListener("keypress", sceneEight, true);
+    wrapper.classList.add("fade-out");
+
+    setTimeout(function() {
+      wrapper.style.backgroundColor = "#E65100";
+      container.innerHTML = "";
+      voyageMusic.pause();
+      endMusic.play();
+
+      setTimeout(function() {
+        wrapper.classList.remove("fade-out");
+
+        setTimeout(paragraph1, 750);
+      }, 500);
+    }, 500);
+
+    function paragraph1() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function () {
+          type(text, "Hann labbar upp til mömmunar og segir:", 0, paragraph2);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph2() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function () {
+          type(text, "“Það ert þú sem heldur fjölskyldunni saman og passar upp á að þið eruð heilbrigð og náið vel saman”", 0, paragraph3);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph3() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function () {
+          type(text, "Næst fer hann til pabbans:", 0, paragraph4);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph4() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function () {
+          type(text, "“Þú ert sá sem verndar og passar upp á fjölskylduna og alltaf sá fyrsti sem kemur til bjargar”", 0, paragraph5);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph5() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function () {
+          type(text, "Við annan tvíburabróðirinn:", 0, paragraph6);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph6() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function () {
+          type(text, "“Þú ert sá vitrasti af bræðrum þínum og hjálpar þeim og kennir”", 0, function() {
+            addSpace(8);
+          });
+        }, 900);
+      }, 100);
+    }
+  }
+
+  function sceneNine(e) {
+    if (e.keyCode !== 32) {
+      return;
+    }
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    container.classList.add("fade-out");
+    document.removeEventListener("keypress", sceneNine, true);
+
+    setTimeout(function() {
+      container.innerHTML = "";
+
+      setTimeout(function() {
+        container.classList.remove("fade-out");
+        setTimeout(paragraph1, 200);
+      }, 200);
+    }, 500);
+
+    function paragraph1() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Við hinn tvíburann:", 0, paragraph2);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph2() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "“Þú notar húmorinn þinn mjög vel til að halda fjölskyldunni hlæjandi og glaðari”", 0, paragraph3);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph3() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Við yngsta soninn segir hann:", 0, paragraph4);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph4() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "“Þú heldur lífinu uppi í fjölskyldunni með því að vera þú sjálfur”", 0, paragraph5);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph5() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Og að lokum við hundinn:", 0, paragraph6);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph6() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "“Þú ert mjög krúttlegur og þannig muntu alltaf vera”", 0, paragraph7);
+        }, 900);
+      }, 100);
+    }
+
+    function paragraph7() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Hundurinn geltir mjög ánægður og sömuleiðis faðmast fjölskyldumeðlimirnir og kveðja Jólasveininn.", 0, function() {
+            addSpace(9);
+          });
+        }, 900);
+      }, 100);
+    }
+  }
+
+  function sceneTen(e) {
+    if (e.keyCode !== 32) {
+      return;
+    }
+
+    document.removeEventListener("keypress", sceneTen, true);
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+    container.classList.add("fade-out");
+
+    setTimeout(function() {
+      container.innerHTML = "";
+
+      setTimeout(function() {
+        container.classList.remove("fade-out");
+
+        setTimeout(paragraph1, 100);
+      }, 500);
+    }, 500);
+
+    function paragraph1() {
+      var text = document.createElement("P");
+      text.classList.add("story");
+      container.appendChild(text, null);
+
+      setTimeout(function() {
+        text.classList.add("visible");
+
+        setTimeout(function() {
+          type(text, "Þau vakna eftir þessa löngu nótt og það fyrsta sem þau taka eftir er að gjafirnar sem þau líkuðu mjög við voru undir jólatrénu þeirra og á þeirri stundu vissu þau að þetta yrðu góð Jól", 0, function() {
+            setTimeout(end, 2000);
+          });
+        }, 900);
+      }, 100);
+    }
+  }
+
+  function end() {
+    wrapper.classList.add("fade-out-slow");
+    wrapper.style.transition = "opacity 2s ease";
+
+    setTimeout(function() {
+      wrapper.style.backgroundColor = "#FFF";
+      wrapper.innerHTML = "";
+      var title = document.createElement("H1");
+      var small = document.createElement("SMALL");
+      title.id = "thank_you";
+      wrapper.appendChild(title, null);
+      title.textContent = "Takk Fyrir!";
+      title.appendChild(small, null);
+      small.textContent = "Að vera fjölskyldan mín";
+
+      setTimeout(function() {
+        wrapper.classList.remove("fade-out-slow");
+      }, 500);
+    }, 2000);
   }
 }, true);

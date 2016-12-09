@@ -33,6 +33,11 @@ body, html {
   opacity: 0;
 }
 
+.wrapper.fade-out-slow {
+  transition: opacity 2s ease;
+  opacity: 0;
+}
+
 .container {
   width: 100%;
   height: auto;
@@ -151,4 +156,21 @@ p {
 
 .story.visible {
   opacity: 1;
+}
+
+#thank_you {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 500;
+  color: #D50000;
+  width: 100%;
+  text-align: center;
+}
+
+#thank_you small {
+  font-size: 16px;
+  display: block;
+  text-align: center;
+  font-style: italic;
+  color: #D50000;
+  opacity: 0.75;
 }
