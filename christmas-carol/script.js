@@ -1402,7 +1402,7 @@ window.addEventListener("load", function() {
       wrapper.appendChild(title, null);
       title.textContent = "Takk Fyrir!";
       title.appendChild(small, null);
-      small.textContent = "Að vera fjölskyldan mín";
+      small.textContent = "Að vera fjölskyldan okkar";
 
       setTimeout(function() {
         wrapper.classList.remove("fade-out-slow");
