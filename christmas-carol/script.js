@@ -35,7 +35,7 @@ window.addEventListener("load", function() {
 
         setTimeout(function() {
           text.classList.add("visible");
-          type(text, "Saga þessi fjallar um fjölskyldu sem býr í Lóuási 20 er lendir í jólaævintýri. Meðlimir hennar læra meira um sjálfa sig eftir á og kynnast betur þeirra hlutverkum innan fjölskyldunnar.", 0, function() {
+          type(text, "Saga þessi fjallar um fjölskyldu sem býr í Lóuási 20 er lendir í jólaævintýri. Meðlimir hennar læra meira um sjálfa sig eftir á og kynnast betur töfrum jólanna.", 0, function() {
             addSpace(1);
           });
         }, 200);
@@ -96,7 +96,7 @@ window.addEventListener("load", function() {
 
           setTimeout(function() {
             text.classList.add("visible");
-            type(text, "Fjölskyldumeðlimirnir eru sex talsins. Ein mamma, einn pabbi, þrír synir og þar á meðal, einn hundur. Tveir sonanna eru tvíburabræður. Á þeim tiltekna degi sem sagan gerist var fjölskyldan mjög upptekin. Mamman var á ferð út um allt hús að þrífa allt sem hún fann. Pabbinn var að róta í gegnum allt dótið sitt inni í bílskúr til að finna fjöltengi. Einn tvíburanna var hlustandi á tónlist á fullu en hinn að forrita eins og enginn væri morgundagurinn. Yngsti bróðirinn var á fullu að leika sér að tölvuleikjum og vera truflaður af fjölskylduhundinum.", 0, sceneTwoParagraph2);
+            type(text, "Fjölskyldumeðlimirnir eru sex talsins. Ein mamma, einn pabbi, þrír synir og þar á meðal, einn hundur. Tveir sonanna eru tvíburabræður. Á þeim tiltekna degi sem sagan gerist var fjölskyldan mjög upptekin. Mamman var á ferð út um allt hús að þrífa hvað sem hún fann. Pabbinn var að róta í gegnum allt dótið sitt inni í bílskúr til að finna fjöltengi. Einn tvíburanna var hlustandi á tónlist á fullu en hinn að forrita eins og enginn væri morgundagurinn. Yngsti bróðirinn lék sér að tölvuleikjum og hundurinn svaf vært og rótt.", 0, sceneTwoParagraph2);
           }, 200);
         }, 1000);
       }, 200);
@@ -679,7 +679,7 @@ window.addEventListener("load", function() {
         }, 500);
 
         setTimeout(function() {
-          type(answer, "Fjölskyldan horfir á hvert annað og skilur ekkert í þessu. Yngsti sonurinn stingur upp á hvort þau eigi bara ekki öll að fara að sofa. Fjölskyldan tekur undir því og gleymir öllu því sem þau höfðu lent í seinustu mínúturnar... Æi! Einn tvíburanna rekur sig í á leiðinni upp aftur og nær þannig athygli skuggans. Það er ekki fyrr en þá þar sem fjölskyldan virðir skuggann vel fyrir sér. \"Vá hvað þú ert feitur!\" segir yngsta barnið og byrjar að hlæja eins og ekkert sé.", 0, function() {
+          type(answer, "Fjölskyldan horfir á hvert annað og skilur ekkert í þessu. Yngsti sonurinn stingur upp á hvort þau eigi bara ekki bara öll að fara að sofa. Fjölskyldan tekur undir því og gleymir öllu því sem þau höfðu lent í seinustu mínúturnar... Æi! Einn tvíburanna rekur sig í á leiðinni upp aftur og nær þannig athygli skuggans. Það er ekki fyrr en þá þar sem fjölskyldan virðir skuggann vel fyrir sér. \"Vá hvað þú ert feitur!\" segir yngsta barnið og byrjar að hlæja eins og ekkert sé.", 0, function() {
             addSpace(4);
           });
         }, 1500);
@@ -724,7 +724,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function() {
-          type(text, "Pabbinn kveikir á ljósunum og þá sjáum við að þetta er jólasveinninn. Litli bróðirinn stekkur upp af gleði og segir “Ég sagði ykkur að hann væri til! Ég sagði ykkur það!” en jólasveinninn gleðst ekki. Hann verður mjög fúll. Fjölskyldan átti aldrei að hitta hann og hann kennir þeim um. Fjölskyldan verður öskureið á móti, kennandi honum um þetta. Einn tvíburanna öskrar skyndilega hærra en allir svo það verður hljótt. Hann segir “Jesús kristur, slakið freaking á!”. Þá róast allir aðeins niður en að lokum segir hann “Vitið þið hvað snjókörlum finnst gott að gera um helgar?”. Allir horfa ringlaðir á tvíburann og spyrja “Hvað?”. “Að chilla!”. Þetta rosalega fyndna grín lét þau öll fara að hlæja og þá léttist andrúmsloftið mjög.", 0, scene5Paragraph2);
+          type(text, "Pabbinn kveikir á ljósunum og þá sjáum við að þetta er jólasveinninn. Litli bróðirinn stekkur upp af gleði og segir “Ég sagði ykkur að hann væri til! Ég sagði ykkur það!” en Jólasveinninn gleðst ekki. Hann verður mjög fúll. Fjölskyldan átti aldrei að hitta hann og kennir þeim um. Fjölskyldan verður öskureið á móti og kennir honum um þetta. Einn tvíburanna öskrar skyndilega hærra en allir svo það verður hljótt. Hann segir “Jesús kristur, slakið freaking á!”. Þá róast allir aðeins niður en að lokum segir hann “Vitið þið hvað snjókörlum finnst gott að gera um helgar?”. Allir horfa ringlaðir á tvíburann og spyrja “Hvað?”. “Að chilla!”. Þetta rosalega fyndna grín lét þau öll fara að hlæja og þá léttist andrúmsloftið mjög.", 0, scene5Paragraph2);
         }, 900);
       }, 100);
     }
@@ -738,7 +738,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function() {
-          type(text, "Eftir gott spjall við jólasveininn komst fjölskyldan að því að jólasveinninn er ekki að nenna að gefa gjafir í ár því hann fær því miður ekki neitt til baka. Fjölskyldan hugsar sig vel um…", 0, scene5Choice);
+          type(text, "Eftir gott spjall við jólasveininn komst fjölskyldan að því að jólasveinninn er ekki að nenna að gefa gjafir í ár þar sem hann fær ekki neitt til baka. Fjölskyldan hugsar sig vel um…", 0, scene5Choice);
         }, 900);
       }, 100);
     }
@@ -823,7 +823,7 @@ window.addEventListener("load", function() {
         }, 500);
 
         setTimeout(function() {
-          type(answer, "Litli bróðirinn hleypur til jólasveinsins og segir “Hvað ertu að bulla maður?! Taktu þér tak! Þú ert Jólasveinninn! Allir krakkar elska þig um allan heim. Að þú fáir ekki neitt er algjör lygi. Þú færð ást okkar allra og það ert þú sem heldur upp meiningu jólanna!”", 0, scene5Paragraph3);
+          type(answer, "Litli bróðirinn hleypur til Jólasveinsins og segir “Hvað ertu að bulla, maður?! Taktu þér tak! Þú ert Jólasveinninn! Allir krakkar elska þig um allan heim. Að þú fáir ekki neitt er algjör lygi. Þú færð ást okkar allra og það ert þú sem heldur upp meiningu jólanna!”", 0, scene5Paragraph3);
         }, 1500);
       }
 
@@ -853,7 +853,7 @@ window.addEventListener("load", function() {
         }, 500);
 
         setTimeout(function() {
-          type(answer, "Allir taka undir jólasveininum og skilja hann vel… nema yngsti sonurinn. Hann hleypur til jólasveinsins og segir “Hvað er að ykkur öllum?! Sveinki, þú er Jólasveinninn! Allir krakkar elska þig um allan heim. Að þú fáir ekki neitt er algjör lygi. Þú færð ást okkar allra og það ert þú sem heldur upp meiningu jólanna!”", 0, scene5Paragraph3);
+          type(answer, "Allir taka undir Jólasveininum og skilja hann vel… nema yngsti sonurinn. Hann hleypur til Jólasveinsins og segir “Hvað er að ykkur öllum?! Sveinki, þú er Jólasveinninn! Allir krakkar elska þig um allan heim. Að þú fáir ekki neitt er algjör lygi. Þú færð ást okkar allra og það ert þú sem heldur upp meiningu jólanna!”", 0, scene5Paragraph3);
         }, 1500);
       }
 
@@ -883,7 +883,7 @@ window.addEventListener("load", function() {
         }, 500);
 
         setTimeout(function() {
-          type(answer, "Allir í fjölskyldunni horfa á hvort annað og eru tilbúin til að berja hann í kássu… nema yngsti sonurinn. Hann stendur upp og segir “Bíðið aðeins, hvað er að ykkur! Sveinki, þú ert Jólasveinninn!...”", 0, scene5Paragraph3);
+          type(answer, "Allir í fjölskyldunni horfa á hvort annað og eru tilbúin til að berja hann í kássu… nema yngsti sonurinn. Hann stendur upp og segir “Bíðið aðeins, hvað er að ykkur! Sveinki, þú ert Jólasveinninn! Allir krakkar elska þig um allan heim. Að þú fáir ekki neitt er algjör lygi. Þú færð ást okkar allra og það ert þú sem heldur upp meiningu jólanna!”", 0, scene5Paragraph3);
         }, 1500);
       }
     }
@@ -897,7 +897,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function() {
-          type(text, "Jólasveinninn stendur upp og segir með miklum ákafa “Það er rétt! Ég er jólasveinninn og það er skylda mín að gefa gjafir!” Fjölskyldan öskrar af gleði og þetta er mjög tilfinningaþrungin stund og þess vegna fékk fjölskyldan að koma með. Þau öll hittu hreindýrin hans Sveinka og hoppuðu upp á sleðann hans.", 0, function() {
+          type(text, "Jólasveinninn stendur upp og segir með miklum ákafa “Það er rétt! Ég er Jólasveinninn og það er skylda mín að gefa gjafir!” Fjölskyldan öskrar af gleði og þetta er mjög tilfinningaþrungin stund og þess vegna fékk fjölskyldan að koma með. Þau öll hittu hreindýrin hans Sveinka og hoppuðu upp á sleðann hans.", 0, function() {
             addSpace(5);
           });
         }, 900);
@@ -937,7 +937,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function() {
-          type(text, "Sleðinn skaust af stað með svo miklu afli að fjölskyldan öskraði með öllu afli á meðan Jólasveinninn hló “hó hó hó!”. Það var einmitt á því tímabili þar sem einn tvíburana fattaði að hann væri lofthræddur og gat ekki notið jólatöfrana sem blasti við þeim eins mikið og allir hinir. Eftir að hafa flogið yfir Bretland og Spán taka þau eftir gjöfunum á sleðanum. Þar voru einmitt fimm hlutir sem fjölskyldumeðlimirnir langa mjög í. Einnig var fullt af hundanammi þarna líka svo hundurinn var líka mjög spenntur. Það er mjög freistandi að taka með sér gjafirnar og stela þeim, ég meina enginn mun taka eftir því... ", 0, scene6Choice);
+          type(text, "Sleðinn skaust af stað með svo miklu afli að fjölskyldan öskraði af miklum krafti á meðan Jólasveinninn hló “hó hó hó!”. Það var einmitt á því tímabili þar sem einn tvíburanna fattaði að hann væri lofthræddur og gat ekki notið jólatöfrana sem blasti við þeim eins mikið og allir hinir. Eftir að hafa flogið yfir Bretland og Spán taka þau eftir gjöfunum á sleðanum. Þar voru einmitt fimm pakkar í gjafahrúgunni sem fjölskyldumeðlimina langaði mjög í. Einnig var fullt af hundanammi þarna svo hundurinn var líka mjög spenntur. Það er mjög freistandi að taka með sér gjafirnar og stela þeim, ég meina enginn mun taka eftir því... ", 0, scene6Choice);
         }, 900);
       }, 100);
     }
@@ -1112,7 +1112,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function() {
-          type(text, "Seinna um nóttina lenda þau aftur heima hjá sér og þá mælir Jólasveinninn “Þið sýnduð mér aftur meiningu Jólanna og hvað það er mikilvægt að ég held áfram með starf mitt, takk kærlega fyrir. Einnig er ég búinn að taka eftir hlutverkum ykkar í fjölskyldunni”.", 0, function() {
+          type(text, "Seinna um nóttina lenda þau aftur heima hjá sér og þá mælir Jólasveinninn “Þið sýnduð mér aftur meiningu jólanna og hvað það er mikilvægt að ég held áfram með starf mitt, takk kærlega fyrir. Ég er einnig búinn að taka eftir frábærum persónuleikum ykkar”.", 0, function() {
             addSpace(7);
           });
         }, 900);
@@ -1152,7 +1152,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function () {
-          type(text, "Hann labbar upp til mömmunar og segir:", 0, paragraph2);
+          type(text, "Hann labbar upp til mömmunnar og segir:", 0, paragraph2);
         }, 900);
       }, 100);
     }
@@ -1329,7 +1329,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function() {
-          type(text, "“Þú ert mjög krúttlegur og þannig muntu alltaf vera”", 0, paragraph7);
+          type(text, "“Þú ert djásn og ást fjölskyldunnar.”", 0, paragraph7);
         }, 900);
       }, 100);
     }
@@ -1343,7 +1343,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function() {
-          type(text, "Hundurinn geltir mjög ánægður og sömuleiðis faðmast fjölskyldumeðlimirnir og kveðja Jólasveininn.", 0, function() {
+          type(text, "Hundurinn geltir mjög ánægður og sömuleiðis faðmast fjölskyldan og kveðja Jólasveininn.", 0, function() {
             addSpace(9);
           });
         }, 900);
@@ -1381,7 +1381,7 @@ window.addEventListener("load", function() {
         text.classList.add("visible");
 
         setTimeout(function() {
-          type(text, "Þau vakna eftir þessa löngu nótt og það fyrsta sem þau taka eftir er að gjafirnar sem þau líkuðu mjög við voru undir jólatrénu þeirra og á þeirri stundu vissu þau að þetta yrðu góð Jól", 0, function() {
+          type(text, "Þau vakna eftir þessa löngu nótt og það fyrsta sem þau taka eftir er að gjafirnar sem þau líkuðu mjög við voru undir jólatrénu þeirra og á þeirri stundu vissu þau að þetta yrðu góð jól.", 0, function() {
             setTimeout(end, 2000);
           });
         }, 900);
