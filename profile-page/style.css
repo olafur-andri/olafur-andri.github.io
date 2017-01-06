@@ -115,8 +115,8 @@ body {
 }
 
 #languages {
-  position: relative;
-  bottom: 65px;
+  position: absolute;
+  bottom: -60px;
   left: -60px;
   will-change: transform;
   height: 300px;
@@ -175,7 +175,7 @@ body {
   min-height: 200px;
   max-height: 333px;
   position: fixed;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0);
   bottom: 0;
   left: 0;
   overflow: hidden;
