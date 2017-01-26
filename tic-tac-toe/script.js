@@ -4,6 +4,7 @@ function load() {
   var gridContainer = document.querySelector(".grid-container");
   var columnContainers = document.querySelectorAll(".column-container");
   var p = document.querySelector("p");
+  var refreshButton = document.querySelector(".refresh");
   var activeTiles = 0;
   var hasWon = false;
   var hasLost = false;
@@ -172,6 +173,18 @@ var tiles = document.querySelectorAll(".tile");
         p.textContent = "DRAW";
         throw new Error("This really isn't an error. Just trying to stop execution of JS code.");
       }
+    }
+
+    refreshButton.addEventListener("touchstart", preventDefault, true);
+    refreshButton.addEventListener("touchend", refresh, true);
+    refreshButton.addEventListener("mouseup", refresh, true);
+
+    function preventDefault(e) {
+      e.preventDefault();
+    }
+
+    function refresh() {
+      location.reload();
     }
 
     /*requestAnimationFrame(update);
