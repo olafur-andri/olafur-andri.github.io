@@ -161,7 +161,11 @@ var tiles = document.querySelectorAll(".tile");
 
       if (hasWon) {
         p.textContent = winningMessage;
-        throw new Error("This really isn't an error. Just trying to stop execution of JS code.");
+        for (var i = 0; i < tiles.length; i++) {
+          tiles[i].removeEventListener("touchend", onclick, true);
+      tiles[i].removeEventListener("touchstart", onstart, true);
+      tiles[i].removeEventListener("mouseup", onclick, true);
+        }
       }
 
       if (hasLost) {
