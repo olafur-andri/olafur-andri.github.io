@@ -161,11 +161,7 @@ var tiles = document.querySelectorAll(".tile");
 
       if (hasWon) {
         p.textContent = winningMessage;
-        for (var i = 0; i < tiles.length; i++) {
-          tiles[i].removeEventListener("touchend", onclick, true);
-      tiles[i].removeEventListener("touchstart", onstart, true);
-      tiles[i].removeEventListener("mouseup", onclick, true);
-        }
+        throw new Error("");
       }
 
       if (hasLost) {
