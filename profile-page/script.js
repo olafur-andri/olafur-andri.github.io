@@ -1,6 +1,6 @@
 'use strict';
 
-document.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("load", function() {
   var wrapper = document.querySelector(".wrapper");
   var main = document.querySelector("main.main");
   var languagesButton = document.getElementById("languages");
