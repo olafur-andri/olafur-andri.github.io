@@ -18,16 +18,17 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-#location_label {
+#latitude, #longitude {
   font-weight: 100;
-  font-size: 45px;
+  font-size: 36px;
   text-align: center;
   width: 100%;
   color: black;
 }
 
-#location_label.color {
+#latitude.color {
   color: yellow;
 }

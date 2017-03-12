@@ -1,6 +1,7 @@
 class App {
   constructor() {
-    this.locationLabel = document.getElementById("location_label");
+    this.latitudeLabel = document.getElementById("latitude");
+    this.longitudeLabel = document.getElementById("longitude");
     this.geoLocation = this.geoLocation.bind(this);
     this.geoError = this.geoError.bind(this);
 
@@ -18,8 +19,9 @@ class App {
   }
 
   geoLocation(position) {
-    this.locationLabel.textContent = position.coords.latitude;
-    this.locationLabel.classList.toggle("color");
+    this.latitudeLabel.textContent = position.coords.latitude;
+    this.longitudeLabel.textContent = position.coords.longitude;
+    this.latitudeLabel.classList.toggle("color");
   }
 
   geoError() {
