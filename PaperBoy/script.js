@@ -7,7 +7,7 @@ class App {
     this.geoOptions = {
       enableHighAccuracy: true,
       maximumAge: 30000,
-      timeout: 27000
+      timeout: 1000
     };
 
     if ("geolocation" in navigator) {
