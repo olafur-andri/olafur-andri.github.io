@@ -25,4 +25,9 @@ body, html {
   font-size: 45px;
   text-align: center;
   width: 100%;
+  color: black;
+}
+
+#location_label.color {
+  color: yellow;
 }

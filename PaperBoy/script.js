@@ -7,7 +7,7 @@ class App {
     this.geoOptions = {
       enableHighAccuracy: true,
       maximumAge: 30000,
-      timeout: 1000
+      timeout: 10000
     };
 
     if ("geolocation" in navigator) {
@@ -19,6 +19,7 @@ class App {
 
   geoLocation(position) {
     this.locationLabel.textContent = position.coords.latitude;
+    this.locationLabel.classList.toggle("color");
   }
 
   geoError() {
