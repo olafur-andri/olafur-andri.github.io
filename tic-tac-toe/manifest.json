@@ -1,0 +1,20 @@
+{
+  "name": "Tic Tac Toe",
+  "short_name": "T T T",
+  "start_url": "https://olafur-andri.github.io/tic-tac-toe/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#BDBDBD",
+  "description": "A fun little Tic Tac Toe app",
+  "author": "Ólafur Andri Davíðsson",
+  "orientation": "portrait",
+  "icons": [{
+    "src": "img/logo-150-transparent.png",
+    "sizes": "150x150",
+    "type": "image/png"
+  }, {
+    "src": "img/logo-200-transparent.png",
+    "sizes": "200x200",
+    "type": "image/png"
+  }]
+}
