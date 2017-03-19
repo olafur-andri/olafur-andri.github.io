@@ -55,8 +55,8 @@ class App {
   positionTitle() {
     this.windowHeight = window.innerHeight;
     this.windowWidth = window.innerWidth;
-    this.title.style.left = `${(window.innerWidth / 2)}px`;
-    this.title.style.top = `${(window.innerHeight / 2)}px`;
+    this.title.style.left = `${(window.innerWidth / 2) - (this.titleBCR.width / 2)}px`;
+    this.title.style.top = `${(window.innerHeight / 2) - (this.titleBCR.height / 2)}px`;
   }
 
   fadeInDocument() {
