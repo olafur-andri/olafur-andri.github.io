@@ -76,6 +76,7 @@ class App {
     this.activeTextarea.addEventListener("blur", this.hideTextarea, true)
     this.activeTextarea.addEventListener("keypress", this.updateBubbleText, true);
     this.activeBackground.removeEventListener("click", this.showTextarea, true);
+    document.removeEventListener("keypress", this.shortcutKeys, true);
   }
 
   hideTextarea() {
@@ -85,6 +86,7 @@ class App {
 
     this.activeBubble.classList.remove("show");
     this.activeBackground.addEventListener("click", this.showTextarea, true);
+    document.addEventListener("keypress", this.shortcutKeys, true);
   }
 
   updateBubbleText(e) {
