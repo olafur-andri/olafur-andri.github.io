@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MindMap Editor</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+    <link type="text/css" rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <button type="button">
+          <i class="material-icons" id="add">add
+            <div class="background"></div>
+          </i>
+          <div class="tooltip">Add Bubble (a)</div>
+        </button>
+        <button type="button">
+          <i class="material-icons" id="remove">remove
+            <div class="background"></div>
+          </i>
+          <div class="tooltip">Remove Bubble (r)</div>
+        </button>
+      </header>
+      <svg>
+        <foreignObject>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <div id="title" class="bubble">
+              <p>Some Title</p>
+              <div class="background"></div>
+              <textarea placeholder="Give the document a name..." spellcheck="false" maxlength="50"></textarea>
+              <div class="bubble-square"></div>
+            </div>
+          </body>
+        </foreignObject>
+      </svg>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
