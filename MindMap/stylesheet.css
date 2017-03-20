@@ -41,31 +41,32 @@ svg {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   z-index: 0;
+  pointer-events: none;
 }
 
-#title {
+.bubble {
   height: 50px;
-  width: 150px;
+  width: 30px;
+  top: 0;
   position: absolute;
   border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateZ(0);
+  -webkit-user-select: none;
+  user-select: none;
+  transition: transform 400ms ease;
 }
 
-#title p {
+.bubble p {
   pointer-events: none;
   font-size: 16px;
-  color: #FFFFFF;
   white-space: nowrap;
   z-index: 1;
   position: relative;
 }
 
-#title .background {
-  background-color: #E91E63;
-  border-radius: 3px;
+.bubble .background {
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -73,7 +74,78 @@ svg {
   height: 100%;
   width: 100%;
   transition: transform 400ms ease;
+}
+
+.bubble textarea {
+  -webkit-appearance: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  border: 0;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-bottom: -135px;
+  margin-left: -100px;
+  display: block;
+  background-color: #FFFFFF;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.26);
+  width: 200px;
+  height: 120px;
+  resize: none;
+  border-radius: 4px;
+  z-index: 2;
+  padding: 5px;
+  color: rgb(120, 120, 120);
+  transform: translateY(30px);
+}
+
+.bubble .bubble-square {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #FFFFFF;
+  margin-left: -10px;
+  margin-bottom: -26px;
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.bubble textarea, .bubble .bubble-square {
+  transition: transform 300ms ease, opacity 400ms ease;
+  opacity: 0;
+}
+
+.bubble .bubble-square {
+  transform: translateY(30px) rotate(45deg);
+}
+
+.bubble.show textarea, .bubble.show .bubble-square {
+  opacity: 1;
+}
+
+.bubble.show textarea {
+  transform: translateY(0);
+}
+
+.bubble.show .bubble-square {
+  transform: rotate(45deg) translateY(0);
+}
+
+#title {
+  width: 127px;
+}
+
+#title p {
+  color: #FFFFFF;
+}
+
+#title .background {
+  background-color: #E91E63;
+  border-radius: 3px;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.25);
+  border: 0;
 }
 
 textarea::-webkit-scrollbar {
@@ -83,68 +155,6 @@ textarea::-webkit-scrollbar {
 textarea::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 50px;
-}
-
-#title textarea {
-  -webkit-appearance: none;
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  border: 0;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-bottom: -135px;
-  margin-left: -25px;
-  display: block;
-  background-color: #FFFFFF;
-  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.26);
-  padding-top: 0;
-  width: 200px;
-  height: 120px;
-  resize: none;
-  border-radius: 4px;
-  z-index: 1;
-  padding: 5px;
-  color: rgb(120, 120, 120);
-}
-
-#title .bubble-square {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  height: 20px;
-  width: 20px;
-  background-color: #FFFFFF;
-  margin-left: -10px;
-  margin-bottom: -26px;
-  transform: rotate(45deg) translateZ(0);
-  z-index: 0;
-  box-shadow: 3px 0 5px 0 rgba(0, 0, 0, 0.26);
-}
-
-#title textarea, #title .bubble-square {
-  transition: transform 300ms ease, opacity 400ms ease;
-  opacity: 0;
-}
-
-#title textarea {
-  transform: translateY(30px) translateZ(0);
-}
-
-#title .bubble-square {
-  transform: translateY(30px) rotate(45deg) translateZ(0);
-}
-
-#title.show textarea, #title.show .bubble-square {
-  opacity: 1;
-}
-
-#title.show textarea {
-  transform: translateY(0) translateZ(0);
-}
-
-#title.show .bubble-square {
-  transform: rotate(45deg) translateY(0) translateZ(0);
 }
 
 header {
@@ -213,4 +223,31 @@ header button .tooltip {
 
 header button:hover .tooltip {
   opacity: 1;
+}
+
+#add_remove_instructions {
+  background-color: transparent;
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+  position: fixed;
+  top: 20%;
+  width: 100%;
+  transition: opacity 400ms ease;
+  opacity: 0;
+}
+
+#add_remove_instructions.show {
+  opacity: 1;
+}
+
+#add_remove_instructions p {
+  color: rgb(100, 100, 100);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-bottom: 2px solid rgb(120, 120, 120);
+  display: inline-block;
+  padding: 0 10px 10px 10px;
 }
