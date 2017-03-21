@@ -3,7 +3,7 @@
 class App {
   constructor() {
     this.bubbleContainer = document.getElementById("bubbles");
-    this.title = document.getElementById("title");
+    this.title = document.querySelector("#title .bubble");
     this.titleBCR = this.title.getBoundingClientRect();
     this.wrapper = document.querySelector(".wrapper");
     this.bubbleBackgrounds = document.querySelectorAll(".bubble .background");
@@ -33,7 +33,7 @@ class App {
     this.cancelBubbleCreation = this.cancelBubbleCreation.bind(this);
     this.repositionBubble = this.repositionBubble.bind(this);
 
-    this.positionTitle();
+    // this.positionTitle();
     this.fadeInDocument();
     this.addEventListeners();
   }
@@ -117,6 +117,11 @@ class App {
   resizeBubble() {
     this.activeBackgroundWidth = this.activeBackground.offsetWidth;
     let scale = (this.activeBubbleTextWidth + 50) / this.activeBackgroundWidth;
+
+    if (scale > 2.36) {
+      scale = 2.36;
+    }
+
     this.activeBackground.style.transform = `scaleX(${scale})`;
     this.repositionBubble(this.activeBubble);
     this.activeBubble = null;
