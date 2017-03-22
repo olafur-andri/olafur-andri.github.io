@@ -1,6 +1,6 @@
 'use strict';
 
-class App {
+class Bubbles {
   constructor() {
     this.bubbleContainer = document.getElementById("bubbles");
     this.title = document.querySelector("#title .bubble");
@@ -16,10 +16,13 @@ class App {
     this.activeBubbleTextWidth = 0;
     this.bubblesOnRight = 0;
     this.bubblesOnLeft = 0;
+    this.containersOnRight = 0;
+    this.containersOnLeft = 0;
     this.activeBubble = null;
     this.activeTextarea = null;
     this.activeBackground = null;
     this.activeBubbleText = null;
+    this.activeContainer = null;
 
     this.shortcutKeys = this.shortcutKeys.bind(this);
     this.showTextarea = this.showTextarea.bind(this);
@@ -31,7 +34,11 @@ class App {
     this.appendBubble = this.appendBubble.bind(this);
     this.createNewBubble = this.createNewBubble.bind(this);
     this.cancelBubbleCreation = this.cancelBubbleCreation.bind(this);
-    this.repositionBubble = this.repositionBubble.bind(this);
+    this.createNewContainer = this.createNewContainer.bind(this);
+    this.positionContainer = this.positionContainer.bind(this);
+    this.addContainerOnRight = this.addContainerOnRight.bind(this);
+    this.addContainerOnLeft = this.addContainerOnLeft.bind(this);
+    this.addNoContainer = this.addNoContainer.bind(this);
 
     // this.positionTitle();
     this.fadeInDocument();
@@ -49,8 +56,6 @@ class App {
   }
 
   shortcutKeys(e) {
-    // console.log(e.keyCode);
-
     switch (e.keyCode) {
       case 97:
         this.addBubble();
@@ -79,6 +84,7 @@ class App {
     this.activeBubble = this.activeBackground.parentNode;
     this.activeBubbleText = this.activeBubble.childNodes[1];
     this.activeTextarea = this.activeBubble.childNodes[5];
+    this.activeUnderline = this.activeBubble.childNodes[7];
     this.activeBubble.classList.add("show");
     this.activeTextarea.focus();
     this.activeTextarea.value = this.activeBubbleText.textContent;
@@ -109,23 +115,32 @@ class App {
     this.activeTextarea.blur();
     this.activeBubbleText.textContent = this.activeTextarea.value;
     this.activeBubbleTextWidth = this.activeBubbleText.offsetWidth;
-
-    // Add a resizing method that resizes the bubble if text is too large!!!!
+    this.activeBubbleTextHeight = this.activeBubbleText.offsetHeight;
     this.resizeBubble();
   }
 
   resizeBubble() {
-    this.activeBackgroundWidth = this.activeBackground.offsetWidth;
-    let scale = (this.activeBubbleTextWidth + 50) / this.activeBackgroundWidth;
+    this.activeBackgroundBCR = this.activeBackground.getBoundingClientRect();
+    this.activeBubbleTextBCR = this.activeBubbleText.getBoundingClientRect();
 
-    if (scale > 2.36) {
-      scale = 2.36;
+    let scaleY = 1;
+    let translateY = 0;
+
+    if (this.activeBubble !== this.title) {
+      /*translateY = this.activeBubbleTextBCR.height - 19;
+      translateY /= 2;*/
+      // FLIP the animation
+    } else {
+      scaleY = (this.activeBubbleTextBCR.height + 31) / 50;
     }
 
-    this.activeBackground.style.transform = `scaleX(${scale})`;
-    this.repositionBubble(this.activeBubble);
-    this.activeBubble = null;
-    this.activeBackground = null;
+    let scaleX = (this.activeBubbleTextBCR.width + 50) / 127;
+
+    if (scaleX > 2.36) {
+      scaleX = 2.36;
+    }
+
+    this.activeBackground.style.transform = `scale(${scaleX}, ${scaleY}) translateY(${translateY}px)`;
   }
 
   addBubble() {
@@ -144,23 +159,94 @@ class App {
     this.target = e.target;
     this.targetBCR = this.target.getBoundingClientRect();
     this.activeBubble = this.target.parentNode;
-    let newBubble = this.createNewBubble();
-    let topOffset = 0;
-    let leftOffset;
+    this.activeContainer = this.activeBubble.parentNode;
 
-    if (this.bubblesOnRight <= this.bubblesOnLeft) {
-      this.bubblesOnRight++;
-      leftOffset = this.targetBCR.left + this.targetBCR.width + 60;
+    if (this.activeBubble === this.title) {
+      if (this.containersOnRight == 0 && this.containersOnLeft === 0) {
+        // Add a container to the right
+        this.addContainerOnRight();
+      } else if (this.containersOnRight > 0 && this.containersOnLeft === 0) {
+        // Add a container to the left
+        this.addContainerOnLeft();
+      } else {
+        // Add no container
+        this.addNoContainer();
+      }
     } else {
-      this.bubblesOnLeft++;
+
     }
 
-    topOffset = this.targetBCR.top;
+    if (this.bubblesOnRight <= Math.abs(this.bubblesOnLeft)) {
 
-    newBubble.style.left = `${leftOffset}px`;
-    newBubble.style.top = `${topOffset}px`;
-    this.bubbleContainer.appendChild(newBubble, null);
+    } else {
+
+    }
+  }
+
+  addContainerOnRight() {
+    let newContainer = this.createNewContainer();
+    let newBubble = this.createNewBubble();
+    let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
+    subCount++;
+    let bubbleCount = 1;
+    newContainer.setAttribute("data-subcount", subCount);
+    newContainer.setAttribute("data-bubblecount", bubbleCount);
+    this.bubblesOnRight++;
+    this.containersOnRight++;
+    this.bubbleContainer.appendChild(newContainer, null);
+    this.positionContainer(true, newContainer);
+    newContainer.appendChild(newBubble, null);
     this.cancelBubbleCreation();
+  }
+
+  addContainerOnLeft() {
+    let newContainer = this.createNewContainer();
+    let newBubble = this.createNewBubble();
+    let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
+    subCount--;
+    let bubbleCount = 1;
+    newContainer.setAttribute("data-subcount", subCount);
+    newContainer.setAttribute("data-bubblecount", bubbleCount);
+    this.bubblesOnLeft--;
+    this.containersOnLeft--;
+    this.bubbleContainer.insertBefore(newContainer, null);
+    this.positionContainer(false, newContainer);
+    newContainer.appendChild(newBubble, null);
+    this.cancelBubbleCreation();
+  }
+
+  addNoContainer() {
+    let newBubble = this.createNewBubble();
+
+    if (this.bubblesOnRight <= Math.abs(this.bubblesOnLeft)) {
+      // Add a bubble to the container on your right
+      this.bubblesOnRight++;
+      let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
+      subCount++;
+      let containerOnRight = document.querySelector(".container[data-subcount='" + subCount + "']");
+      let bubbleCount = Number(containerOnRight.getAttribute("data-bubblecount"));
+      bubbleCount++;
+      containerOnRight.setAttribute("data-bubblecount", bubbleCount);
+      containerOnRight.appendChild(newBubble);
+    } else {
+      // Add a bubble to the container on your left
+      this.bubblesOnLeft--;
+      let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
+      subCount--;
+      let containerOnLeft = document.querySelector(`.container[data-subcount='${subCount}']`);
+      let bubbleCount = Number(containerOnLeft.getAttribute("data-bubblecount"));
+      bubbleCount++;
+      containerOnLeft.setAttribute("data-bubblecount", bubbleCount);
+      containerOnLeft.appendChild(newBubble);
+    }
+
+    this.cancelBubbleCreation();
+  }
+
+  createNewContainer() {
+    let newContainer = document.createElement("DIV");
+    newContainer.classList.add("container");
+    return newContainer;
   }
 
   createNewBubble() {
@@ -188,8 +274,16 @@ class App {
     newBubble.appendChild(document.createElement("SPAN"), null);
     newBubble.appendChild(textarea, null);
     newBubble.appendChild(bubbleSquare, null);
-
     return newBubble;
+  }
+
+  positionContainer(isRight, newContainer) {
+    let comMarginLeft = window.getComputedStyle(newContainer).marginLeft;
+    let subCount = Number(newContainer.getAttribute("data-subcount"));
+    let marginLeft = 0;
+
+    marginLeft += (300 * subCount) - 150;
+    newContainer.style.marginLeft = `${marginLeft}px`;
   }
 
   removeBubble() {
@@ -212,24 +306,6 @@ class App {
 
     document.removeEventListener("keydown", this.cancelBubbleCreation, true);
   }
-
-  repositionBubble(bubbl) {
-    let bubble = bubbl;
-
-    if (bubble.id == "title") {
-      return;
-    }
-
-    let bubbleBCR = bubble.getBoundingClientRect();
-    let offset = bubbleBCR.left - this.titleRight;
-    console.log(bubbleBCR.left + " - " + this.titleRight);
-    let subCount = Number(bubble.getAttribute("data-subcount"));
-
-    if (offset < (60 * subCount)) {
-      let transform = 60 - offset;
-      bubble.style.transform = "translateX(" + offset + "px)";
-    }
-  }
 }
 
-window.addEventListener("load", () => new App(), true);
+window.addEventListener("load", () => new Bubbles(), true);

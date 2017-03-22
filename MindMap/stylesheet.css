@@ -45,8 +45,8 @@ svg {
 }
 
 .bubble {
-  height: 50px;
-  width: 30px;
+  /*height: 50px;*/
+  width: 300px;
   top: 0;
   border-radius: 3px;
   display: flex;
@@ -58,6 +58,7 @@ svg {
   position: relative;
   padding-right: 15px;
   padding-left: 15px;
+  margin-bottom: 15px;
 }
 
 .bubble p {
@@ -67,6 +68,7 @@ svg {
   position: relative;
   max-width: 300px;
   text-align: center;
+  word-wrap: break-word;
 }
 
 .bubble .background {
@@ -146,10 +148,12 @@ svg {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  /*background-color: rgba(0, 100, 0, 0.3);*/
 }
 
 #title {
-  background-color: rgba(0, 0, 0, 0.3);
+  /*background-color: rgba(0, 0, 0, 0.3);*/
 }
 
 #title .bubble {
@@ -255,6 +259,7 @@ header button:hover .tooltip {
   width: 100%;
   transition: opacity 400ms ease;
   opacity: 0;
+  will-change: opacity;
 }
 
 #add_remove_instructions.show {
