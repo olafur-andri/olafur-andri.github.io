@@ -44,6 +44,16 @@ svg {
   pointer-events: none;
 }
 
+#bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100vw;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .bubble {
   /*height: 50px;*/
   width: 300px;
@@ -59,6 +69,7 @@ svg {
   padding-right: 15px;
   padding-left: 15px;
   margin-bottom: 15px;
+  pointer-events: auto;
 }
 
 .bubble p {
@@ -103,6 +114,7 @@ svg {
   padding: 5px;
   color: rgb(120, 120, 120);
   transform: translateY(30px);
+  pointer-events: none;
 }
 
 .bubble .bubble-square {
@@ -116,6 +128,7 @@ svg {
   margin-bottom: -26px;
   transform: rotate(45deg);
   z-index: 1;
+  pointer-events: none;
 }
 
 .bubble textarea, .bubble .bubble-square {
@@ -129,6 +142,7 @@ svg {
 
 .bubble.show textarea, .bubble.show .bubble-square {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .bubble.show textarea {
@@ -149,15 +163,8 @@ svg {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  pointer-events: none;
   /*background-color: rgba(0, 100, 0, 0.3);*/
-}
-
-#title {
-  /*background-color: rgba(0, 0, 0, 0.3);*/
-}
-
-#title .bubble {
-  width: 300px;
 }
 
 #title .bubble p {
@@ -260,6 +267,7 @@ header button:hover .tooltip {
   transition: opacity 400ms ease;
   opacity: 0;
   will-change: opacity;
+  pointer-events: none;
 }
 
 #add_remove_instructions.show {
@@ -274,4 +282,15 @@ header button:hover .tooltip {
   border-bottom: 2px solid rgb(120, 120, 120);
   display: inline-block;
   padding: 0 10px 10px 10px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 100px;
 }
