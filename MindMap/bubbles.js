@@ -3,6 +3,7 @@
 class Bubbles {
   constructor() {
     this.bubbleContainer = document.getElementById("bubbles");
+    this.bubbleWrapper = document.querySelector(".bubble-wrapper");
     this.title = document.querySelector("#title .bubble");
     this.titleBCR = this.title.getBoundingClientRect();
     this.wrapper = document.querySelector(".wrapper");
@@ -24,6 +25,7 @@ class Bubbles {
     this.activeBubbleText = null;
     this.activeContainer = null;
 
+    this.prepareBubbleWrapper = this.prepareBubbleWrapper.bind(this);
     this.shortcutKeys = this.shortcutKeys.bind(this);
     this.showTextarea = this.showTextarea.bind(this);
     this.hideTextarea = this.hideTextarea.bind(this);
@@ -46,6 +48,7 @@ class Bubbles {
     // this.positionTitle();
     this.fadeInDocument();
     this.addEventListeners();
+    this.prepareBubbleWrapper();
   }
 
   addEventListeners() {
@@ -56,6 +59,10 @@ class Bubbles {
     for (let i = 0; i < this.bubbleBackgrounds.length; i++) {
       this.bubbleBackgrounds[i].addEventListener("click", this.showTextarea, true);
     }
+  }
+
+  prepareBubbleWrapper() {
+    this.bubbleWrapper.style.transform = "translateX(0px)";
   }
 
   shortcutKeys(e) {
@@ -226,7 +233,7 @@ class Bubbles {
     newContainer.setAttribute("data-subcount", subCount);
     newContainer.setAttribute("data-bubblecount", bubbleCount);
     this.containersOnRight++;
-    this.bubbleContainer.appendChild(newContainer, null);
+    this.bubbleWrapper.appendChild(newContainer, null);
     this.positionContainer(true, newContainer);
     newContainer.appendChild(newBubble, null);
     this.cancelBubbleCreation();
@@ -242,7 +249,7 @@ class Bubbles {
     newContainer.setAttribute("data-subcount", subCount);
     newContainer.setAttribute("data-bubblecount", bubbleCount);
     this.containersOnLeft--;
-    this.bubbleContainer.insertBefore(newContainer, this.bubbleContainer.firstChild);
+    this.bubbleWrapper.insertBefore(newContainer, this.bubbleWrapper.firstChild);
     this.positionContainer(false, newContainer);
     newContainer.appendChild(newBubble, null);
     this.cancelBubbleCreation();
@@ -378,14 +385,19 @@ class Bubbles {
   }
 
   resizePageIfNeeded() {
-    let newContainer = document.querySelector(".container");
-    let newContainerBCR = newContainer.getBoundingClientRect();
+    let container = document.querySelector(".container");
+    let containerBCR = container.getBoundingClientRect();
 
-    if (newContainerBCR.left < 0) {
-      let initialWidth = this.bubbleContainer.offsetWidth;
-      let newWidth = initialWidth + 300;
-      this.bubbleContainer.style.width = `${newWidth}px`;
+    if (containerBCR.left >= 0) {
+      return;
     }
+
+    let transform = this.bubbleWrapper.style.transform;
+    transform = transform.replace("translateX(", "");
+    transform = transform.replace("px)", "");
+    transform = Number(transform);
+    transform += 300;
+    this.bubbleWrapper.style.transform = `translateX(${transform}px)`;
   }
 }
 
