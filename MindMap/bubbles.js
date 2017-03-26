@@ -19,6 +19,7 @@ class Bubbles {
     this.bubblesOnLeft = 0;
     this.containersOnRight = 0;
     this.containersOnLeft = 0;
+    this.scroll = 0;
     this.activeBubble = null;
     this.activeTextarea = null;
     this.activeBackground = null;
@@ -41,9 +42,11 @@ class Bubbles {
     this.addContainerOnRight = this.addContainerOnRight.bind(this);
     this.addContainerOnLeft = this.addContainerOnLeft.bind(this);
     this.addNoContainer = this.addNoContainer.bind(this);
-    this.resizePageIfNeeded = this.resizePageIfNeeded.bind(this);
+    this.scrollBubblesIntoView = this.scrollBubblesIntoView.bind(this);
     this.enforceTextarea = this.enforceTextarea.bind(this);
     this.insertBubbleOnLeft = this.insertBubbleOnLeft.bind(this);
+    this.maybeScrollViewport = this.maybeScrollViewport.bind(this);
+    this.scrollViewport = this.scrollViewport.bind(this);
 
     // this.positionTitle();
     this.fadeInDocument();
@@ -238,6 +241,7 @@ class Bubbles {
     newContainer.appendChild(newBubble, null);
     this.cancelBubbleCreation();
     this.enforceTextarea(newBubble);
+    this.maybeScrollViewport();
   }
 
   addContainerOnLeft() {
@@ -253,7 +257,7 @@ class Bubbles {
     this.positionContainer(false, newContainer);
     newContainer.appendChild(newBubble, null);
     this.cancelBubbleCreation();
-    this.resizePageIfNeeded();
+    this.scrollBubblesIntoView();
     this.enforceTextarea(newBubble);
   }
 
@@ -384,7 +388,7 @@ class Bubbles {
     document.removeEventListener("keydown", this.cancelBubbleCreation, true);
   }
 
-  resizePageIfNeeded() {
+  scrollBubblesIntoView() {
     let container = document.querySelector(".container");
     let containerBCR = container.getBoundingClientRect();
 
@@ -398,6 +402,30 @@ class Bubbles {
     transform = Number(transform);
     transform += 300;
     this.bubbleWrapper.style.transform = `translateX(${transform}px)`;
+  }
+
+  maybeScrollViewport() {
+    let container = document.querySelector(".container:last-child");
+    let containerBCR = container.getBoundingClientRect();
+
+    if (window.innerWidth - containerBCR.right >= 0) {
+      return;
+    }
+
+    this.maxScroll = this.bubbleContainer.scrollWidth - this.bubbleContainer.clientWidth;
+    this.scroll = this.bubbleContainer.scrollLeft;
+    requestAnimationFrame(this.scrollViewport);
+  }
+
+  scrollViewport() {
+    this.requestId = requestAnimationFrame(this.scrollViewport);
+
+    if (this.scroll >= (this.maxScroll - 10)) {
+      cancelAnimationFrame(this.requestId);
+    }
+
+    this.scroll += (this.maxScroll - this.scroll) / 5;
+    this.bubbleContainer.scrollLeft = this.scroll;
   }
 }
 
