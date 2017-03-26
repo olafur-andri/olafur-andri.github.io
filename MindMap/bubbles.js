@@ -33,7 +33,10 @@ class Bubbles {
     this.updateBubbleText = this.updateBubbleText.bind(this);
     this.resizeBubble = this.resizeBubble.bind(this);
     this.prepareToAddBubble = this.prepareToAddBubble.bind(this);
+    this.prepareBubbleRemoval = this.prepareBubbleRemoval.bind(this);
     this.removeBubble = this.removeBubble.bind(this);
+    this.cancelBubbleRemoval = this.cancelBubbleRemoval.bind(this);
+    this.removeContainer = this.removeContainer.bind(this);
     this.appendBubble = this.appendBubble.bind(this);
     this.createNewBubble = this.createNewBubble.bind(this);
     this.cancelBubbleCreation = this.cancelBubbleCreation.bind(this);
@@ -47,6 +50,7 @@ class Bubbles {
     this.insertBubbleOnLeft = this.insertBubbleOnLeft.bind(this);
     this.maybeScrollViewport = this.maybeScrollViewport.bind(this);
     this.scrollViewport = this.scrollViewport.bind(this);
+    this.insertBubbleOnRight = this.insertBubbleOnRight.bind(this);
 
     // this.positionTitle();
     this.fadeInDocument();
@@ -74,7 +78,7 @@ class Bubbles {
         this.prepareToAddBubble();
         break;
       case "r":
-        this.removeBubble();
+        this.prepareBubbleRemoval();
         break;
     }
   }
@@ -211,7 +215,7 @@ class Bubbles {
 
         if (subCount < this.containersOnRight) {
           console.log("Don't add a new container on your right");
-          this.addNoContainer();
+          this.insertBubbleOnRight();
         } else {
           console.log("Add a new container on your right");
           this.addContainerOnRight();
@@ -286,6 +290,19 @@ class Bubbles {
       containerOnLeft.appendChild(newBubble, null);
     }
 
+    this.cancelBubbleCreation();
+    this.enforceTextarea(newBubble);
+  }
+
+  insertBubbleOnRight() {
+    let newBubble = this.createNewBubble();
+    let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
+    subCount++;
+    let containerOnRight = document.querySelector(`.container[data-subcount='${subCount}']`);
+    let bubbleCount = Number(containerOnRight.getAttribute("data-bubblecount"));
+    bubbleCount++;
+    containerOnRight.setAttribute("data-bubblecount", bubbleCount);
+    containerOnRight.appendChild(newBubble, null);
     this.cancelBubbleCreation();
     this.enforceTextarea(newBubble);
   }
@@ -367,8 +384,60 @@ class Bubbles {
     document.removeEventListener("keypress", this.shortcutKeys, true);
   }
 
-  removeBubble() {
-    console.log("Remove bubble");
+  prepareBubbleRemoval() {
+    this.bubbleBackgrounds = document.querySelectorAll(".bubble .background");
+
+    for (let i = 0; i < this.bubbleBackgrounds.length; i++) {
+      this.bubbleBackgrounds[i].removeEventListener("click", this.showTextarea, true);
+      this.bubbleBackgrounds[i].addEventListener("click", this.removeBubble, true);
+    }
+
+    document.removeEventListener("keydown", this.shortcutKeys, true);
+    document.addEventListener("keydown", this.cancelBubbleRemoval, true);
+
+    this.addRemoveInstructions.classList.add("show");
+  }
+
+  removeBubble(e) {
+    this.activeBackground = e.target;
+    this.activeBubble = this.activeBackground.parentNode;
+
+    if (this.activeBubble === this.title) {
+      this.cancelBubbleRemoval();
+      return;
+    }
+
+    this.activeContainer = this.activeBubble.parentNode;
+    this.activeContainer.removeChild(this.activeBubble);
+    let bubbleCount = Number(this.activeContainer.getAttribute("data-bubblecount"));
+    bubbleCount--;
+    this.activeContainer.setAttribute("data-bubblecount", bubbleCount);
+
+    if (bubbleCount === 0) {
+      this.removeContainer();
+    }
+
+    this.cancelBubbleRemoval();
+  }
+
+  removeContainer() {
+    this.bubbleWrapper.removeChild(this.activeContainer);
+  }
+
+  cancelBubbleRemoval(e) {
+    if (e && e.key !== "Escape") {
+      return;
+    }
+
+    this.addRemoveInstructions.classList.remove("show");
+
+    for (let i = 0; i < this.bubbleBackgrounds.length; i++) {
+      this.bubbleBackgrounds[i].removeEventListener("click", this.removeBubble, true);
+      this.bubbleBackgrounds[i].addEventListener("click", this.showTextarea, true);
+    }
+
+    document.addEventListener("keydown", this.shortcutKeys, true);
+    document.removeEventListener("keydown", this.cancelBubbleRemoval, true);
   }
 
   cancelBubbleCreation(e) {
