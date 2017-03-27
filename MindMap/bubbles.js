@@ -20,11 +20,15 @@ class Bubbles {
     this.containersOnRight = 0;
     this.containersOnLeft = 0;
     this.scroll = 0;
+    this.removeId = 0;
+    this.createId = 1;
+    this.originId = 0;
     this.activeBubble = null;
     this.activeTextarea = null;
     this.activeBackground = null;
     this.activeBubbleText = null;
     this.activeContainer = null;
+    this.connectedBubbles = null;
 
     this.prepareBubbleWrapper = this.prepareBubbleWrapper.bind(this);
     this.shortcutKeys = this.shortcutKeys.bind(this);
@@ -51,6 +55,7 @@ class Bubbles {
     this.maybeScrollViewport = this.maybeScrollViewport.bind(this);
     this.scrollViewport = this.scrollViewport.bind(this);
     this.insertBubbleOnRight = this.insertBubbleOnRight.bind(this);
+    this.removeConnectedBubbles = this.removeConnectedBubbles.bind(this);
 
     // this.positionTitle();
     this.fadeInDocument();
@@ -185,6 +190,10 @@ class Bubbles {
     this.activeBubble = this.target.parentNode;
     this.activeContainer = this.activeBubble.parentNode;
 
+    if (Number(this.activeBubble.id)) {
+      this.originId = Number(this.activeBubble.id);
+    }
+
     if (this.activeBubble === this.title) {
       if (this.containersOnRight == 0 && this.containersOnLeft === 0) {
         // Add a container to the right
@@ -204,20 +213,16 @@ class Bubbles {
       if (subCount < 0) {
 
         if (subCount > this.containersOnLeft) {
-          console.log("Don't add a new container to your left");
           this.insertBubbleOnLeft();
         } else {
-          console.log("Add a new container to your left");
           this.addContainerOnLeft();
         }
 
       } else {
 
         if (subCount < this.containersOnRight) {
-          console.log("Don't add a new container on your right");
           this.insertBubbleOnRight();
         } else {
-          console.log("Add a new container on your right");
           this.addContainerOnRight();
         }
 
@@ -341,6 +346,13 @@ class Bubbles {
     textarea.placeholder = "Write something for this bubble...";
     textarea.spellcheck = false;
     newBubble.classList.add("bubble");
+    newBubble.id = this.createId;
+    this.createId++;
+
+    if (this.originId) {
+      newBubble.setAttribute("data-origin", this.originId);
+    }
+
     newBubble.appendChild(document.createElement("SPAN"), null);
     newBubble.appendChild(p, null);
     newBubble.appendChild(background, null);
@@ -401,6 +413,7 @@ class Bubbles {
   removeBubble(e) {
     this.activeBackground = e.target;
     this.activeBubble = this.activeBackground.parentNode;
+    this.originId = Number(this.activeBubble.id);
 
     if (this.activeBubble === this.title) {
       this.cancelBubbleRemoval();
@@ -409,6 +422,7 @@ class Bubbles {
 
     this.activeContainer = this.activeBubble.parentNode;
     this.activeContainer.removeChild(this.activeBubble);
+    this.removeId = Number(this.activeBubble.id);
     let bubbleCount = Number(this.activeContainer.getAttribute("data-bubblecount"));
     bubbleCount--;
     this.activeContainer.setAttribute("data-bubblecount", bubbleCount);
@@ -417,11 +431,28 @@ class Bubbles {
       this.removeContainer();
     }
 
+    this.removeConnectedBubbles();
     this.cancelBubbleRemoval();
   }
 
   removeContainer() {
     this.bubbleWrapper.removeChild(this.activeContainer);
+  }
+
+  removeConnectedBubbles() {
+    this.connectedBubbles = document.querySelectorAll(`.bubble[data-origin="${this.originId}"]`);
+
+    for (let i = 0; i < this.connectedBubbles.length; i++) {
+      let container = this.connectedBubbles[i].parentNode;
+      container.removeChild(this.connectedBubbles[i]);
+      let bubbleCount = Number(container.getAttribute("data-bubblecount"));
+      bubbleCount--;
+      container.setAttribute("data-bubblecount", bubbleCount);
+
+      if (bubbleCount === 0) {
+        this.bubbleWrapper.removeChild(container);
+      }
+    }
   }
 
   cancelBubbleRemoval(e) {
@@ -499,3 +530,6 @@ class Bubbles {
 }
 
 window.addEventListener("load", () => new Bubbles(), true);
+
+
+// Remove connencted bubbles!!!!!!!!!!!!!
