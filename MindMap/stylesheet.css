@@ -40,8 +40,14 @@ svg {
   width: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
+}
+
+svg path {
+  stroke-width: 2px;
+  stroke: rgb(100, 100, 100);
+  fill: transparent;
 }
 
 #bubbles {

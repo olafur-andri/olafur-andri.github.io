@@ -1,6 +1,6 @@
 'use strict';
 
-class Bubbles {
+class Bubble {
   constructor() {
     this.bubbleContainer = document.getElementById("bubbles");
     this.bubbleWrapper = document.querySelector(".bubble-wrapper");
@@ -180,7 +180,6 @@ class Bubbles {
     this.addRemoveInstructions.classList.add("show");
     document.removeEventListener("keydown", this.shortcutKeys, true);
     document.addEventListener("keydown", this.cancelBubbleCreation, true);
-    isAdding = true;
   }
 
   appendBubble(e) {
@@ -248,6 +247,7 @@ class Bubbles {
     this.bubbleWrapper.appendChild(newContainer, null);
     this.positionContainer(true, newContainer);
     newContainer.appendChild(newBubble, null);
+    new Line(this.activeBubble, newBubble);
     this.cancelBubbleCreation();
     this.enforceTextarea(newBubble);
     this.maybeScrollViewport();
@@ -529,7 +529,7 @@ class Bubbles {
   }
 }
 
-window.addEventListener("load", () => new Bubbles(), true);
+window.addEventListener("load", () => new Bubble(), true);
 
 
 // Remove connencted bubbles!!!!!!!!!!!!!
