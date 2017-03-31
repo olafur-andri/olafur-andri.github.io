@@ -35,13 +35,13 @@ body {
 svg {
   position: absolute;
   top: 0;
-  left: 0;
   height: 100%;
-  width: 100%;
+  width: 300px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  z-index: -1;
   pointer-events: none;
+  background-color: green;
+  z-index: -1;
 }
 
 svg path {

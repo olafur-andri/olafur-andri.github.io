@@ -3,7 +3,7 @@
 class Line {
   constructor(activeBubble, newBubble) {
     this.bubbleBackgrounds = document.querySelectorAll(".bubble .background");
-    this.svg = document.querySelector("svg");
+    this.activeSVG = null;
     this.activeBubble = activeBubble;
     this.newBubble = newBubble;
     this.startX = 0;
@@ -33,18 +33,6 @@ class Line {
   }
 
   drawNewConnection() {
-    this.newPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    this.startX = this.activeBackgroundBCR.right;
-    this.startY = this.activeBackgroundBCR.top + (this.activeBackgroundBCR.height / 2);
-    this.firstCurveX = this.startX + 150;
-    this.firstCurveY = this.startY;
-    this.secondCurveX = this.firstCurveX;
-    this.secondCurveY = this.newBubbleBCR.top + (this.newBubbleBCR.height / 2);
-    this.endX = this.newBubbleBCR.left;
-    this.endY = this.secondCurveY;
-    this.newPath.setAttribute("d", `
-      M${this.startX} ${this.startY} L${this.firstCurveX} ${this.firstCurveY} L${this.secondCurveX} ${this.secondCurveY} L${this.endX} ${this.endY} Z
-    `);
-    this.svg.appendChild(this.newPath);
+    
   }
 }

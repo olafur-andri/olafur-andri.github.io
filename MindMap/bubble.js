@@ -23,6 +23,7 @@ class Bubble {
     this.removeId = 0;
     this.createId = 1;
     this.originId = 0;
+    this.isColorRandom = false;
     this.activeBubble = null;
     this.activeTextarea = null;
     this.activeBackground = null;
@@ -56,6 +57,7 @@ class Bubble {
     this.scrollViewport = this.scrollViewport.bind(this);
     this.insertBubbleOnRight = this.insertBubbleOnRight.bind(this);
     this.removeConnectedBubbles = this.removeConnectedBubbles.bind(this);
+    this.createNewSVG = this.createNewSVG.bind(this);
 
     // this.positionTitle();
     this.fadeInDocument();
@@ -194,6 +196,12 @@ class Bubble {
     }
 
     if (this.activeBubble === this.title) {
+      this.isColorRandom = true;
+    } else {
+      this.isColorRandom = false;
+    }
+
+    if (this.activeBubble === this.title) {
       if (this.containersOnRight == 0 && this.containersOnLeft === 0) {
         // Add a container to the right
         this.bubblesOnRight++;
@@ -241,6 +249,7 @@ class Bubble {
     let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
     subCount++;
     let bubbleCount = 1;
+    let newSVG = this.createNewSVG(true, newContainer);
     newContainer.setAttribute("data-subcount", subCount);
     newContainer.setAttribute("data-bubblecount", bubbleCount);
     this.containersOnRight++;
@@ -251,11 +260,13 @@ class Bubble {
     this.cancelBubbleCreation();
     this.enforceTextarea(newBubble);
     this.maybeScrollViewport();
+    this.activeContainer.appendChild(newSVG, this.activeContainer.lastChild);
   }
 
   addContainerOnLeft() {
     let newContainer = this.createNewContainer();
     let newBubble = this.createNewBubble();
+    let newSVG = this.createNewSVG(false, newContainer);
     let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
     subCount--;
     let bubbleCount = 1;
@@ -265,9 +276,22 @@ class Bubble {
     this.bubbleWrapper.insertBefore(newContainer, this.bubbleWrapper.firstChild);
     this.positionContainer(false, newContainer);
     newContainer.appendChild(newBubble, null);
+    this.activeContainer.appendChild(newSVG, this.activeContainer.lastChild);
     this.cancelBubbleCreation();
     this.scrollBubblesIntoView();
     this.enforceTextarea(newBubble);
+  }
+
+  createNewSVG(isRight, newContainer) {
+    let newSVG = document.createElement("SVG");
+
+    if (isRight) {
+      newSVG.style.left = "50%";
+    } else {
+      newSVG.style.right = "50%";
+    }
+
+    return newSVG;
   }
 
   addNoContainer() {
@@ -307,7 +331,23 @@ class Bubble {
     let bubbleCount = Number(containerOnRight.getAttribute("data-bubblecount"));
     bubbleCount++;
     containerOnRight.setAttribute("data-bubblecount", bubbleCount);
-    containerOnRight.appendChild(newBubble, null);
+
+    let dataOrigin = Number(newBubble.getAttribute("data-origin"));
+    for (let i = 0; i < containerOnRight.childNodes.length; i++) {
+      let currentDataOrigin = Number(containerOnRight.childNodes[i].getAttribute("data-origin"));
+
+      if (currentDataOrigin > dataOrigin) {
+        containerOnRight.insertBefore(newBubble, containerOnRight.childNodes[i]);
+        break;
+      }
+
+      if (i === containerOnRight.childNodes.length - 1) {
+        console.log("need to insert as last");
+        containerOnRight.appendChild(newBubble, containerOnRight.lastChild);
+        break;
+      }
+    }
+
     this.cancelBubbleCreation();
     this.enforceTextarea(newBubble);
   }
@@ -320,9 +360,24 @@ class Bubble {
     let bubbleCount = Number(containerOnLeft.getAttribute("data-bubblecount"));
     bubbleCount++;
     containerOnLeft.setAttribute("data-bubblecount", bubbleCount);
-    containerOnLeft.appendChild(newBubble, null);
     this.cancelBubbleCreation();
     this.enforceTextarea(newBubble);
+
+    let dataOrigin = Number(newBubble.getAttribute("data-origin"));
+    for (let i = 0; i < containerOnLeft.childNodes.length; i++) {
+      let currentDataOrigin = Number(containerOnLeft.childNodes[i].getAttribute("data-origin"));
+
+      if (currentDataOrigin > dataOrigin) {
+        containerOnLeft.insertBefore(newBubble, containerOnLeft.childNodes[i]);
+        break;
+      }
+
+      if (i === containerOnLeft.childNodes.length - 1) {
+        console.log("need to insert as last");
+        containerOnLeft.appendChild(newBubble, containerOnLeft.lastChild);
+        break;
+      }
+    }
   }
 
   createNewContainer() {
@@ -332,17 +387,27 @@ class Bubble {
   }
 
   createNewBubble() {
+    let rnd = 0;
+    let color = "";
     let newBubble = document.createElement("DIV");
-    let p = document.createElement("P");
     let background = document.createElement("DIV");
+    let p = document.createElement("P");
+    background.classList.add("background");
+
+    if (this.isColorRandom) {
+      rnd = Math.floor(Math.random() * 7);
+      color = this.randomColors[rnd];
+      background.style.borderBottom = `2px solid ${color}`;
+      p.style.color = color;
+    } else {
+      color = getComputedStyle(this.target.parentNode.childNodes[1]).color;
+      background.style.borderBottom = `2px solid ${color}`;
+      p.style.color = color;
+    }
+
     let textarea = document.createElement("TEXTAREA");
     let bubbleSquare = document.createElement("DIV");
-    let rnd = Math.floor(Math.random() * 7);
-    let color = this.randomColors[rnd];
-    p.style.color = color;
     bubbleSquare.classList.add("bubble-square");
-    background.classList.add("background");
-    background.style.borderBottom = `2px solid ${color}`;
     textarea.placeholder = "Write something for this bubble...";
     textarea.spellcheck = false;
     newBubble.classList.add("bubble");
@@ -369,6 +434,7 @@ class Bubble {
     let marginLeft = 0;
 
     marginLeft += (300 * subCount) - 150;
+
     newContainer.style.marginLeft = `${marginLeft}px`;
   }
 
