@@ -37,17 +37,16 @@ svg {
   top: 0;
   height: 100%;
   width: 300px;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
   pointer-events: none;
-  background-color: green;
+  background-color: rgba(100, 0, 50, 0);
   z-index: -1;
+  padding-top: 50vh;
 }
 
 svg path {
-  stroke-width: 2px;
-  stroke: rgb(100, 100, 100);
   fill: transparent;
+  stroke-width: 1px;
+  stroke: rgb(150, 150, 150);
 }
 
 #bubbles {
@@ -58,7 +57,6 @@ svg path {
   width: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  white-space: nowrap;
 }
 
 .bubble-wrapper {
@@ -98,6 +96,8 @@ svg path {
   max-width: 300px;
   text-align: center;
   word-wrap: break-word;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .bubble .background {
