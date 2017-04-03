@@ -69,7 +69,7 @@ class Bubble {
   addEventListeners() {
     document.addEventListener("keypress", this.shortcutKeys, true);
     this.addBubbleIcon.addEventListener("click", this.prepareToAddBubble, true);
-    this.removeBubbleIcon.addEventListener("click", this.removeBubble, true);
+    this.removeBubbleIcon.addEventListener("click", this.prepareBubbleRemoval, true);
 
     for (let i = 0; i < this.bubbleBackgrounds.length; i++) {
       this.bubbleBackgrounds[i].addEventListener("click", this.showTextarea, true);
@@ -263,7 +263,7 @@ class Bubble {
     this.cancelBubbleCreation();
     this.maybeScrollViewport();
     this.activeContainer.appendChild(newSVG, this.activeContainer.lastChild);
-    new Line(this.activeBubble, newBubble, this.activeSVG);
+    new Line("right", this.activeBubble, newBubble, this.activeSVG);
     this.enforceTextarea(newBubble);
   }
 
@@ -286,7 +286,7 @@ class Bubble {
     this.activeContainer.appendChild(newSVG, this.activeContainer.lastChild);
     this.cancelBubbleCreation();
     this.scrollBubblesIntoView();
-    new Line(this.activeBubble, newBubble, this.activeSVG);
+    new Line("left", this.activeBubble, newBubble, this.activeSVG);
     this.enforceTextarea(newBubble);
   }
 
@@ -408,11 +408,11 @@ class Bubble {
     if (this.isColorRandom) {
       rnd = Math.floor(Math.random() * 7);
       color = this.randomColors[rnd];
-      background.style.borderBottom = `2px solid ${color}`;
+      background.style.borderBottom = `3px solid ${color}`;
       p.style.color = color;
     } else {
       color = getComputedStyle(this.target.parentNode.childNodes[1]).color;
-      background.style.borderBottom = `2px solid ${color}`;
+      background.style.borderBottom = `3px solid ${color}`;
       p.style.color = color;
     }
 
@@ -491,6 +491,7 @@ class Bubble {
     this.activeBackground = e.target;
     this.activeBubble = this.activeBackground.parentNode;
     this.originId = Number(this.activeBubble.id);
+    console.log(this.activeBackground);
 
     if (this.activeBubble === this.title) {
       this.cancelBubbleRemoval();
