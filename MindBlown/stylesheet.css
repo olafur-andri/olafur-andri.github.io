@@ -196,12 +196,12 @@ svg path {
 
 #title .bubble p {
   /* #E91E63 */
-  color: #E91E63;
+  color: #FFFFFF;
   font-weight: 300;
 }
 
 #title .bubble .background {
-  background-color: #FFFFFF;
+  background-color: #E91E63;
   border-radius: 3px;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.25);
   border: 0;
