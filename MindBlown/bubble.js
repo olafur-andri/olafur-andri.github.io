@@ -12,7 +12,7 @@ class Bubble {
     this.addBubbleIcon = document.getElementById("add");
     this.removeBubbleIcon = document.getElementById("remove");
     this.addRemoveInstructions = document.getElementById("add_remove_instructions");
-    this.randomColors = ["#F44336", "#9C27B0", "#1976D2", "#009688", "#4CAF50", "#FF9800", "#795548"];
+    this.randomColors = ["#F44336", "#9C27B0", "#1976D2", "#009688", "#4CAF50", "#FF9800", "#795548", "#E91E63"];
     this.activeBackgroundWidth = 0;
     this.activeBubbleTextWidth = 0;
     this.bubblesOnRight = 0;
@@ -23,6 +23,7 @@ class Bubble {
     this.removeId = 0;
     this.createId = 1;
     this.originId = 0;
+    this.subCount = 0;
     this.isColorRandom = false;
     this.activeBubble = null;
     this.activeTextarea = null;
@@ -31,6 +32,7 @@ class Bubble {
     this.activeContainer = null;
     this.connectedBubbles = null;
     this.activeSVG = null;
+    this.containerOnRight = null;
 
     this.prepareBubbleWrapper = this.prepareBubbleWrapper.bind(this);
     this.shortcutKeys = this.shortcutKeys.bind(this);
@@ -151,27 +153,23 @@ class Bubble {
   }
 
   resizeBubble() {
-    this.activeBackgroundBCR = this.activeBackground.getBoundingClientRect();
+    /*this.activeBackgroundBCR = this.activeBackground.getBoundingClientRect();
     this.activeBubbleTextBCR = this.activeBubbleText.getBoundingClientRect();
 
     let scaleY = 1;
     let translateY = 0;
 
-    if (this.activeBubble !== this.title) {
-      /*translateY = this.activeBubbleTextBCR.height - 19;
-      translateY /= 2;*/
-      // FLIP the animation
-    } else {
-      scaleY = (this.activeBubbleTextBCR.height + 31) / 50;
+    if (this.activeBubble === this.title) {
+      scaleY = (this.activeBubbleTextBCR.height + 36) / 58;
     }
 
-    let scaleX = (this.activeBubbleTextBCR.width + 50) / 127;
+    let scaleX = (this.activeBubbleTextBCR.width + 6) / 127;
 
     if (scaleX > 2.1) {
       scaleX = 2.1;
     }
 
-    this.activeBackground.style.transform = `scale(${scaleX}, ${scaleY}) translateY(${translateY}px)`;
+    this.activeBackground.style.transform = `scale(${scaleX}, ${scaleY}) translateY(${translateY}px)`; */
   }
 
   prepareToAddBubble() {
@@ -246,13 +244,14 @@ class Bubble {
 
   addContainerOnRight() {
     let newContainer = this.createNewContainer();
+    newContainer.classList.add("align-left");
+    this.subCount = Number(this.activeContainer.getAttribute("data-subcount"));
+    this.subCount++;
     let newBubble = this.createNewBubble();
-    let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
-    subCount++;
     let bubbleCount = 1;
     let newSVG = this.createNewSVG(true, newContainer);
     this.activeSVG = newSVG;
-    newContainer.setAttribute("data-subcount", subCount);
+    newContainer.setAttribute("data-subcount", this.subCount);
     newContainer.setAttribute("data-bubblecount", bubbleCount);
     let a = Number(this.activeContainer.getAttribute("data-subcount"));
     let b = Number(newContainer.getAttribute("data-subcount"));
@@ -263,12 +262,13 @@ class Bubble {
     this.cancelBubbleCreation();
     this.maybeScrollViewport();
     this.activeContainer.appendChild(newSVG, this.activeContainer.lastChild);
-    new Line("right", this.activeBubble, newBubble, this.activeSVG);
+    new Line("right", this.activeBubble, newBubble);
     this.enforceTextarea(newBubble);
   }
 
   addContainerOnLeft() {
     let newContainer = this.createNewContainer();
+    newContainer.classList.add("align-right");
     let newBubble = this.createNewBubble();
     let newSVG = this.createNewSVG(false, newContainer);
     this.activeSVG = newSVG;
@@ -286,17 +286,20 @@ class Bubble {
     this.activeContainer.appendChild(newSVG, this.activeContainer.lastChild);
     this.cancelBubbleCreation();
     this.scrollBubblesIntoView();
-    new Line("left", this.activeBubble, newBubble, this.activeSVG);
+    new Line("left", this.activeBubble, newBubble);
     this.enforceTextarea(newBubble);
   }
 
   createNewSVG(isRight, newContainer) {
     let newSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
 
     if (isRight) {
       newSVG.style.left = "50%";
+      newSVG.setAttribute("data-id", `${subCount}_${subCount + 1}`);
     } else {
       newSVG.style.right = "50%";
+      newSVG.setAttribute("data-id", `${subCount}_${subCount - 1}`);
     }
 
     return newSVG;
@@ -315,6 +318,7 @@ class Bubble {
       bubbleCount++;
       containerOnRight.setAttribute("data-bubblecount", bubbleCount);
       containerOnRight.appendChild(newBubble, null);
+      new Line("right", this.activeBubble, newBubble);
     } else {
       // Add a bubble to the container on your left
       this.bubblesOnLeft--;
@@ -325,6 +329,7 @@ class Bubble {
       bubbleCount++;
       containerOnLeft.setAttribute("data-bubblecount", bubbleCount);
       containerOnLeft.appendChild(newBubble, null);
+      new Line("left", this.activeBubble, newBubble);
     }
 
     this.cancelBubbleCreation();
@@ -332,9 +337,9 @@ class Bubble {
   }
 
   insertBubbleOnRight() {
+    this.subCount = Number(this.activeContainer.getAttribute("data-subcount"));
+    this.subCount++;
     let newBubble = this.createNewBubble();
-    let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
-    subCount++;
     let containerOnRight = document.querySelector(`.container[data-subcount='${subCount}']`);
     let bubbleCount = Number(containerOnRight.getAttribute("data-bubblecount"));
     this.activeSVG = this.activeContainer.childNodes[1];
@@ -357,7 +362,7 @@ class Bubble {
     }
 
     this.cancelBubbleCreation();
-    new Line(this.activeBubble, newBubble, this.activeSVG);
+    new Line("right", this.activeBubble, newBubble);
     this.enforceTextarea(newBubble);
   }
 
@@ -387,7 +392,7 @@ class Bubble {
       }
     }
 
-    new Line(this.activeBubble, newBubble, this.activeSVG);
+    new Line(this.activeBubble, newBubble);
     this.enforceTextarea(newBubble);
   }
 
@@ -406,13 +411,16 @@ class Bubble {
     background.classList.add("background");
 
     if (this.isColorRandom) {
-      rnd = Math.floor(Math.random() * 7);
+      rnd = Math.floor(Math.random() * 8);
       color = this.randomColors[rnd];
-      background.style.borderBottom = `3px solid ${color}`;
-      p.style.color = color;
-    } else {
-      color = getComputedStyle(this.target.parentNode.childNodes[1]).color;
-      background.style.borderBottom = `3px solid ${color}`;
+    }
+
+    if (Math.abs(this.subCount) === 1) {
+      background.style.backgroundColor = color;
+      p.style.color = "white";
+    } else if (Math.abs(this.subCount) === 2) {
+      color = this.activeBackground.style.backgroundColor;
+      background.style.border = `2px solid ${color}`;
       p.style.color = color;
     }
 
@@ -423,6 +431,7 @@ class Bubble {
     textarea.spellcheck = false;
     newBubble.classList.add("bubble");
     newBubble.id = this.createId;
+    newBubble.setAttribute("data-id", this.createId);
     this.createId++;
 
     if (this.originId) {
@@ -444,7 +453,8 @@ class Bubble {
     let subCount = Number(newContainer.getAttribute("data-subcount"));
     let marginLeft = 0;
 
-    marginLeft += (300 * subCount) - 150;
+    // BEFORE: marginLeft += (320 * subCount) - 160;
+    marginLeft += (350 * subCount) - 160;
 
     newContainer.style.marginLeft = `${marginLeft}px`;
   }

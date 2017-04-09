@@ -9,11 +9,11 @@
 
 @font-face {
   font-family: "Roboto";
-  src:  url("fonts/light/Roboto-Light.woff2"),
-        url("fonts/light/Roboto-Light.woff"),
-        url("fonts/light/Roboto-Light.ttf");
+  src:  url("fonts/medium/Roboto-Medium.woff2"),
+        url("fonts/medium/Roboto-Medium.woff"),
+        url("fonts/medium/Roboto-Medium.ttf");
   font-style: normal;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 * {
@@ -80,20 +80,20 @@ svg path {
 
 .bubble {
   /*height: 50px;*/
-  width: 300px;
   top: 0;
   border-radius: 3px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   -webkit-user-select: none;
   user-select: none;
   transition: transform 400ms ease;
   position: relative;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-bottom: 15px;
   pointer-events: auto;
+  border-radius: 3px;
+  /*padding-right: 18px;
+  padding-left: 18px;*/
 }
 
 .bubble p {
@@ -104,20 +104,52 @@ svg path {
   max-width: 300px;
   text-align: center;
   word-wrap: break-word;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 18px !important;
+  padding-left: 18px !important;
+}
+
+.container.align-right {
+  align-items: flex-end;
+}
+
+.container.align-right .bubble p {
+  text-align: right;
+  width: 100%;
+}
+
+.container.align-left {
+  align-items: flex-start;
+}
+
+.container.align-left .bubble p {
+  text-align: left;
+}
+
+.container.align-center .bubble p {
+  text-align: center;
+}
+
+.container[data-subcount="1"] .bubble .background, .container[data-subcount="-1"] .bubble .background {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.container[data-subcount="1"] .bubble p, .container[data-subcount="-1"] .bubble p {
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .bubble .background {
   cursor: pointer;
   position: absolute;
   top: 0;
-  left: 50%;
-  margin-left: -63.5px;
+  left: 0;
+  right: 0;
   height: 100%;
-  width: 127px;
+  width: 100%;
+  transform-origin: left;
   transition: transform 400ms ease;
-  opacity: 0;
+  opacity: 1;
+  border-radius: 3px;
 }
 
 .bubble textarea {
@@ -181,7 +213,7 @@ svg path {
 }
 
 .container {
-  width: 300px;
+  width: 320px;
   height: 100%;
   position: absolute;
   left: 50%;
@@ -191,21 +223,29 @@ svg path {
   align-items: center;
   flex-direction: column;
   pointer-events: none;
+  padding-right: 10px;
+  padding-left: 10px;
   /*background-color: rgba(0, 100, 0, 0.3);*/
+}
+
+#title .bubble {
+  justify-content: center;
 }
 
 #title .bubble p {
   /* #E91E63 */
-  color: #FFFFFF;
-  font-weight: 300;
+  color: #383838;
+  font-weight: 400;
+  font-size: 18px;
 }
 
 #title .bubble .background {
-  background-color: #E91E63;
+  background-color: #FFFFFF;
   border-radius: 3px;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.25);
   border: 0;
   opacity: 1;
+  transform-origin: center;
 }
 
 textarea::-webkit-scrollbar {
