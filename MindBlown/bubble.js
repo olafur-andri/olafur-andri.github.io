@@ -25,6 +25,7 @@ class Bubble {
     this.originId = 0;
     this.subCount = 0;
     this.isColorRandom = false;
+    this.color = 0;
     this.activeBubble = null;
     this.activeTextarea = null;
     this.activeBackground = null;
@@ -153,23 +154,8 @@ class Bubble {
   }
 
   resizeBubble() {
-    /*this.activeBackgroundBCR = this.activeBackground.getBoundingClientRect();
-    this.activeBubbleTextBCR = this.activeBubbleText.getBoundingClientRect();
-
-    let scaleY = 1;
-    let translateY = 0;
-
-    if (this.activeBubble === this.title) {
-      scaleY = (this.activeBubbleTextBCR.height + 36) / 58;
-    }
-
-    let scaleX = (this.activeBubbleTextBCR.width + 6) / 127;
-
-    if (scaleX > 2.1) {
-      scaleX = 2.1;
-    }
-
-    this.activeBackground.style.transform = `scale(${scaleX}, ${scaleY}) translateY(${translateY}px)`; */
+    // FLIP THE F-ING BUBBLE!!
+    new Line("resize", this.activeBubble, null);
   }
 
   prepareToAddBubble() {
@@ -185,9 +171,8 @@ class Bubble {
 
   appendBubble(e) {
     document.removeEventListener("keydown", this.cancelBubbleCreation, true);
-    this.target = e.target;
-    this.targetBCR = this.target.getBoundingClientRect();
-    this.activeBubble = this.target.parentNode;
+    this.activeBackground = e.target;
+    this.activeBubble = this.activeBackground.parentNode;
     this.activeContainer = this.activeBubble.parentNode;
 
     if (Number(this.activeBubble.id)) {
@@ -340,7 +325,7 @@ class Bubble {
     this.subCount = Number(this.activeContainer.getAttribute("data-subcount"));
     this.subCount++;
     let newBubble = this.createNewBubble();
-    let containerOnRight = document.querySelector(`.container[data-subcount='${subCount}']`);
+    let containerOnRight = document.querySelector(`.container[data-subcount='${this.subCount}']`);
     let bubbleCount = Number(containerOnRight.getAttribute("data-bubblecount"));
     this.activeSVG = this.activeContainer.childNodes[1];
     bubbleCount++;
@@ -367,10 +352,10 @@ class Bubble {
   }
 
   insertBubbleOnLeft() {
+    this.subCount = Number(this.activeContainer.getAttribute("data-subcount"));
+    this.subCount--;
+    let containerOnLeft = document.querySelector(`.container[data-subcount='${this.subCount}']`);
     let newBubble = this.createNewBubble();
-    let subCount = Number(this.activeContainer.getAttribute("data-subcount"));
-    subCount--;
-    let containerOnLeft = document.querySelector(`.container[data-subcount='${subCount}']`);
     let bubbleCount = Number(containerOnLeft.getAttribute("data-bubblecount"));
     bubbleCount++;
     containerOnLeft.setAttribute("data-bubblecount", bubbleCount);
@@ -403,7 +388,6 @@ class Bubble {
   }
 
   createNewBubble() {
-    let rnd = 0;
     let color = "";
     let newBubble = document.createElement("DIV");
     let background = document.createElement("DIV");
@@ -411,8 +395,12 @@ class Bubble {
     background.classList.add("background");
 
     if (this.isColorRandom) {
-      rnd = Math.floor(Math.random() * 8);
-      color = this.randomColors[rnd];
+      this.color++;
+
+      if (this.color > 7) {
+        this.color = 0;
+      }
+      color = this.randomColors[this.color];
     }
 
     if (Math.abs(this.subCount) === 1) {
@@ -501,7 +489,6 @@ class Bubble {
     this.activeBackground = e.target;
     this.activeBubble = this.activeBackground.parentNode;
     this.originId = Number(this.activeBubble.id);
-    console.log(this.activeBackground);
 
     if (this.activeBubble === this.title) {
       this.cancelBubbleRemoval();

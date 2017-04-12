@@ -45,7 +45,7 @@ svg {
   position: absolute;
   top: 0;
   height: 100%;
-  width: 300px;
+  width: 100%;
   pointer-events: none;
   background-color: rgba(100, 0, 50, 0);
   z-index: -1;
@@ -129,13 +129,20 @@ svg path {
   text-align: center;
 }
 
+.container[data-subcount="1"] .bubble, .container[data-subcount="-1"] .bubble {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .container[data-subcount="1"] .bubble .background, .container[data-subcount="-1"] .bubble .background {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+
 }
 
 .container[data-subcount="1"] .bubble p, .container[data-subcount="-1"] .bubble p {
   text-transform: uppercase;
   font-weight: 500;
+  font-size: 17px;
 }
 
 .bubble .background {
@@ -217,7 +224,7 @@ svg path {
   height: 100%;
   position: absolute;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -160px;
   display: flex;
   justify-content: center;
   align-items: center;

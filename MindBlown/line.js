@@ -3,6 +3,7 @@
 class Line {
   constructor(direction, activeBubble, newBubble) {
     this.bubbleBackgrounds = document.querySelectorAll(".bubble .background");
+    this.title = document.querySelector("#title .bubble");
     this.activeBubble = activeBubble;
     this.newBubble = newBubble;
     this.activeSVG = null;
@@ -20,6 +21,7 @@ class Line {
     this.activeContainerSubCount = 0;
     this.newContainer = null;
     this.activePath = null;
+    this.splitDataConnection = [];
     this.newContainerSubCount = 0;
     this.newContainerBubbleCount = 0;
     this.startX = 0;
@@ -31,9 +33,9 @@ class Line {
     this.thirdY = 0;
     this.endY = 0;
     this.numOfPaths = 0;
+    this.subCount = 0;
     this.pathColor = "";
     this.dataConnection = "";
-    this.splitDataConnection = [];
     this.leftHandID = "";
     this.rightHandID = "";
 
@@ -42,8 +44,15 @@ class Line {
     this.drawLineEffect = this.drawLineEffect.bind(this);
     this.getCoordinatesForLeft = this.getCoordinatesForLeft.bind(this);
     this.getCoordinatesForRight = this.getCoordinatesForRight.bind(this);
+    this.redrawConnections = this.redrawConnections.bind(this);
 
-    this.createNewConnection();
+    console.log("fjæasdkljfasdækljk");
+
+    if (this.direction === "resize") {
+      this.redrawConnections();
+    } else {
+      this.createNewConnection();
+    }
   }
 
   createNewConnection() {
@@ -105,6 +114,8 @@ class Line {
         this.getCoordinatesForRight();
       } else if (this.direction === "left") {
         this.getCoordinatesForLeft();
+      } else if (this.direction === "resize") {
+        this.redrawConnections();
       } else {
         console.log("Direction in 'new Line()' is not correct!!!");
       }
@@ -115,8 +126,14 @@ class Line {
 
   getCoordinatesForRight() {
     this.startX = (this.activeBackgroundBCR.width / 2) + 12;
-    this.startY = this.activeBubbleBCR.top + (this.activeBubbleBCR.height / 2) - (window.innerHeight / 2);
+    // this.startY = this.activeBubbleBCR.top + (this.activeBubbleBCR.height / 2) - (window.innerHeight / 2);
+    this.startY = this.activeBackgroundBCR.top + (this.activeBackgroundBCR.height / 2) - (window.innerHeight / 2);
     this.secondX = this.startX + 60;
+
+    if (this.secondX > 180) {
+      this.secondX = 180;
+    }
+
     this.secondY = this.startY;
     this.thirdX = this.secondX;
     this.thirdY = this.newBackgroundBCR.top + (this.newBackgroundBCR.height / 2) - (window.innerHeight / 2);
@@ -125,9 +142,15 @@ class Line {
   }
 
   getCoordinatesForLeft() {
-    this.startX = this.activeSVGBCR.width - (this.activeBubbleBCR.width / 2) - 12;
+    // this.startX = this.activeSVGBCR.width - (this.activeBubbleBCR.width / 2) - 12;
+    this.startX = this.activeSVGBCR.width - (this.activeBackgroundBCR.width / 2) - 12;
     this.startY = this.activeBackgroundBCR.top + (this.activeBackgroundBCR.height / 2) - (window.innerHeight / 2);
     this.secondX = this.startX - 60;
+
+    if (this.secondX < 120) {
+      this.secondX = 120;
+    }
+
     this.secondY = this.startY;
     this.thirdX = this.secondX;
     this.thirdY = this.newBackgroundBCR.top + (this.newBackgroundBCR.height / 2) - (window.innerHeight / 2);
@@ -151,5 +174,41 @@ class Line {
     if (Math.abs(this.dashOffset) < 1) {
       cancelAnimationFrame(this.requestId);
     }*/
+  }
+
+  redrawConnections() {
+    this.activeContainer = this.activeBubble.parentNode;
+    this.subCount = Number(this.activeContainer.getAttribute("data-subcount"));
+    let SVGsToCheck = document.querySelectorAll(`svg[data-id="${this.subCount}_${this.subCount + 1}"], svg[data-id="${this.subCount}_${this.subCount - 1}"], svg[data-id="${this.subCount + 1}_${this.subCount}"], svg[data-id="${this.subCount - 1}_${this.subCount}"]`);
+
+    for (let i = 0; i < SVGsToCheck.length; i++) {
+      this.activeSVG = SVGsToCheck[i];              // CSVG = Current SVG
+      let CSVGChildNodes = this.activeSVG.childNodes;
+      let CSVGID = this.activeSVG.getAttribute("data-id");
+      let splitCSVGID = CSVGID.split("_");
+      let CSVGLeftHandID = splitCSVGID[0];
+      let CSVGRightHandID = splitCSVGID[1];
+
+      for (let a = 0; a < CSVGChildNodes.length; a++) {
+        let CPath = CSVGChildNodes[a];        // CPath = Current Path
+        let CPathID = CPath.getAttribute("data-connection");
+        let splitCPathID = CPathID.split("_");
+        let CPathLeftHandID = splitCPathID[0];
+        let CPathRightHandID = splitCPathID[1];
+        this.activeBackground = document.querySelector(`.bubble[data-id="${CPathLeftHandID}"] .background`);
+        this.newBackground = document.querySelector(`.bubble[data-id="${CPathRightHandID}"] .background`);
+        this.activeBackgroundBCR = this.activeBackground.getBoundingClientRect();
+        this.newBackgroundBCR = this.newBackground.getBoundingClientRect();
+        this.activeSVGBCR = this.activeSVG.getBoundingClientRect();
+
+        if (CSVGLeftHandID < CSVGRightHandID) {
+          this.getCoordinatesForRight();
+        } else {
+          this.getCoordinatesForLeft();
+        }
+
+        CPath.setAttribute("d", `M${this.startX} ${this.startY} L${this.secondX} ${this.secondY} L${this.thirdX} ${this.thirdY} L${this.endX} ${this.endY}`);
+      }
+    }
   }
 }
