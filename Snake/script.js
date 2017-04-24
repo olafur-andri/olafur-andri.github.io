@@ -31,12 +31,20 @@ let cacheX = [];
 let cacheY = [];
 let startingPointX;
 let startingPointY;
+let restartButton = null;
+let pauseButton = null;
+let toucharea = null;
+let playButton = null;
 
 const SPEED = 2.5;
 
 function start() {
+  playButton = document.getElementById("play");
+  toucharea = document.getElementById("touch_area");
+  pauseButton = document.getElementById("pause");
+  restartButton = document.getElementById("restart");
   snakeContainer = document.getElementById("snake_container");
-  pointsP = document.getElementById("score");
+  pointsP = document.querySelector("#score p");
   cookieContainer = document.getElementById("cookie_container");
   testP = document.getElementById("test");
   startMessage = document.getElementById("start_message");
@@ -55,12 +63,18 @@ function start() {
   positionY = primaryLimbBCR.top;
   startingPointX = getStartingPointX();
   startingPointY = getStartingPointY();
+  generateCookie();
 }
 
 function addEventListeners() {
-  document.addEventListener("touchstart", onStart, true);
-  document.addEventListener("touchmove", onMove, true);
-  document.addEventListener("touchend", onEnd, true);
+  toucharea.addEventListener("touchstart", onStart, true);
+  toucharea.addEventListener("touchmove", onMove, true);
+  toucharea.addEventListener("touchend", onEnd, true);
+
+  restartButton.addEventListener("touchstart", createRipple, true);
+  restartButton.addEventListener("touchstart", restartGame, true);
+
+  pauseButton.addEventListener("touchstart", pauseGame, true);
 }
 
 function onStart(e) {
@@ -114,7 +128,6 @@ function onEnd(e) {
 function swipeRight() {
   if (startMessage.classList.contains("show")) {
     startMessage.classList.remove("show");
-    generateCookie();
   }
 
   right = 1;
@@ -125,7 +138,6 @@ function swipeRight() {
 function swipeLeft() {
   if (startMessage.classList.contains("show")) {
     startMessage.classList.remove("show");
-    generateCookie();
   }
 
   right = -1;
@@ -136,7 +148,6 @@ function swipeLeft() {
 function swipeUp() {
   if (startMessage.classList.contains("show")) {
     startMessage.classList.remove("show");
-    generateCookie();
   }
 
   right = 0;
@@ -147,7 +158,6 @@ function swipeUp() {
 function swipeDown() {
   if (startMessage.classList.contains("show")) {
     startMessage.classList.remove("show");
-    generateCookie();
   }
 
   right = 0;
@@ -170,11 +180,9 @@ function update() {
   }
 
   // Check if snake hits walls
-  if (positionX <= 0 || positionX >= (windowWidth - 27) || positionY <= 0 || positionY >= (windowHeight - 27)) {
+  if (positionX <= 0 || positionX >= (windowWidth - 22) || positionY <= 0 || positionY >= (windowHeight - 22)) {
     endGame();
   }
-
-  //testP.textContent = positionX + " - " + positionY;
 
   checkCookieCollision();
   checkLimbCollision();
@@ -207,9 +215,10 @@ function checkCookieCollision() {
   if (Math.abs(differenceX) <= 21 && Math.abs(differenceY) <= 21) {
     cookieContainer.removeChild(activeCookie);
     points++;
-    pointsP.textContent = `Score: ${points}`;
+    pointsP.textContent = `${points}`;
     generateCookie();
     generateLimb();
+    resizePointsP();
   }
 }
 
@@ -232,7 +241,7 @@ function generateLimb() {
 function checkLimbCollision() {
   let currentX;
 
-  for (let i = 2; i < points; i++) {
+  for (let i = 2; i <= points; i++) {
     let positionCX = positionX + 13.5;
     let positionCY = positionY + 13.5;
     currentX = startingPointX + cacheX[i * 12];
@@ -250,21 +259,26 @@ function checkLimbCollision() {
 
 function endGame() {
   startMessageHeading.textContent = "Sorry, you lost :(";
-    document.removeEventListener("touchstart", onStart, true);
-    document.removeEventListener("touchmove", onMove, true);
-    document.removeEventListener("touchend", onEnd, true);
+    toucharea.removeEventListener("touchstart", onStart, true);
+    toucharea.removeEventListener("touchmove", onMove, true);
+    toucharea.removeEventListener("touchend", onEnd, true);
   cancelAnimationFrame(requestId);
 
   let counter = 0;
   let limbContainers = document.querySelectorAll(".limb-container");
 
-  setInterval(function() {
+  let removeSnake = setInterval(function() {
     limbContainers[counter].classList.remove("show");
     counter++;
+
+    if (counter === limbContainers.length) {
+      clearInterval(removeSnake);
+    }
   }, 40);
 
   setTimeout(function() {
     startMessage.classList.add("show");
+    restartButton.classList.add("show");
   }, 30 * points);
 }
 
@@ -274,6 +288,96 @@ function getStartingPointX() {
 
 function getStartingPointY() {
   return windowHeight / 2 - 10;
+}
+
+function createRipple(e) {
+  e.preventDefault();
+  let buttonBCR = this.getBoundingClientRect();
+  let newRipple = document.createElement("div");
+  newRipple.classList.add("ripple");
+  let x = (e.pageX || e.touches[0].pageX);
+  let y = (e.pageY || e.touches[0].pageY);
+  let color = getComputedStyle(this).color;
+  newRipple.style.backgroundColor = color;
+  newRipple.style.left = `${x - 75 - buttonBCR.left}px`;
+  newRipple.style.top = `${y - 75 - buttonBCR.top}px`;
+  this.appendChild(newRipple, null);
+
+  requestAnimationFrame(function() {
+    newRipple.classList.add("grow");
+  });
+}
+
+function restartGame() {
+  setTimeout(function() {
+    restartButton.classList.remove("show");
+  startMessage.classList.remove("show");
+  snakeContainer.innerHTML = `
+    <div class="limb-container show">
+      <div class="limb" id="primary_limb"></div>
+    </div>
+  `;
+
+  limbs = document.querySelectorAll(".limb");
+  right = 0;
+  up = 0;
+  direction = "";
+  points = 0;
+  positionX = getStartingPointX();
+  positionY = getStartingPointY();
+  transformX = 0;
+  transformY = 0;
+  cacheX = [0];
+  cacheY = [0];
+  primaryLimb = document.getElementById("primary_limb");
+  primaryLimb.style.transform = "translateX(0) translateY(0)";
+  toucharea.addEventListener("touchstart", onStart, true);
+  toucharea.addEventListener("touchmove", onMove, true);
+  toucharea.addEventListener("touchend", onEnd, true);
+  requestAnimationFrame(update);
+  }, 400);
+
+  pointsP.textContent = "0";
+  resizePointsP();
+}
+
+function resizePointsP() {
+  /*pointsP = document.querySelector("#score p");
+  let bcr = pointsP.getBoundingClientRect();
+  
+  if (bcr.width > bcr.height) {
+    pointsP.style.width = `${bcr.width}px`;
+    pointsP.style.height = `${bcr.width}px`;
+  } else {
+    pointsP.style.width = `${bcr.height}px`;
+    pointsP.style.height = `${bcr.height}px`;
+  }*/
+}
+
+function pauseGame() {
+  startMessage.classList.add("show");
+  cancelAnimationFrame(requestId);
+  startMessageHeading.textContent = "";
+  toucharea.removeEventListener("touchstart", onStart, true);
+  toucharea.removeEventListener("touchmove", onMove, true);
+  toucharea.removeEventListener("touchend", onEnd, true);
+  playButton.classList.add("show");
+  playButton.addEventListener("touchstart", resumeGame, true);
+}
+
+function resumeGame() {
+  playButton.removeEventListener("touchstart", resumeGame, true);
+  playButton.classList.remove("show");
+  
+  setTimeout(function() {
+    startMessage.classList.remove("show");
+  }, 100);
+
+  toucharea.addEventListener("touchstart", onStart, true);
+  toucharea.addEventListener("touchmove", onMove, true);
+  toucharea.addEventListener("touchend", onEnd, true);
+
+  requestAnimationFrame(update);
 }
 
 window.addEventListener("load", start, true);
