@@ -1,11 +1,11 @@
-
 <!doctype html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
   <title>snake</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:regular,light,medium" rel="stylesheet">
 </head>
 <body>
   <div class="wrapper">
@@ -20,10 +20,25 @@
     </div>
 
     <p id="test"></p>
-    <p id="score">Score: 0</p>
+    <div id="score">
+      <p>0</p>
+    </div>
 
     <div id="cookie_container"></div>
     <div id="gradient_background"></div>
+    <button type="button" id="restart">Retry</button>
+
+    <div id="pause">
+      <div></div>
+      <div></div>
+    </div>
+    <div id="touch_area"></div>
+    <div id="play">
+      <svg>
+        <path stroke-width="0" stroke="transparent" fill="rgba(0, 0,
+0, 0.4)" d="M65 45 L165 100 L65 155 Z" />
+      </svg>
+    </div>
   </div>
 
   <script src="script.js"></script>
