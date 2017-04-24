@@ -2,6 +2,8 @@
   box-sizing: border-box;
   outline: none;
   -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 body, html {
@@ -57,7 +59,6 @@ body, html {
   left: 50%;
   margin-top: -10px;
   margin-left: -10px;
-  border: 0;
   z-index: 2;
 }
 
@@ -80,10 +81,11 @@ body, html {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 #primary_limb {
-  z-index: 1;
+  z-index: 2;
   height: 27px;
   width: 27px;
   margin-left: -3.5px;
@@ -119,13 +121,133 @@ body, html {
 }
 
 #score {
-  font-size: 16px;
-  font-weight: 300;
   position: absolute;
-  top: 10px;
-  left: 0;
+  height: 100%;
   width: 100%;
-  text-align: right;
-  padding-right: 40px;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
+}
+
+#score p {
+  font-family: "Roboto", sans-serif;
+  font-size: 62px;
+  font-weight: 1;
+  color: #000000;
+  height: 70px;
+  width: 70px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+  font-weight: 100;
+}
+
+#restart {
+  position: fixed;
+  height: 50px;
+  width: 150px;
+  background-color: #FFFFFF;
+  color: #424242;
+  font-family: Calibri, sans-serif;
+  border: 0;
+  border-radius: 4px;
+  left: 50%;
+  bottom: 0;
+  margin-left: -75px;
+  transition: transform 400ms ease;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  transform: translateY(102%);
+  z-index: 4;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+#restart.show {
+  transform: translateY(-100%);
+}
+
+.ripple {
+  border-radius: 50%;
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  transition: transform 400ms ease, opacity 400ms 300ms ease;
+  transform: scale(0);
+  top: 0;
+  opacity: 0.25;
+}
+
+.ripple.grow {
+  transform: scale(1.3);
+  opacity: 0;
+}
+
+#pause {
+  position: absolute;
+  top: 24px;
+  right: 40px;
+  height: 38px;
+  width: 36px;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+#pause div {
+  height: 22px;
+  width: 8px;
+  background-color: #000000;
+  opacity: .4;
+  float: left;
+  border-radius: 3px;
+  margin-top: 8px;
+}
+
+#pause div:first-child {
+  margin-right: 4px;
+  margin-left: 8px;
+}
+
+#touch_area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: calc(100% - 70px);
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 3;
+}
+
+#play {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+  z-index: 4;
+  transition: transform 400ms ease;
+  transform: rotate(-540deg) scale(0);
+  pointer-events: none;
+}
+
+#play.show {
+  transform: rotate(0) scale(1);
+  pointer-events: auto;
+  transition: transform 1200ms cubic-bezier(.09,.65,.32,.98);
+}
+
+#play svg {
+  margin: 0;
+  padding: 0;
+  height: 200px;
+  width: 200px;
 }
