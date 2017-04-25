@@ -40,10 +40,12 @@ let currentBackground = 0;
 let fadeInBackground = null;
 let snakeColors = ["blue", "yellow", "red"];
 let currentSnakeColor = 0;
+let limbContainers = [];
 
 const SPEED = 2.5;
 
 function start() {
+  limbContainers = document.querySelectorAll(".limb-container");
   playButton = document.getElementById("play");
   toucharea = document.getElementById("touch_area");
   pauseButton = document.getElementById("pause");
@@ -223,7 +225,6 @@ function checkCookieCollision() {
     pointsP.textContent = `${points}`;
     generateCookie();
     generateLimb();
-    resizePointsP();
 
     if (points % 10 === 0) {
       changeBackground();
@@ -236,6 +237,7 @@ function generateLimb() {
   let newLimbContainer = document.createElement("div");
   newLimb.classList.add("limb");
   newLimbContainer.classList.add("limb-container");
+  newLimbContainer.classList.add(snakeColors[currentSnakeColor]);
   let blueColor = document.createElement("div");
   blueColor.classList.add("snake-color");
   blueColor.classList.add("blue");
@@ -334,8 +336,12 @@ function restartGame() {
     restartButton.classList.remove("show");
   startMessage.classList.remove("show");
   snakeContainer.innerHTML = `
-    <div class="limb-container show" id="first_limb_container">
-      <div class="limb" id="primary_limb"></div>
+    <div class="limb-container show blue" id="first_limb_container">
+      <div class="limb" id="primary_limb">
+        <div class="snake-color blue"></div>
+          <div class="snake-color yellow"></div>
+          <div class="snake-color red"></div>
+      </div>
     </div>
   `;
 
@@ -359,25 +365,17 @@ function restartGame() {
   }, 400);
 
   pointsP.textContent = "0";
-  resizePointsP();
   currentBackground = 0;
+
+  snakeContainer.classList.remove(snakeColors[currentSnakeColor]);
+
+  currentSnakeColor = 0;
+
+  snakeContainer.classList.add(snakeColors[currentSnakeColor]);
   
   if (fadeInBackground) {
     fadeInBackground.classList.remove("show");
   }
-}
-
-function resizePointsP() {
-  /*pointsP = document.querySelector("#score p");
-  let bcr = pointsP.getBoundingClientRect();
-  
-  if (bcr.width > bcr.height) {
-    pointsP.style.width = `${bcr.width}px`;
-    pointsP.style.height = `${bcr.width}px`;
-  } else {
-    pointsP.style.width = `${bcr.height}px`;
-    pointsP.style.height = `${bcr.height}px`;
-  }*/
 }
 
 function pauseGame() {
@@ -424,17 +422,35 @@ function changeBackground() {
   fadeOutBackground.classList.remove("show");
   fadeInBackground.classList.add("show");
 
-  setTimeout(changeSnakeColor, 400);
+  setTimeout(changeSnakeColor, 200);
 }
 
 function changeSnakeColor() {
-  snakeContainer.classList.remove(snakeColors[currentSnakeColor]);
-  currentSnakeColor++;
+  let counter = 0;
+  let oldSnakeColor = currentSnakeColor;
+  limbContainers = document.querySelectorAll(".limb-container");
+  let fadeSnakeOut = setInterval(function() {
+    limbContainers[counter].classList.remove(snakeColors[oldSnakeColor]);
+    counter++;
 
-  if (currentSnakeColor >= snakeColors.length) {
-    currentSnakeColor = 1;
-  }
-  snakeContainer.classList.add(snakeColors[currentSnakeColor]);
+    if (counter >= limbContainers.length) {
+      clearInterval(fadeSnakeOut);
+    }
+  }, 50);
+
+  setTimeout(function() {
+    let anotherCounter = 0;
+    currentSnakeColor++;
+
+    let fadeSnakeIn = setInterval(function() {
+      limbContainers[anotherCounter].classList.add(snakeColors[currentSnakeColor]);
+      anotherCounter++;
+
+      if (anotherCounter >= limbContainers.length) {
+        clearInterval(fadeSnakeIn);
+      }
+    }, 50);
+  }, 25 * limbContainers.length);
 }
 
 window.addEventListener("load", start, true);
