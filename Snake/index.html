@@ -9,13 +9,23 @@
 </head>
 <body>
   <div class="wrapper">
+    <div id="backgrounds">
+      <div class="background show" id="white"></div>
+      <div class="background" id="red"></div>
+      <div class="background" id="green"></div>
+    </div>
+
     <div id="start_message">
       <h2>Swipe in any direction to get the ball rolling.</h2>
     </div>
 
-    <div id="snake_container">
-      <div class="limb-container show">
-        <div class="limb" id="primary_limb"></div>
+    <div id="snake_container" class="blue">
+      <div class="limb-container show" id="first_limb_container">
+        <div class="limb" id="primary_limb">
+          <div class="snake-color blue"></div>
+          <div class="snake-color yellow"></div>
+          <div class="snake-color red"></div>
+        </div>
       </div>
     </div>
 
@@ -35,8 +45,9 @@
     <div id="touch_area"></div>
     <div id="play">
       <svg>
+        <!-- 65 155 -->
         <path stroke-width="0" stroke="transparent" fill="rgba(0, 0,
-0, 0.4)" d="M65 45 L165 100 L65 155 Z" />
+0, 0.4)" d="M65 55 Q65 45, 75 50 L155 95 Q162 100, 155 105 L75 150 Q65 155, 65 145" />
       </svg>
     </div>
   </div>
