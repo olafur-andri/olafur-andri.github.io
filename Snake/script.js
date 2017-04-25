@@ -35,6 +35,11 @@ let restartButton = null;
 let pauseButton = null;
 let toucharea = null;
 let playButton = null;
+let backgroundColors = ["white", "red", "green"];
+let currentBackground = 0;
+let fadeInBackground = null;
+let snakeColors = ["blue", "yellow", "red"];
+let currentSnakeColor = 0;
 
 const SPEED = 2.5;
 
@@ -219,6 +224,10 @@ function checkCookieCollision() {
     generateCookie();
     generateLimb();
     resizePointsP();
+
+    if (points % 10 === 0) {
+      changeBackground();
+    }
   }
 }
 
@@ -227,8 +236,20 @@ function generateLimb() {
   let newLimbContainer = document.createElement("div");
   newLimb.classList.add("limb");
   newLimbContainer.classList.add("limb-container");
+  let blueColor = document.createElement("div");
+  blueColor.classList.add("snake-color");
+  blueColor.classList.add("blue");
+  let yellowColor = document.createElement("div");
+  yellowColor.classList.add("snake-color");
+  yellowColor.classList.add("yellow");
+  let redColor = document.createElement("div");
+  redColor.classList.add("snake-color");
+  redColor.classList.add("red");
 
-  newLimbContainer.appendChild(newLimb, null);
+  newLimb.appendChild(blueColor, null);
+  newLimb.appendChild(yellowColor, null);
+  newLimb.appendChild(redColor, null);
+  newLimbContainer.insertBefore(newLimb, newLimbContainer.firstChild);
   snakeContainer.appendChild(newLimbContainer, snakeContainer.lastChild);
 
   setTimeout(function() {
@@ -313,7 +334,7 @@ function restartGame() {
     restartButton.classList.remove("show");
   startMessage.classList.remove("show");
   snakeContainer.innerHTML = `
-    <div class="limb-container show">
+    <div class="limb-container show" id="first_limb_container">
       <div class="limb" id="primary_limb"></div>
     </div>
   `;
@@ -339,6 +360,11 @@ function restartGame() {
 
   pointsP.textContent = "0";
   resizePointsP();
+  currentBackground = 0;
+  
+  if (fadeInBackground) {
+    fadeInBackground.classList.remove("show");
+  }
 }
 
 function resizePointsP() {
@@ -371,13 +397,44 @@ function resumeGame() {
   
   setTimeout(function() {
     startMessage.classList.remove("show");
-  }, 100);
+  }, 200);
 
   toucharea.addEventListener("touchstart", onStart, true);
   toucharea.addEventListener("touchmove", onMove, true);
   toucharea.addEventListener("touchend", onEnd, true);
 
   requestAnimationFrame(update);
+}
+
+function changeBackground() {
+  let color = backgroundColors[currentBackground];
+
+  let fadeOutBackground = document.querySelector(`#backgrounds .background#${color}`);
+
+  currentBackground++;
+  
+  if (currentBackground >= backgroundColors.length) {
+    currentBackground = 1;
+  }
+
+  color = backgroundColors[currentBackground];
+
+  fadeInBackground = document.querySelector(`#backgrounds .background#${color}`);
+  
+  fadeOutBackground.classList.remove("show");
+  fadeInBackground.classList.add("show");
+
+  setTimeout(changeSnakeColor, 400);
+}
+
+function changeSnakeColor() {
+  snakeContainer.classList.remove(snakeColors[currentSnakeColor]);
+  currentSnakeColor++;
+
+  if (currentSnakeColor >= snakeColors.length) {
+    currentSnakeColor = 1;
+  }
+  snakeContainer.classList.add(snakeColors[currentSnakeColor]);
 }
 
 window.addEventListener("load", start, true);
