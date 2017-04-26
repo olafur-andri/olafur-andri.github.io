@@ -375,8 +375,8 @@ h3 {
   height: 221px;
   opacity: 0;
   transition: opacity 300ms ease;
-  /*position: relative;*/
-  /*z-index: 1;*/
+  position: relative;
+  z-index: 1;
 }
 
 .card .header img.thumbnail.visible {
@@ -402,6 +402,7 @@ h3 {
   width: 100%;
   max-width: 500px;
   overflow: hidden;
+  z-index: -1;
 }
 
 .card .title.load {
