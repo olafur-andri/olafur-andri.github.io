@@ -42,7 +42,6 @@ let snakeColors = ["blue", "yellow", "red", "white", "cyan", "orange", "green", 
 let currentSnakeColor = 0;
 let limbContainers = [];
 let firstLimbContainer = null;
-
 const SPEED = 2.5;
 
 function start() {
@@ -79,11 +78,48 @@ function addEventListeners() {
   toucharea.addEventListener("touchstart", onStart, true);
   toucharea.addEventListener("touchmove", onMove, true);
   toucharea.addEventListener("touchend", onEnd, true);
+  document.addEventListener("keydown", onPress, true);
 
   restartButton.addEventListener("touchstart", createRipple, true);
   restartButton.addEventListener("touchstart", restartGame, true);
 
   pauseButton.addEventListener("touchstart", pauseGame, true);
+}
+
+function onPress(e) {
+  if (e.key) {
+    switch (e.key) {
+      case "ArrowUp":
+        swipeUp();
+        break;
+      case "ArrowRight":
+        swipeRight();
+        break;
+      case "ArrowDown":
+        swipeDown();
+        break;
+      case "ArrowLeft":
+        swipeLeft();
+        break;
+    }
+  } else if (e.keyCode) {
+    switch (e.keyCode) {
+      case 38:
+        swipeUp();
+        break;
+      case 40:
+        swipeDown();
+        break;
+      case 37:
+        swipeLeft();
+        break;
+      case 39:
+        swipeRight();
+        break;
+    }
+  } else {
+    console.log("Need to add another event handling for event argument for keydown event");
+  }
 }
 
 function onStart(e) {
@@ -135,6 +171,10 @@ function onEnd(e) {
 }
 
 function swipeRight() {
+  if (points > 0 && direction === "left") {
+    return;
+  }
+
   if (startMessage.classList.contains("show")) {
     startMessage.classList.remove("show");
   }
@@ -145,6 +185,10 @@ function swipeRight() {
 }
 
 function swipeLeft() {
+  if (points > 0 && direction === "right") {
+    return;
+  }
+
   if (startMessage.classList.contains("show")) {
     startMessage.classList.remove("show");
   }
@@ -155,6 +199,10 @@ function swipeLeft() {
 }
 
 function swipeUp() {
+  if (points > 0 && direction === "down") {
+    return;
+  }
+
   if (startMessage.classList.contains("show")) {
     startMessage.classList.remove("show");
   }
@@ -165,6 +213,10 @@ function swipeUp() {
 }
 
 function swipeDown() {
+  if (points > 0 && direction === "up") {
+    return;
+  }
+
   if (startMessage.classList.contains("show")) {
     startMessage.classList.remove("show");
   }
@@ -305,9 +357,11 @@ function checkLimbCollision() {
 
 function endGame() {
   startMessageHeading.textContent = "Sorry, you lost :(";
-    toucharea.removeEventListener("touchstart", onStart, true);
-    toucharea.removeEventListener("touchmove", onMove, true);
-    toucharea.removeEventListener("touchend", onEnd, true);
+  toucharea.removeEventListener("touchstart", onStart, true);
+  toucharea.removeEventListener("touchmove", onMove, true);
+  toucharea.removeEventListener("touchend", onEnd, true);
+  document.removeEventListener("keydown", onPress, true);
+  document.addEventListener("keydown", restartGameIfEnter, true);
   cancelAnimationFrame(requestId);
 
   let counter = 0;
@@ -326,6 +380,20 @@ function endGame() {
     startMessage.classList.add("show");
     restartButton.classList.add("show");
   }, 30 * points);
+}
+
+function restartGameIfEnter(e) {
+  if (e.key) {
+    if (e.key === "Enter") {
+      restartGame();
+    }
+  } else if (e.keyCode) {
+    if (e.keyCode === 32) {
+      restartGame();
+    }
+  } else {
+    console.log("Need to create another event handler for event argument of keydown");
+  }
 }
 
 function getStartingPointX() {
@@ -388,6 +456,8 @@ function restartGame() {
   toucharea.addEventListener("touchstart", onStart, true);
   toucharea.addEventListener("touchmove", onMove, true);
   toucharea.addEventListener("touchend", onEnd, true);
+  document.removeEventListener("keydown", restartGameIfEnter, true);
+  document.addEventListener("keydown", onPress, true);
   requestAnimationFrame(update);
   }, 400);
 

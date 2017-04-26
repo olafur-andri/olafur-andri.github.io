@@ -350,6 +350,11 @@ h3 {
   flex-direction: column;
 }
 
+.card.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 .card .header {
   background-repeat: no-repeat;
   width: 100%;
@@ -368,7 +373,6 @@ h3 {
 .card .header img.thumbnail {
   width: 500px;
   height: 221px;
-  object-fit: cover;
   opacity: 0;
   transition: opacity 300ms ease;
   /*position: relative;*/
