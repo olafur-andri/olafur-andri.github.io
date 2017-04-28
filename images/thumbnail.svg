@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg4418" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="221" width="500" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 499.99998 221">
+ <defs id="defs4420">
+  <filter id="filter5406" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood5408" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite5410" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur5412" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset5414" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite5416" operator="over" result="fbSourceGraphic" in2="offset" in="SourceGraphic"/>
+   <feColorMatrix id="feColorMatrix6510" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0" result="fbSourceGraphicAlpha" in="fbSourceGraphic"/>
+   <feFlood id="feFlood6512" result="flood" flood-color="rgb(0,0,0)" in="fbSourceGraphic" flood-opacity=".023529"/>
+   <feComposite id="feComposite6514" operator="in" result="composite1" in2="fbSourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur6516" result="blur" stdDeviation="0.5" in="composite1"/>
+   <feOffset id="feOffset6518" result="offset" dx="0" dy="0.2"/>
+   <feComposite id="feComposite6520" operator="over" result="fbSourceGraphic" in2="offset" in="fbSourceGraphic"/>
+   <feColorMatrix id="feColorMatrix6522" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0" result="fbSourceGraphicAlpha" in="fbSourceGraphic"/>
+   <feFlood id="feFlood6524" result="flood" flood-color="rgb(0,0,0)" in="fbSourceGraphic" flood-opacity="0"/>
+   <feComposite id="feComposite6526" operator="in" result="composite1" in2="fbSourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur6528" result="blur" stdDeviation="0.5" in="composite1"/>
+   <feOffset id="feOffset6530" result="offset" dx="0" dy="0.2"/>
+   <feComposite id="feComposite6532" operator="over" result="composite2" in2="offset" in="fbSourceGraphic"/>
+  </filter>
+ </defs>
+ <metadata id="metadata4423">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1" transform="translate(0 -831.36)">
+  <rect id="rect4344" rx="1.8838" ry="2.1875" height="257.86" width="551.43" y="809.72" x="-23.606" fill="#e91e63"/>
+  <g fill="#fff">
+   <circle id="path5098" cx="242" filter="url(#filter5406)" cy="953.81" r="15"/>
+   <circle id="path5098-7" cx="212" filter="url(#filter5406)" cy="954.36" r="10"/>
+   <circle id="path5098-7-0" cx="187" filter="url(#filter5406)" cy="954.36" r="10"/>
+   <circle id="path5098-7-0-3" cx="162" filter="url(#filter5406)" cy="954.36" r="10"/>
+   <circle id="path5098-7-0-3-5" cx="137" filter="url(#filter5406)" cy="954.36" r="10"/>
+   <circle id="path5098-7-0-3-5-6" cx="112" filter="url(#filter5406)" cy="954.36" r="10"/>
+   <circle id="path5098-7-0-3-5-6-5" cx="87" filter="url(#filter5406)" cy="954.36" r="10"/>
+   <circle id="path5098-7-0-3-5-6-5-8" cx="62" filter="url(#filter5406)" cy="954.36" r="10"/>
+   <circle id="path5098-7-0-3-5-6-5-8-4" cx="62" filter="url(#filter5406)" cy="929.36" r="10"/>
+   <circle id="path5098-7-0-3-5-6-5-8-4-4" cx="62" filter="url(#filter5406)" cy="904.36" r="10"/>
+   <circle id="path5098-7-0-3-5-6-5-8-4-4-9" cx="62" filter="url(#filter5406)" cy="879.36" r="10"/>
+  </g>
+  <circle id="path5098-3" cx="289.64" filter="url(#filter5406)" cy="956.15" r="7.5" fill="#a52a2a"/>
+ </g>
+</svg>

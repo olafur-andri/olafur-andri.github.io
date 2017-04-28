@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg4418" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="221" width="500" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 499.99998 221">
+ <defs id="defs4420">
+  <filter id="filter4236" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4238" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4240" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4242" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset4244" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite4246" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4248" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4250" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4252" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4254" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset4256" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite4258" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4260" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4262" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4264" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4266" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset4268" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite4270" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4272" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4274" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4276" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4278" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset4280" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite4282" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4284" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4286" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4288" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4290" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset4292" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite4294" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4296" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4298" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4300" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4302" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset4304" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite4306" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4308" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4310" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4312" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4314" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset4316" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite4318" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4320" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4322" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4324" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4326" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset4328" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite4330" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4332" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4334" result="flood" flood-opacity=".26667" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4336" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4338" stdDeviation="0.5" result="blur" in="composite1"/>
+   <feOffset id="feOffset4340" result="offset" dx="0" dy="4.2"/>
+   <feComposite id="feComposite4342" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+ </defs>
+ <metadata id="metadata4423">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1" transform="translate(0 -831.36)">
+  <rect id="rect4344" rx="1.8838" ry="2.1875" height="257.86" width="551.43" y="802.42" x="-18.859" fill="#e91e63"/>
+  <g fill="#fff">
+   <rect id="rect3338" rx="1.8838" ry="2.1875" height="50" filter="url(#filter4332)" width="50" y="860.29" x="163.14"/>
+   <rect id="rect3338-7" rx="1.8838" ry="2.1875" height="50" filter="url(#filter4320)" width="50" y="860.29" x="223.14"/>
+   <rect id="rect3338-7-6" rx="1.8838" ry="2.1875" height="50" filter="url(#filter4308)" width="50" y="860.29" x="283.14"/>
+   <rect id="rect3338-4" rx="1.8838" ry="2.1875" height="50" filter="url(#filter4296)" width="50" y="920.29" x="163.14"/>
+   <rect id="rect3338-4-4" rx="1.8838" ry="2.1875" height="50" filter="url(#filter4284)" width="50" y="920.29" x="223.14"/>
+   <rect id="rect3338-4-4-6" rx="1.8838" ry="2.1875" height="50" filter="url(#filter4272)" width="50" y="920.29" x="283.14"/>
+   <rect id="rect3338-4-2" rx="1.8838" ry="2.1875" height="50" filter="url(#filter4260)" width="50" y="980.29" x="163.14"/>
+   <rect id="rect3338-4-4-1" rx="1.8838" ry="2.1875" height="50" filter="url(#filter4248)" width="50" y="980.29" x="223.14"/>
+   <rect id="rect3338-4-4-6-5" rx="1.8838" ry="2.1875" height="50" filter="url(#filter4236)" width="50" y="980.29" x="283.14"/>
+  </g>
+ </g>
+</svg>
