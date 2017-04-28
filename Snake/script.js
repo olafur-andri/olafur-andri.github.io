@@ -42,9 +42,12 @@ let snakeColors = ["blue", "yellow", "red", "white", "cyan", "orange", "green", 
 let currentSnakeColor = 0;
 let limbContainers = [];
 let firstLimbContainer = null;
+let windowDiv = null;
+let windowDivBCR = null;
 const SPEED = 2.5;
 
 function start() {
+  windowDiv = document.getElementById("window");
   firstLimbContainer = document.getElementById("first_limb_container");
   limbContainers = document.querySelectorAll(".limb-container");
   playButton = document.getElementById("play");
@@ -64,11 +67,10 @@ function start() {
 
   addEventListeners();
   requestAnimationFrame(update);
-  windowWidth = window.innerWidth;
-  windowHeight = window.innerHeight;
+  getWindowSize();
   primaryLimbBCR = primaryLimb.getBoundingClientRect();
-  positionX = primaryLimbBCR.left;
-  positionY = primaryLimbBCR.top;
+  positionX = primaryLimbBCR.left - windowDivBCR.left;
+  positionY = primaryLimbBCR.top - windowDivBCR.top;
   startingPointX = getStartingPointX();
   startingPointY = getStartingPointY();
   generateCookie();
@@ -78,12 +80,24 @@ function addEventListeners() {
   toucharea.addEventListener("touchstart", onStart, true);
   toucharea.addEventListener("touchmove", onMove, true);
   toucharea.addEventListener("touchend", onEnd, true);
+
   document.addEventListener("keydown", onPress, true);
 
   restartButton.addEventListener("touchstart", createRipple, true);
   restartButton.addEventListener("touchstart", restartGame, true);
+  restartButton.addEventListener("mousedown", createRipple, true);
+  restartButton.addEventListener("click", restartGame, true);
 
   pauseButton.addEventListener("touchstart", pauseGame, true);
+  pauseButton.addEventListener("click", pauseGame, true);
+
+  window.addEventListener("resize", getWindowSize, true);
+}
+
+function getWindowSize() {
+  windowDivBCR = windowDiv.getBoundingClientRect();
+  windowWidth = windowDivBCR.width;
+  windowHeight = windowDivBCR.height;
 }
 
 function onPress(e) {
@@ -101,6 +115,9 @@ function onPress(e) {
       case "ArrowLeft":
         swipeLeft();
         break;
+      case "p":
+        pauseGame();
+        break;
     }
   } else if (e.keyCode) {
     switch (e.keyCode) {
@@ -115,6 +132,9 @@ function onPress(e) {
         break;
       case 39:
         swipeRight();
+        break;
+      case 80:
+        pauseGame();
         break;
     }
   } else {
@@ -475,7 +495,15 @@ function restartGame() {
   }
 }
 
-function pauseGame() {
+function pauseGame(e) {
+
+  if (e) {
+    e.preventDefault();
+  }
+
+  document.removeEventListener("keydown", onPress, true);
+  document.addEventListener("keydown", resumeGameIfEnter, true);
+
   startMessage.classList.add("show");
   cancelAnimationFrame(requestId);
   startMessageHeading.textContent = "";
@@ -484,11 +512,43 @@ function pauseGame() {
   toucharea.removeEventListener("touchend", onEnd, true);
   playButton.classList.add("show");
   playButton.addEventListener("touchstart", resumeGame, true);
+  playButton.addEventListener("click", resumeGame, true);
 }
 
-function resumeGame() {
+function resumeGameIfEnter(e) {
+  if (e.key) {
+    switch (e.key) {
+      case "Enter":
+        resumeGame();
+        break;
+      case " ":
+        resumeGame();
+        break;
+    }
+  } else if (e.keyCode) {
+    switch (e.keyCode) {
+      case 13:
+        resumeGame();
+        break;
+      case 32:
+        resumeGame();
+        break;
+    }
+  } else {
+    console.log("need to see if keydown event argument has anything else than e.key and e.keyCode")
+  }
+}
+
+function resumeGame(e) {
+
+  if (e) {
+    e.preventDefault();
+  }
+
   playButton.removeEventListener("touchstart", resumeGame, true);
   playButton.classList.remove("show");
+  document.removeEventListener("keydown", resumeGameIfEnter, true);
+  document.addEventListener("keydown", onPress, true);
   
   setTimeout(function() {
     startMessage.classList.remove("show");

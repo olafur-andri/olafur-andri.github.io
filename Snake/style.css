@@ -9,15 +9,24 @@
 body, html {
   margin: 0;
   padding: 0;
+  background-color: #FAFAFA;
 }
 
-#gradient_background {
-  position: absolute;
-  top: 0;
-  left: 0;
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#window {
   height: 100%;
   width: 100%;
-  background: -webkit-linear-gradient(#FAFAFA, #FFFFFF);
+  max-height: 700px;
+  max-width: 400px;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
 }
 
 #start_message {
@@ -33,6 +42,7 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 3px;
 }
 
 .wrapper {
@@ -191,6 +201,7 @@ body, html {
   height: 100%;
   width: 100%;
   z-index: 1;
+  border-radius: 3px;
 }
 
 #score {
@@ -203,6 +214,7 @@ body, html {
   align-items: center;
   justify-content: center;
   z-index: 1;
+  border-radius: 3px;
 }
 
 #score p {
@@ -238,6 +250,7 @@ body, html {
   z-index: 4;
   font-size: 15px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 #restart.show {
@@ -268,6 +281,7 @@ body, html {
   width: 36px;
   z-index: 3;
   pointer-events: auto;
+  cursor: pointer;
 }
 
 #pause div {
@@ -310,6 +324,7 @@ body, html {
   transition: transform 400ms ease;
   transform: rotate(-540deg) scale(0);
   pointer-events: none;
+  cursor: pointer;
 }
 
 #play.show {
@@ -331,6 +346,7 @@ body, html {
   left: 0;
   height: 100%;
   width: 100%;
+  border-radius: 3px;
 }
 
 #backgrounds .background {
@@ -344,6 +360,7 @@ body, html {
   transition: opacity 400ms ease;
   opacity: 0;
   z-index: 1;
+  border-radius: 3px;
 }
 
 #backgrounds .background.show {
@@ -380,4 +397,18 @@ body, html {
 
 .background#black {
   background-color: #333333;
+}
+
+@media screen and (min-height: 700px) and (min-width: 400px) {
+  #restart {
+    font-size: 17px;
+    background-color: #2196F3;
+    font-weight: 600;
+    color: #FFFFFF;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  #restart.show {
+    transform: translateY(-80%);
+  }
 }
