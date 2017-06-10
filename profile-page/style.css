@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body, html {
@@ -280,6 +281,20 @@ body {
 
 .footer-content.make-visible {
   opacity: 1;
+  pointer-events: auto;
+}
+
+.footer-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.footer-wrapper.show {
   pointer-events: auto;
 }
 
