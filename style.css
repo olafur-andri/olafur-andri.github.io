@@ -59,6 +59,7 @@ body, html {
 
 .card .footer {
   padding: 25px 0 25px 18px;
+  position: relative;
 }
 
 .card .footer a {
@@ -67,6 +68,42 @@ body, html {
   font-weight: 500;
   background-color: transparent;
   padding: 7px;
+}
+
+.card .footer .experimental {
+  height: 20px;
+  width: 20px;
+  background-color: #FBC02D;
+  border-radius: 2px;
+  position: absolute;
+  top: 24.5px;
+  right: 50px;
+  cursor: pointer;
+}
+
+.card .footer .experimental::after {
+  content: attr(data-tooltip);
+  background-color: #FBC02D;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 225px;
+  border-radius: 3px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transition: transform 200ms ease, opacity 200ms ease;
+  transform: translateX(-50%) translateY(15px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card .footer .experimental:hover::after {
+  transform: translateX(-50%);
+  opacity: 1;
 }
 
 @media screen and (max-height: 700px) {
