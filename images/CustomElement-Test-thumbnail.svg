@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg4156" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="221" width="500" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 500.00001 221">
+ <defs id="defs4158">
+  <filter id="filter4204" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4206" result="flood" flood-opacity=".34902" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4208" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4210" stdDeviation="1.6" result="blur" in="composite1"/>
+   <feOffset id="feOffset4212" result="offset" dx="0" dy="1.9"/>
+   <feComposite id="feComposite4214" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4204-7" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4206-2" result="flood" flood-opacity=".34902" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4208-6" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4210-5" stdDeviation="1.6" result="blur" in="composite1"/>
+   <feOffset id="feOffset4212-2" result="offset" dx="0" dy="1.9"/>
+   <feComposite id="feComposite4214-1" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+  <filter id="filter4204-7-9" style="color-interpolation-filters:sRGB">
+   <feFlood id="feFlood4206-2-0" result="flood" flood-opacity=".34902" flood-color="rgb(0,0,0)"/>
+   <feComposite id="feComposite4208-6-9" operator="in" result="composite1" in2="SourceGraphic" in="flood"/>
+   <feGaussianBlur id="feGaussianBlur4210-5-4" stdDeviation="1.6" result="blur" in="composite1"/>
+   <feOffset id="feOffset4212-2-2" result="offset" dx="0" dy="1.9"/>
+   <feComposite id="feComposite4214-1-7" operator="over" result="composite2" in2="offset" in="SourceGraphic"/>
+  </filter>
+ </defs>
+ <metadata id="metadata4161">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1" transform="translate(0 -831.36)">
+  <rect id="rect4164" height="221" width="500" y="831.36" x="0" fill="#e91e63"/>
+  <g fill="#fff">
+   <rect id="rect4166" transform="matrix(.96947 0 0 1.0028 48.63 -.55899)" rx="2.8235" ry="2.7541" height="110.16" filter="url(#filter4204)" width="68.571" y="880.93" x="89.286"/>
+   <rect id="rect4166-9" transform="matrix(.96947 0 0 1.0028 10.982 -2.6257)" rx="2.8235" ry="2.7541" height="110.16" filter="url(#filter4204-7)" width="68.571" y="882.99" x="212.14"/>
+   <rect id="rect4166-9-0" transform="matrix(.96947 0 0 1.0028 -49.148 -8.356)" rx="2.8235" ry="2.7541" height="110.16" filter="url(#filter4204-7-9)" width="68.571" y="888.71" x="358.57"/>
+  </g>
+  <g fill="#e0e0e0">
+   <rect id="rect4282" rx="0.889" ry=".11002" height="1.6115" width="38.615" y="896.18" x="149.12"/>
+   <rect id="rect4282-5" rx="0.889" ry=".11002" height="1.6115" width="38.615" y="901.7" x="149.12"/>
+   <rect id="rect4282-5-9" rx="0.889" ry=".11002" height="1.6115" width="38.615" y="907.22" x="149.12"/>
+   <rect id="rect4282-5-9-1" rx="0.514" ry=".11002" height="1.6115" width="22.326" y="912.75" x="149.12"/>
+   <rect id="rect4282-5-9-1-1" rx="0.514" ry=".11002" height="1.6115" width="22.326" y="932.24" x="158.99"/>
+  </g>
+  <rect id="rect4282-5-9-1-1-9" rx=".072140" ry=".11002" height="1.6115" width="3.1335" y="932.24" x="153.78" fill="#bdbdbd"/>
+  <rect id="rect4282-5-9-1-1-96" rx=".38245" ry=".11002" height="1.6115" width="16.612" y="936.75" x="158.99" fill="#e0e0e0"/>
+  <rect id="rect4282-5-9-1-1-9-3" rx=".072140" ry=".11002" height="1.6115" width="3.1335" y="936.75" x="153.78" fill="#bdbdbd"/>
+  <rect id="rect4282-5-9-1-1-96-0" rx="0.514" ry=".11002" height="1.6115" width="22.326" y="941.75" x="158.99" fill="#e0e0e0"/>
+  <rect id="rect4282-5-9-1-1-9-3-5" rx=".072140" ry=".11002" height="1.6115" width="3.1335" y="941.75" x="153.78" fill="#bdbdbd"/>
+  <g fill="#e0e0e0">
+   <rect id="rect4395" height="20.536" width="40.357" y="895.25" x="229"/>
+   <rect id="rect4282-6" rx="0.889" ry=".11002" height="1.6115" width="38.615" y="929.52" x="229.09"/>
+   <rect id="rect4282-5-8" rx="0.889" ry=".11002" height="1.6115" width="38.615" y="935.04" x="229.09"/>
+   <rect id="rect4282-5-9-0" rx="0.889" ry=".11002" height="1.6115" width="38.615" y="940.57" x="229.09"/>
+   <rect id="rect4282-5-9-1-3" rx="0.514" ry=".11002" height="1.6115" width="22.326" y="946.09" x="229.09"/>
+   <rect id="rect4282-5-9-1-1-0" rx="0.514" ry=".11002" height="1.6115" width="22.326" y="897.55" x="322.77"/>
+  </g>
+  <rect id="rect4282-5-9-1-1-9-2" rx=".072140" ry=".11002" height="1.6115" width="3.1335" y="897.55" x="317.57" fill="#bdbdbd"/>
+  <rect id="rect4282-5-9-1-1-96-5" rx=".38245" ry=".11002" height="1.6115" width="16.612" y="902.06" x="322.77" fill="#e0e0e0"/>
+  <rect id="rect4282-5-9-1-1-9-3-3" rx=".072140" ry=".11002" height="1.6115" width="3.1335" y="902.06" x="317.57" fill="#bdbdbd"/>
+  <rect id="rect4282-5-9-1-1-96-0-5" rx="0.514" ry=".11002" height="1.6115" width="22.326" y="907.06" x="322.77" fill="#e0e0e0"/>
+  <rect id="rect4282-5-9-1-1-9-3-5-2" rx=".072140" ry=".11002" height="1.6115" width="3.1335" y="907.06" x="317.57" fill="#bdbdbd"/>
+  <g fill="#e0e0e0">
+   <rect id="rect4282-60" rx="0.889" ry=".11002" height="1.6115" width="38.615" y="920.79" x="311.26"/>
+   <rect id="rect4282-5-6" rx="0.889" ry=".11002" height="1.6115" width="38.615" y="926.31" x="311.26"/>
+   <rect id="rect4282-5-9-6" rx="0.889" ry=".11002" height="1.6115" width="38.615" y="931.84" x="311.26"/>
+   <rect id="rect4282-5-9-1-2" rx="0.514" ry=".11002" height="1.6115" width="22.326" y="937.36" x="311.26"/>
+  </g>
+ </g>
+</svg>
