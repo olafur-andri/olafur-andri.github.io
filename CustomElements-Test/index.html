@@ -1,0 +1,179 @@
+
+<!DOCTYPE html><html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CustomElements-Slideshow</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,bold" rel="stylesheet">
+  </head>
+  <body>
+    <div class='wrapper'>
+      <div id='background'>
+        <diagonal-line
+        x='0'
+        y='-50'
+      ></diagonal-line>
+      <diagonal-line
+        x='10'
+        y='-45'
+      ></diagonal-line>
+      <diagonal-line
+        x='80'
+        y='58'
+      ></diagonal-line>
+      <diagonal-line
+        x='70'
+        y='53'
+      ></diagonal-line>
+      </div>
+  
+      <app-slideshow>
+      <div class='scroll'>
+        <app-slide title>
+          <h1>
+            Custom- Elements Test
+          </h1>
+          <h4>
+            By Ólafur Andri Davíðsson
+          </h4>
+        </app-slide>
+  
+        <app-slide>
+          <i class='material-icons'>
+            text_fields
+          </i>
+          <h2 class='strong'>
+              Text
+          </h2>
+          <p>
+            The text can be any type
+            of different text
+            elements, such as
+            <code>&#60;p&#62;</code>,
+            <code>&#60;h3&#62;</code>,
+            <code>&#60;h6&#62;</code>
+            and so on. The text is 
+            white (hex color code:
+            #FAFAFA) and has a <code>
+            font-family</code> value
+            of "Roboto Slab". The font 
+            is fetched from Google
+            Fonts.
+          </p>
+          <p class='strong'>
+            Be careful not to write
+            too much text on one slide
+            since the overflowed text
+            cannot be read!!
+          </p>
+        </app-slide>
+  
+        <app-slide>
+          <i class='material-icons'>
+            list
+          </i>
+          <h2 class='strong'>
+            Lists
+          </h2>
+          <ul>
+            <li>Lists look very similar to the normal text mentioned on the previous slide.</li>
+            <li>The only thing different about them is the bullet point.</li>
+            <li>An unordered list is not the only type of list available... there is also an ordered list!</li>
+            <li>Example:</li>
+            <ol>
+              <li class='strong'>Bolded ordered list item</li>
+              <li>A non-bolded orderd list item</li>
+              <li class='light'>An anti-bolded list item (light font-weight)</li>
+            </ol>
+          </ul>
+        </app-slide>
+  
+        <app-slide>
+          <i class='material-icons'>
+            face
+          </i>
+          <h2 class='strong'>
+            Icons
+          </h2>
+          <p>
+            An icon can be used to explain, more visually, a slide's content.
+            This project utilizes the Material Icons provided by Google
+            Fonts. If you are interested in using this custom HTML element,
+            then it is advised that you only use an icon at the beginning
+            of a slide. All the previous slides are a good example of that.
+          </p>
+        </app-slide>
+  
+        <app-slide>
+          <i class='material-icons'>
+            not_interested
+          </i>
+          <h2 class='strong'>
+            Not Supported
+          </h2>
+          <p>
+            As amazing as this project is, it does not support all types of
+            content. Reason being that the developer of this custom HTML
+            element is simply just too lazy to do anything about it.
+            Here is a list of all the HTML elements that do not have a
+            solid support:
+          </p>
+          <ul>
+            <li>Images</li>
+            <li>Audio</li>
+            <li>Maps</li>
+            <li>SVG's</li>
+            <li class='strong'>...</li>
+          </ul>
+        </app-slide>
+  
+        <app-slide>
+          <i class='material-icons'>
+            code
+          </i>
+          <h2 class='strong'>
+            HTML Classes
+          </h2>
+          <ul>
+            <li><span class='strong'>Strong:</span> Makes text bold.</li>
+            <li><span class='strong'>Light:</span> Makes text light.</li>
+          </ul>
+        </app-slide>
+  
+        <app-slide>
+          <i class='material-icons'>
+            info
+          </i>
+          <h2 class='strong'>
+            This Project
+          </h2>
+          <p>
+            This element was created by Ólafur Andri Davíðsson.
+            His contact information, portfolio and more can be
+            found on his GitHub site which is the parent site
+            of this one.
+          </p>
+          <p>
+            This project really has no meaning whatsoever other
+            than to present what the developer is capable of
+            doing with the current web technologies available.
+            I hope this has been a pleasent testing for you,
+            as odd as it may seem there has been a lot of work
+            and care put into this. Anyways, check out the portfolio!
+          </p>
+        </app-slide>
+      </div>
+  
+        <app-indicator></app-indicator>
+      </app-slideshow>
+    </div>
+  
+    <app-orientation-message></app-orientation-message>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+  
