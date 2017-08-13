@@ -9,6 +9,120 @@ body, html {
   padding: 0;
 }
 
+body {
+  background-color: #FAFAFA;
+}
+
 .wrapper {
-  
+  font-family: 'Nunito', sans-serif;
+}
+
+nav {
+  height: 100px;
+  display: flex;
+  position: fixed;
+  background-color: #FAFAFA;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+nav::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
+  transition: opacity 400ms ease;
+  opacity: 0;
+}
+
+nav.scroll::after {
+  opacity: 1;
+}
+
+nav .logo {
+  width: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav .logo h1 {
+  font-weight: 400;
+  font-size: 48px;
+  color: #E91E63;
+}
+
+nav .links {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 50px;
+}
+
+nav .links button {
+  margin-right: 35px;
+  background-color: transparent;
+  color: #424242;
+  border-radius: 0;
+  border: none;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+nav .links button:hover {
+  color: #E91E63;
+}
+
+nav .links button.active {
+  font-weight: 700;
+  pointer-events: none;
+}
+
+#presentation {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+#presentation .image {
+  height: 100%;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#presentation .title {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#presentation .title h1 {
+  font-size: 90px;
+  color: #E91E63;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+#presentation .title p {
+  margin-top: 0;
+  padding-left: 100px;
+  color: #616161;
+  font-size: 18px;
 }
