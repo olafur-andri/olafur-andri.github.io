@@ -37,8 +37,8 @@ nav::after {
   padding: 0;
   height: 100%;
   width: 100%;
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
-  transition: opacity 400ms ease;
+  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.2);
+  transition: opacity 300ms ease;
   opacity: 0;
   pointer-events: none;
 }
@@ -88,6 +88,18 @@ nav .links button:hover {
 nav .links button.active {
   font-weight: 700;
   pointer-events: none;
+}
+
+main {
+  will-change: transform;
+  transition: opacity 400ms ease, transform 400ms ease;
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+main.show {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 #presentation {

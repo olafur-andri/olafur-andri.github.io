@@ -16,7 +16,7 @@ class Circled {
 
   onScroll() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
+
     if (scrollTop >= 5) {
       this.nav.classList.add('scroll');
     } else {
@@ -39,6 +39,10 @@ class Circled {
       }
       
       this.main.innerHTML = xhr.responseText;
+
+      setTimeout(() => {
+        this.main.classList.add('show');
+      }, 25);
     };
 
     xhr.open('GET', 'home.html', true);
