@@ -1,0 +1,57 @@
+#presentation {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+#presentation .image {
+  height: 100%;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#presentation .title {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#presentation .title h1 {
+  font-size: 90px;
+  color: #E91E63;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+#presentation .title p {
+  margin-top: 0;
+  padding-left: 100px;
+  color: #616161;
+  font-size: 18px;
+}
+
+section {
+  display: block;
+  margin: auto;
+  width: 90%;
+  max-width: 590px;
+  text-align: center;
+  margin-bottom: 75px;
+}
+
+section .material-icons {
+  font-size: 121px;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+section p {
+  font-size: 17px;
+  letter-spacing: .1px;
+  line-height: 32px;
+}

@@ -15,6 +15,7 @@ body {
 
 .wrapper {
   font-family: 'Nunito', sans-serif;
+  color: #424242;
 }
 
 nav {
@@ -90,52 +91,58 @@ nav .links button.active {
   pointer-events: none;
 }
 
-main {
-  will-change: transform;
+.container {
   transition: opacity 400ms ease, transform 400ms ease;
   opacity: 0;
   transform: translateX(-40px);
+  margin: 0;
 }
 
-main.show {
+.container.show {
   opacity: 1;
   transform: translateX(0);
 }
 
-#presentation {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  display: flex;
+.container h1 {
+  margin: 0;
 }
 
-#presentation .image {
-  height: 100%;
-  width: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#scroll_arrow {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -22.5px;
+  top: initial;
+  transition: opacity 400ms ease;
+  pointer-events: none;
+  opacity: 1;
 }
 
-#presentation .title {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+#scroll_arrow.hide {
+  opacity: 0;
 }
 
-#presentation .title h1 {
-  font-size: 90px;
-  color: #E91E63;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-  font-weight: 400;
-  margin-bottom: 0;
+#scroll_arrow i {
+  color: #424242;
+  font-size: 45px;
 }
 
-#presentation .title p {
-  margin-top: 0;
-  padding-left: 100px;
-  color: #616161;
-  font-size: 18px;
+#scroll_arrow i.up {
+  transition: transform 400ms ease-out;
+  transform: translateY(-15px);
+}
+
+#scroll_arrow i.up.down {
+  transition: transform 800ms ease-in-out;
+  transform: translateY(15px);
+}
+
+#scroll_arrow i.up.down.initial {
+  transition: transform 400ms ease-in-out;
+  transform: translateY(0);
+}
+
+#scroll_arrow i.hide {
+  transition: opacity 400ms ease;
+  opacity: 0;
 }
