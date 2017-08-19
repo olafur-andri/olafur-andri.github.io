@@ -3,7 +3,7 @@
 <head>
   <title>CIRCLED - Home</title>
   <meta charset='UTF-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=0' />
+  <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=1' />
   <link href='https://fonts.googleapis.com/css?family=Nunito:200,400,700,400i' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
   <link rel='icon' type='image/png' href='../images/favicon.png' />'
@@ -17,18 +17,30 @@
         <h1>C</h1>
       </div>
       <div class='links'>
-        <button data-url='home' class='active'>HOME</button>
-        <button data-url='about'>ABOUT</button>
-        <button data-url='privacy'>PRIV. POLICY</button>
-        <button data-url='eula'>EULA</button>
+        <a data-url='home' href='home/' class='active'>HOME</a>
+        <a data-url='about' href='about/'>ABOUT</a>
+        <a data-url='privacy' href='privacy/'>PRIV. POLICY</a>
+        <a data-url='eula' href='eula/'>EULA</a>
       </div>
+      <div class='hamburger'>
+        <i class='material-icons'>menu</i>
+      </div>
+      <div id='obfuscator'></div>
+      <div id='side_nav'>
+        <h3>CIRCLED</h3>
+        <a data-url='home' href='home/' class='active'>HOME</a>
+        <a data-url='about' href='about/'>ABOUT</a>
+        <a data-url='privacy' href='privacy/'>PRIV. POLICY</a>
+        <a data-url='eula' href='eula/'>EULA</a>
+      </div>
+      <div class='background'></div>
     </nav>
 
     <main>
       <div class='container'>
           <div id='presentation'>
               <div class='image'>
-                <img src='img/title-circles.svg' alt='Title Circles' />
+                  <img src='img/title-circles.svg' alt='Circles' />
               </div>
               <div class='title'>
                 <h1>CIRCLED</h1>
@@ -56,5 +68,8 @@
   </div>
 
   <script id='static_js' src='static.js'></script>
+  <script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.12'><\/script>".replace("HOST", location.hostname));
+//]]></script>
 </body>
 </html>

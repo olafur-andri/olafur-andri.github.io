@@ -1,3 +1,7 @@
+:root {
+  --material-pink: #E91E63;
+}
+
 * {
   box-sizing: border-box;
   outline: none;
@@ -38,7 +42,7 @@ nav::after {
   padding: 0;
   height: 100%;
   width: 100%;
-  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.3);
   transition: opacity 300ms ease;
   opacity: 0;
   pointer-events: none;
@@ -53,12 +57,20 @@ nav .logo {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 nav .logo h1 {
   font-weight: 400;
   font-size: 48px;
   color: #E91E63;
+  position: relative;
+  transition: color 300ms ease;
+}
+
+nav.scroll .logo h1 {
+  color: #FAFAFA;
 }
 
 nav .links {
@@ -67,9 +79,11 @@ nav .links {
   align-items: center;
   justify-content: flex-end;
   padding-right: 50px;
+  position: relative;
+  z-index: 1;
 }
 
-nav .links button {
+nav .links a {
   margin-right: 35px;
   background-color: transparent;
   color: #424242;
@@ -79,16 +93,135 @@ nav .links button {
   font-size: 17px;
   font-weight: 400;
   cursor: pointer;
-  transition: color 200ms ease;
+  transition: color 300ms ease;
+  text-decoration: none;
 }
 
-nav .links button:hover {
+nav.scroll .links a {
+  color: #FAFAFA;
+}
+
+nav .links a:hover {
   color: #E91E63;
 }
 
-nav .links button.active {
+nav.scroll .links a:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+nav .links a.active {
   font-weight: 700;
   pointer-events: none;
+}
+
+nav .hamburger {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 40px;
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+
+nav .hamburger i {
+  color: #424242;
+  cursor: pointer;
+  padding: 10px;
+  transition: color 300ms ease;
+  position: relative;
+}
+
+nav.scroll .hamburger i {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+nav #side_nav {
+  position: fixed;
+  height: 100%;
+  width: 300px;
+  background-color: #FAFAFA;
+  box-shadow: 2px 0 2px 0 rgba(0, 0, 0, 0.2);
+  will-change: transform;
+  transition: transform 400ms ease;
+  transform: translateX(-102%);
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+nav.show-sidenav #side_nav {
+  transform: translateX(0);
+}
+
+nav #side_nav h3 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--material-pink);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+nav #side_nav a {
+  background-color: transparent;
+  color: #424242;
+  border-radius: 0;
+  border: none;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 200ms ease;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  padding: 15px 0;
+}
+
+nav #side_nav a:hover {
+  color: #E91E63;
+}
+
+nav #side_nav a.active {
+  font-weight: 700;
+  pointer-events: none;
+}
+
+nav #obfuscator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: opacity 400ms ease;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+nav.show-sidenav #obfuscator {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+nav .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--material-pink);
+  transition: opacity 300ms ease;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+nav.scroll .background {
+  opacity: 1;
 }
 
 .container {
@@ -145,4 +278,24 @@ nav .links button.active {
 #scroll_arrow i.hide {
   transition: opacity 400ms ease;
   opacity: 0;
+}
+
+@media screen and (max-width: 700px) {
+  nav .links {
+    display: none;
+  }
+
+  nav .hamburger {
+    display: flex;
+  }
+
+  #scroll_arrow {
+    bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  nav .logo {
+    width: 125px;
+  }
 }

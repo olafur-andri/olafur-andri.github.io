@@ -5,12 +5,15 @@ class App {
     this.nav = document.querySelector('nav');
     this.container = document.querySelector('.container');
     this.arrow = document.querySelector('#scroll_arrow i');
+    this.hamburger = document.querySelector('nav .hamburger i');
     this.dynamicCSS = document.getElementById('dynamic_css');
     this.staticJS = document.getElementById('static_js');
     this.arrowContainer = document.getElementById('scroll_arrow');
+    this.obfuscator = document.getElementById('obfuscator');
+    this.sidenav = document.getElementById('side_nav');
 
     // NODELISTS
-    this.links = document.querySelectorAll('nav .links button');
+    this.links = document.querySelectorAll('nav a');
       
     // STRINGS
       // Prepopulated
@@ -23,10 +26,30 @@ class App {
     this.onScroll = this.onScroll.bind(this);
     this.changeAddress = this.changeAddress.bind(this);
     this.animateArrow = this.animateArrow.bind(this);
+    this.showSidenav = this.showSidenav.bind(this);
+    this.hideSidenav = this.hideSidenav.bind(this);
+    this.resizePresentation = this.resizePresentation.bind(this);
+    this.fadeInContainer = this.fadeInContainer.bind(this);
+    this.createRipple = this.createRipple.bind(this);
 
+    this.defineElements();
     this.fadeInContainer();
     this.addEventListeners();
     this.startArrowAnimation();
+    this.resizePresentation();
+  }
+
+  defineElements() {
+    customElements.define('circled-ripple', CircledRipple);
+  }
+
+  resizePresentation() {
+    if (this.folder !== 'home') {
+      return;
+    }
+
+    const presentation = document.getElementById('presentation');
+    presentation.style.height = `${window.innerHeight}px`;
   }
 
   startArrowAnimation() {
@@ -53,6 +76,38 @@ class App {
       link.addEventListener('click', this.changeAddress, true);
       link.addEventListener('touchend', this.changeAddress, true);
     });
+
+    this.hamburger.addEventListener('click', this.showSidenav, {passive: false});
+    this.hamburger.addEventListener('touchend', this.showSidenav, {passive: false});
+    this.obfuscator.addEventListener('click', this.hideSidenav, {passive: false});
+    this.obfuscator.addEventListener('touchend', this.hideSidenav, {passive: false});
+
+    this.sidenav.addEventListener('touchstart', this.createRipple, true);
+  }
+
+  createRipple(e) {
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
+
+    const ripple = document.createElement('circled-ripple');
+    this.sidenav.appendChild(ripple, this.sidenav.lastChild);
+  }
+
+  showSidenav(e) {
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+
+    this.nav.classList.add('show-sidenav');
+  }
+
+  hideSidenav(e) {
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
+
+    this.nav.classList.remove('show-sidenav');
   }
 
   onScroll() {
@@ -71,9 +126,11 @@ class App {
   }
 
   changeAddress(e) {
-    if (e.preventDefault) {
+    if (e && e.preventDefault) {
       e.preventDefault();
     }
+
+    this.hideSidenav();
 
     this.folder = e.target.getAttribute('data-url');
     this.updateActiveLink();
@@ -134,10 +191,14 @@ class App {
     this.main.innerHTML = responseText;
     this.container = document.querySelector('.container');
 
+    if (this.folder === 'home') {
+      const presentation = document.getElementById('presentation');
+      presentation.style.height = `${window.innerHeight}px`;
+    }
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        this.fadeInContainer();
+        requestAnimationFrame(this.fadeInContainer);
       });
     });
   }
@@ -150,6 +211,14 @@ class App {
   fadeOutContainer() {
     this.container.classList.remove('show');
     this.main.setAttribute('data-hidden', '');
+  }
+}
+
+class CircledRipple extends HTMLElement {
+  constructor() {
+    super();
+
+
   }
 }
 
