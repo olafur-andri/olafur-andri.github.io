@@ -4,9 +4,12 @@
 }
 
 body, html {
-  background-color: #FAFAFA;
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: #FAFAFA;
 }
 
 .wrapper {
@@ -41,20 +44,20 @@ body, html {
   padding: 0;
   position: relative;
   overflow: hidden;
+  background-color: #E91E63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card .thumbnail img {
   margin: 0;
   padding: 0;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  height: 100%;
-  width: 500px;
-  margin-left: -250px;
+  width: 100%;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   pointer-events: none;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
 }
 
 .card .footer {
@@ -101,7 +104,7 @@ body, html {
   pointer-events: none;
 }
 
-.card .footer .experimental:hover::after {
+.card .footer .experimental:active::after {
   transform: translateX(-50%);
   opacity: 1;
 }
@@ -109,6 +112,10 @@ body, html {
 @media screen and (max-height: 700px) {
   .container {
     padding-top: 100px;
+  }
+
+  .card .footer .experimental {
+    display: none;
   }
 }
 
