@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  <title>CIRCLED - Home</title>
+  <title>CIRCLED</title>
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=1' />
   <link href='https://fonts.googleapis.com/css?family=Nunito:200,400,700,400i' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
   <link rel='icon' type='image/png' href='../images/favicon.png' />'
   <link type='text/css' rel='stylesheet' href='static.css' />
-  <link id='dynamic_css' rel='stylesheet' href='home/style.css' />
+  <link id='dynamic_css' rel='stylesheet' href='style.css' />
+
+  <noscript>
+    <style>
+      nav::after {
+        opacity: 1;
+      }
+
+      nav .logo h1 {
+        color: #FAFAFA;
+      }
+
+      nav .links a {
+        color: #FAFAFA;
+      }
+
+      nav .links a:hover {
+        color: rgba(0, 0, 0, 0.75);
+      }
+
+      nav .hamburger i {
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      nav .background {
+        opacity: 1;
+      }
+
+      .container {
+        opacity: 1;
+        transform: none;
+      }
+
+      .container #presentation {
+        height: 100vh;
+      }
+
+      #scroll_arrow {
+        opacity: 0;
+      }
+    </style>
+  </noscript>
 </head>
 <body>
   <div class='wrapper'>
@@ -65,11 +106,13 @@
     <div id='scroll_arrow'>
       <i class='material-icons'>keyboard_arrow_down</i>
     </div>
+    <noscript>
+      <footer>
+        Enable JavaScript to experience this site to its fullest.
+      </footer>
+    </noscript>
   </div>
 
   <script id='static_js' src='static.js'></script>
-  <script id="__bs_script__">//<![CDATA[
-    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.12'><\/script>".replace("HOST", location.hostname));
-//]]></script>
 </body>
 </html>

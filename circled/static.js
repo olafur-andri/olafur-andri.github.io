@@ -16,12 +16,16 @@ class App {
     this.links = document.querySelectorAll('nav a');
       
     // STRINGS
-      // Prepopulated
-      this.folder = 'home';
+      // Empty
+      this.folder = '';
 
     // NUMBERS
       // 0's
       this.scrollTop = 0;
+
+    // BOOLEANS
+      // False
+      this.isSub = false;
 
     this.onScroll = this.onScroll.bind(this);
     this.changeAddress = this.changeAddress.bind(this);
@@ -30,13 +34,27 @@ class App {
     this.hideSidenav = this.hideSidenav.bind(this);
     this.resizePresentation = this.resizePresentation.bind(this);
     this.fadeInContainer = this.fadeInContainer.bind(this);
-    this.createRipple = this.createRipple.bind(this);
+    this.onPopstate = this.onPopstate.bind(this);
 
+    this.getFolder();
     this.defineElements();
     this.fadeInContainer();
     this.addEventListeners();
     this.startArrowAnimation();
     this.resizePresentation();
+  }
+
+  getFolder() {
+    this.folder = location.href.split('/');
+    this.folder = this.folder[this.folder.length - 2];
+
+    if (this.folder === 'circled') {
+      this.folder = 'home';
+    }
+
+    if (this.folder !== 'home') {
+      this.isSub = true;
+    }
   }
 
   defineElements() {
@@ -57,6 +75,10 @@ class App {
   }
 
   animateArrow() {
+    if (this.isSub) {
+      this.arrowContainer.classList.add('hide');
+    }
+
     this.arrow.classList.add('up');
     setTimeout(() => {
       this.arrow.classList.add('down');
@@ -82,16 +104,40 @@ class App {
     this.obfuscator.addEventListener('click', this.hideSidenav, {passive: false});
     this.obfuscator.addEventListener('touchend', this.hideSidenav, {passive: false});
 
-    this.sidenav.addEventListener('touchstart', this.createRipple, true);
+    window.addEventListener('popstate', this.onPopstate, true);
   }
 
-  createRipple(e) {
-    if (e && e.preventDefault) {
-      e.preventDefault();
+  onPopstate() {
+    this.fadeOutContainer();
+    this.getFolder();
+    
+
+    let xhr = null;
+
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+    } else {
+      xhr = new ActiveXObject('Microsoft.XMLHTTP');
     }
 
-    const ripple = document.createElement('circled-ripple');
-    this.sidenav.appendChild(ripple, this.sidenav.lastChild);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState !== 4 || xhr.status !== 200) {
+        return;
+      }
+
+      this.checkIfContainerHasFaded(xhr.responseText);
+    };
+
+    xhr.open('GET', 'partial.html', true);
+    xhr.send();
+
+    if (this.folder !== 'home') {
+      this.arrowContainer.classList.add('hide');
+    } else if (!this.scrollTop) {
+      this.arrowContainer.classList.remove('hide');
+    }
+
+    this.updateActiveLink();
   }
 
   showSidenav(e) {
@@ -135,8 +181,18 @@ class App {
     this.folder = e.target.getAttribute('data-url');
     this.updateActiveLink();
 
-    const htmlUrl = `${this.folder}/index.html`;
+    let URL = '';
+
+    if (this.folder !== 'home') {
+      URL = this.folder + '/';
+    }
+
+    history.pushState({page: this.folder}, 'CIRCLED - ' + this.folder, '/circled/' + URL);
+
+    let HTMLURL = null;
     let xhr = null;
+
+    HTMLURL = 'partial.html';
 
     if (window.XMLHttpRequest) {
       xhr = new XMLHttpRequest();
@@ -155,7 +211,7 @@ class App {
       this.checkIfContainerHasFaded(responseText);
     };
 
-    xhr.open('GET', htmlUrl, true);
+    xhr.open('GET', HTMLURL, true);
     xhr.send();
 
     if (this.folder !== 'home') {
@@ -183,8 +239,7 @@ class App {
       return;
     }
 
-    const CSSURL = `${this.folder}/style.css`;
-    const JSURL = `${this.folder}/script.js`;
+    const CSSURL = 'style.css';
 
     this.dynamicCSS.href = CSSURL;
 

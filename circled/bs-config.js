@@ -20,9 +20,9 @@ module.exports = {
         }
     },
     "files": [
-        '**/**/*.html',
-        '**/**/*.css',
-        '**/**/*.js',
+        'circled/**/*.html',
+        'circled/**/*.css',
+        'circled/**/*.js',
     ],
     "watchEvents": [
         "change"
