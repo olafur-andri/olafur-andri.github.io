@@ -234,7 +234,13 @@ class App {
       return;
     }
 
-    const CSSURL = 'style.css';
+    let CSSURL = '';
+
+    if (this.folder === 'home') {
+      CSSURL = '/circled/style.css';
+    } else {
+      CSSURL = `/circled/${this.folder}/style.css`;
+    }
 
     this.dynamicCSS.href = CSSURL;
 
