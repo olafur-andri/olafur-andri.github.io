@@ -37,7 +37,6 @@ class App {
     this.onPopstate = this.onPopstate.bind(this);
 
     this.getFolder();
-    this.defineElements();
     this.fadeInContainer();
     this.addEventListeners();
     this.startArrowAnimation();
