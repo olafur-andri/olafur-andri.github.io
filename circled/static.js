@@ -57,10 +57,6 @@ class App {
     }
   }
 
-  defineElements() {
-    customElements.define('circled-ripple', CircledRipple);
-  }
-
   resizePresentation() {
     if (this.folder !== 'home') {
       return;
@@ -266,14 +262,6 @@ class App {
   fadeOutContainer() {
     this.container.classList.remove('show');
     this.main.setAttribute('data-hidden', '');
-  }
-}
-
-class CircledRipple extends HTMLElement {
-  constructor() {
-    super();
-
-
   }
 }
 
