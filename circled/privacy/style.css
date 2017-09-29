@@ -32,3 +32,14 @@ p {
   line-height: 40px;
   opacity: 0.75;
 }
+
+ul li {
+  font-size: 18px;
+  line-height: 36px;
+  opacity: 0.75;
+}
+
+a {
+  color: #000000;
+  font-weight: 600;
+}
