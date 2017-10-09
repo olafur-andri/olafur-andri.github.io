@@ -208,7 +208,7 @@ var App = function () {
         URL = this.folder + '/';
       }
 
-      history.pushState({ page: this.folder }, 'CIRCLED - ' + this.folder, '/circled/' + URL);
+      history.pushState({ page: this.folder }, 'CIRCLED - ' + this.folder, '/circum/' + URL);
 
       var HTMLURL = null;
       var xhr = null;
