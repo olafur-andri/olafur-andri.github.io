@@ -57,7 +57,7 @@ var App = function () {
       this.folder = location.href.split('/');
       this.folder = this.folder[this.folder.length - 2];
 
-      if (this.folder === 'circled') {
+      if (this.folder === 'circum') {
         this.folder = 'home';
       }
 
@@ -208,7 +208,7 @@ var App = function () {
         URL = this.folder + '/';
       }
 
-      history.pushState({ page: this.folder }, 'CIRCLED - ' + this.folder, '/circum/' + URL);
+      history.pushState({ page: this.folder }, 'CIRCUM - ' + this.folder, '/circum/' + URL);
 
       var HTMLURL = null;
       var xhr = null;
@@ -271,9 +271,9 @@ var App = function () {
       var CSSURL = '';
 
       if (this.folder === 'home') {
-        CSSURL = '/circled/style.css';
+        CSSURL = '/circum/style.css';
       } else {
-        CSSURL = '/circled/' + this.folder + '/style.css';
+        CSSURL = '/circum/' + this.folder + '/style.css';
       }
 
       this.dynamicCSS.href = CSSURL;
