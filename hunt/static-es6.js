@@ -47,7 +47,7 @@ class App {
     this.folder = location.href.split('/');
     this.folder = this.folder[this.folder.length - 2];
 
-    if (this.folder === 'circled') {
+    if (this.folder === 'hunt') {
       this.folder = 'home';
     }
 
@@ -182,7 +182,7 @@ class App {
       URL = this.folder + '/';
     }
 
-    history.pushState({page: this.folder}, 'CIRCLED - ' + this.folder, '/circled/' + URL);
+    history.pushState({page: this.folder}, 'Hunt - ' + this.folder, '/hunt/' + URL);
 
     let HTMLURL = null;
     let xhr = null;
@@ -237,9 +237,9 @@ class App {
     let CSSURL = '';
 
     if (this.folder === 'home') {
-      CSSURL = '/circled/style.css';
+      CSSURL = '/hunt/style.css';
     } else {
-      CSSURL = `/circled/${this.folder}/style.css`;
+      CSSURL = `/hunt/${this.folder}/style.css`;
     }
 
     this.dynamicCSS.href = CSSURL;
