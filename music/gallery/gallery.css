@@ -56,3 +56,11 @@ p {
 #license_text {
     max-width: var(--max-width);
 }
+
+noscript p {
+    color: #DC3545;
+    font-weight: 600;
+    max-width: var(--max-width);
+    margin: auto;
+    text-align: center;
+}

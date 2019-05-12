@@ -1,7 +1,22 @@
 [
     {
-        "name": ...,
-        "description": ...,
-        "image": ...
+        "name": "The Amethyst",
+        "description": "Songs I wrote for a certain movie idea I had",
+        "image": "theAmethyst.jpg"
+    },
+    {
+        "name": "War of Kings",
+        "description": "Scores written for legoguy101's YouTube series called 'LEGO: War of Kings'",
+        "image": "warOfKings.jpg"
+    },
+    {
+        "name": "Sample album 1",
+        "description": "The first ever sample album found anywhere!!",
+        "image": "sample1.jpg"
+    },
+    {
+        "name": "Sample album 2",
+        "description": "Yet another ultra rare sample album that cannot be found anywhere else",
+        "image": "sample2.jpg"
     }
 ]
