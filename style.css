@@ -16,13 +16,17 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+#music_paragraph {
+  text-align: center;
+}
+
 .container {
   width: 95%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding-top: 150px;
+  padding-top: 5rem;
 }
 
 .card {

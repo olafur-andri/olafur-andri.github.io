@@ -1,0 +1,8 @@
+[
+    {
+        "name": ...,
+        "description": ...,
+        "album": ...,
+        "image": ...    // Image specifically for this song, otherwise the album image
+    }
+]
