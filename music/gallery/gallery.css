@@ -1,0 +1,56 @@
+/* Variables */
+:root {
+    --max-width: 40rem;
+    --line-height: 160%;
+    --heading-font: 'Roboto', sans-serif;
+    --text-font: 'Muli', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--text-font);
+    color: #212121;
+}
+
+p {
+    color: #424242;
+    line-height: var(--line-height);
+}
+
+#introduction_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}   
+
+#page_title {
+    font-family: var(--heading-font);
+    text-align: center;
+    font-size: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    padding-bottom: 0.4rem;
+    font-weight: 100;
+    border-bottom: 1px solid rgba(33, 33, 33, 0.1);
+}
+
+#page_subtitle {
+    font-weight: 400;
+    max-width: 40rem;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    line-height: var(--line-height);
+    text-align: center;
+}
+
+#license_text {
+    max-width: var(--max-width);
+}
