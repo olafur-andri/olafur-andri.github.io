@@ -23,11 +23,23 @@ p {
     padding: 0 0.7rem;
 }
 
+section {
+    padding: 0 1rem;
+}
+
+hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid rgba(33, 33, 33, 0.1);
+}
+
 #introduction_section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    max-width: var(--max-width);
+    margin: 0 auto 1rem auto;
 }   
 
 #page_title {
@@ -38,23 +50,25 @@ p {
     margin-bottom: 0;
     padding-bottom: 0.4rem;
     font-weight: 100;
-    border-bottom: 1px solid rgba(33, 33, 33, 0.1);
 }
 
 #page_subtitle {
     font-weight: 400;
     max-width: 40rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     font-size: 1.4rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     line-height: var(--line-height);
     text-align: center;
-    padding: 0 1rem;
 }
 
 #license_text {
+    margin-top: 0;
+    padding-top: 0;
     max-width: var(--max-width);
+    text-align: center;
 }
 
 noscript p {
@@ -63,4 +77,12 @@ noscript p {
     max-width: var(--max-width);
     margin: auto;
     text-align: center;
+}
+
+.section-heading {
+    max-width: var(--max-width);
+    margin: auto;
+    text-align: center;
+    font-size: 1.7rem;
+    font-family: var(--heading-font);
 }
