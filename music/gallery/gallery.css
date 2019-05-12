@@ -20,6 +20,7 @@ body {
 p {
     color: #424242;
     line-height: var(--line-height);
+    padding: 0 0.7rem;
 }
 
 #introduction_section {
@@ -49,6 +50,7 @@ p {
     font-weight: 300;
     line-height: var(--line-height);
     text-align: center;
+    padding: 0 0.7rem;
 }
 
 #license_text {
