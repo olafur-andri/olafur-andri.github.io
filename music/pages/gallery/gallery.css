@@ -164,6 +164,10 @@ noscript p {
     font-weight: 300;
 }
 
+.album .date-created {
+    font-weight: 300;
+}
+
 @media screen and (max-width: 700px) {
     .album .date-created {
         margin-bottom: 0;
