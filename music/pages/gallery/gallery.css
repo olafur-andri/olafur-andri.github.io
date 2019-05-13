@@ -85,4 +85,79 @@ noscript p {
     text-align: center;
     font-size: 1.7rem;
     font-family: var(--heading-font);
+    width: 100%;
+}
+
+#album_section {
+    width: 95%;
+    margin: auto;
+    max-width: 55rem;
+}
+
+#albums_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.album {
+    /* box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.2); */
+    width: 100%;
+    margin: 0.5rem 0.2rem 0.5rem 0;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    height: 15rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.album .card-img-container {
+    height: 15rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    will-change: transform;
+    transition: transform 400ms ease;
+}
+
+.album:hover .card-img-container {
+    transform: scale(1.05);
+}
+
+.album .card-text-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.album h3, .album p {
+    color: #FFFFFF;
+}
+
+.album .card-title {
+    font-family: var(--heading-font);
+    font-weight: 100;
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+}
+
+.album .card-description {
+    font-weight: 300;
 }

@@ -36,7 +36,30 @@ class Gallery {
      * @param {Object} data Represents the information about the album
      */
     createAlbum(data) {
-        
+        const MAX_DESC_LEN = 70;
+        const albumsContainer = document.getElementById('albums_container');
+        const album = document.createElement('div');
+        const imgDiv = document.createElement('div');
+        const textDiv = document.createElement('div');
+
+        album.classList.add('album');
+        imgDiv.classList.add('card-img-container');
+        textDiv.classList.add('card-text-container')
+
+        const url = `../../images/${data.image}`;
+        imgDiv.style.backgroundImage = "url('" + url + "')";
+
+        textDiv.innerHTML = `
+            <p class="date-created">
+                ${new Date(data.created).toLocaleDateString()}
+            </p>
+            <h3 class="card-title">${data.name}</h3>
+            <p class="card-description">${data.shortDescription}</p>
+        `;
+
+        album.appendChild(imgDiv);
+        album.appendChild(textDiv);
+        albumsContainer.appendChild(album);
     }
 }
 

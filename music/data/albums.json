@@ -1,22 +1,30 @@
 [
     {
         "name": "The Amethyst",
-        "description": "Songs I wrote for a certain movie idea I had",
+        "shortDescription": "Songs I wrote for a certain movie idea I had",
+        "longDescription": "...",
+        "created": "2019-05-12",
         "image": "theAmethyst.jpg"
     },
     {
         "name": "War of Kings",
-        "description": "Scores written for legoguy101's YouTube series called 'LEGO: War of Kings'",
+        "shortDescription": "Scores written for legoguy101's YouTube series called 'LEGO: War of Kings'",
+        "longDescription": "...",
+        "created": "2019-05-12",
         "image": "warOfKings.jpg"
     },
     {
         "name": "Sample album 1",
-        "description": "The first ever sample album found anywhere!!",
+        "shortDescription": "The first ever sample album found anywhere!!",
+        "longDescription": "...",
+        "created": "2019-05-12",
         "image": "sample1.jpg"
     },
     {
         "name": "Sample album 2",
-        "description": "Yet another ultra rare sample album that cannot be found anywhere else",
+        "shortDescription": "Yet another ultra rare sample album that cannot be found anywhere else, I swear",
+        "longDescription": "...",
+        "created": "2019-05-12",
         "image": "sample2.jpg"
     }
 ]
