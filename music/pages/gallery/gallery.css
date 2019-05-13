@@ -169,6 +169,10 @@ noscript p {
 }
 
 @media screen and (max-width: 700px) {
+    .album {
+        height: 10rem;
+    }
+
     .album .date-created {
         margin-bottom: 0;
     }
@@ -183,6 +187,10 @@ noscript p {
 }
 
 @media screen and (max-width: 500px) {
+    .album {
+        height: 8rem;
+    }
+
     .album .card-title {
         font-size: 2rem;
     }
