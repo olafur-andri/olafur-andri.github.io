@@ -90,9 +90,10 @@ noscript p {
 }
 
 #album_section {
-    width: 95%;
+    width: 100%;
     margin: auto;
     max-width: 55rem;
+    padding: 0;
 }
 
 #albums_container {
@@ -106,7 +107,7 @@ noscript p {
 
 .album {
     width: 100%;
-    margin: 0.5rem 0.2rem 0.5rem 0;
+    margin: 0.5rem 0 0.5rem 0;
     padding: 0;
     cursor: pointer;
     overflow: hidden;
