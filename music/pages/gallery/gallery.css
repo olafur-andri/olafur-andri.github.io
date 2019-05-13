@@ -86,6 +86,7 @@ noscript p {
     font-size: 1.7rem;
     font-family: var(--heading-font);
     width: 100%;
+    font-weight: 600;
 }
 
 #album_section {
