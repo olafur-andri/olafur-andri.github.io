@@ -12,19 +12,5 @@
         "longDescription": "...",
         "created": "2019-05-12",
         "image": "warOfKings.jpg"
-    },
-    {
-        "name": "Sample album 1",
-        "shortDescription": "The first ever sample album found anywhere!!",
-        "longDescription": "...",
-        "created": "2019-05-12",
-        "image": "sample1.jpg"
-    },
-    {
-        "name": "Sample album 2",
-        "shortDescription": "Yet another ultra rare sample album that cannot be found anywhere else, I swear",
-        "longDescription": "...",
-        "created": "2019-05-12",
-        "image": "sample2.jpg"
     }
 ]
