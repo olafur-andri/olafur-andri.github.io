@@ -104,7 +104,6 @@ noscript p {
 }
 
 .album {
-    /* box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.2); */
     width: 100%;
     margin: 0.5rem 0.2rem 0.5rem 0;
     padding: 0;
@@ -116,6 +115,7 @@ noscript p {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .album .card-img-container {
@@ -156,8 +156,29 @@ noscript p {
     font-size: 3rem;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 .album .card-description {
     font-weight: 300;
+}
+
+@media screen and (max-width: 700px) {
+    .album .date-created {
+        margin-bottom: 0;
+    }
+
+    .album .card-title {
+        padding-bottom: 0.4rem;
+    }
+
+    .album .card-description {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .album .card-title {
+        font-size: 2rem;
+    }
 }
