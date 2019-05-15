@@ -216,9 +216,6 @@ noscript p {
     width: 100%;
     margin: auto;
     display: inline-block;
-    /* border-right: var(--songs-border);
-    border-left: var(--songs-border); */
-    /* border-bottom: var(--songs-border); */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -227,7 +224,7 @@ noscript p {
     cursor: pointer;
     transition: background-color 300ms ease;
     position: relative;
-    background-color: rgba(33, 33, 33, 0.1);
+    background-color: rgba(33, 33, 33, 0.05);
 }
 
 .songs-list li:hover {
@@ -247,12 +244,12 @@ noscript p {
 }
 
 .songs-list li .song-name {
-    font-weight: 500;
-    font-family: var(--heading-font);
+    font-weight: 700;
+    font-family: var(--text-font);
     display: inline-block;
     flex: 1;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
