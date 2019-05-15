@@ -4,6 +4,9 @@
     --line-height: 160%;
     --heading-font: 'Roboto', sans-serif;
     --text-font: 'Muli', sans-serif;
+    --songs-max-width: 50rem;
+    --songs-border: 1px solid rgba(33, 33, 33, 0.1);
+    --songs-border-radius: 0.3rem;
 }
 
 * {
@@ -14,7 +17,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--text-font);
-    color: #212121;
+    color: #424242;
+    background-color: #FFFFFF;
 }
 
 p {
@@ -25,6 +29,7 @@ p {
 
 section {
     padding: 0 1rem;
+    margin-bottom: 2rem;
 }
 
 hr {
@@ -39,7 +44,8 @@ hr {
     align-items: center;
     justify-content: flex-start;
     max-width: var(--max-width);
-    margin: 0 auto 1rem auto;
+    margin-left: auto;
+    margin-right: auto;
 }   
 
 #page_title {
@@ -91,7 +97,8 @@ noscript p {
 
 #album_section {
     width: 100%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 55rem;
     padding: 0;
 }
@@ -117,7 +124,7 @@ noscript p {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 .album .card-img-container {
@@ -131,11 +138,12 @@ noscript p {
     height: 100%;
     width: 100%;
     will-change: transform;
-    transition: transform 400ms ease;
+    transition: transform 400ms ease, filter 400ms ease;
 }
 
 .album:hover .card-img-container {
     transform: scale(1.05);
+    filter: blur(0.6rem);
 }
 
 .album .card-text-container {
@@ -144,7 +152,7 @@ noscript p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     position: relative;
 }
 
@@ -169,6 +177,112 @@ noscript p {
     font-weight: 300;
 }
 
+.album .card-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+}
+
+#singles_section .section-heading {
+    margin-bottom: 1rem;
+}
+
+#letter_list {
+    padding: 0.5rem 0 0 0;
+    margin: 0;
+}
+
+#letter_list > li {
+    list-style-type: none;
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.songs-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto 1rem auto;
+    text-align: center;
+    /* box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); */
+    width: auto;
+    max-width: var(--songs-max-width);
+}
+
+.songs-list li {
+    width: 100%;
+    margin: auto;
+    display: inline-block;
+    /* border-right: var(--songs-border);
+    border-left: var(--songs-border); */
+    /* border-bottom: var(--songs-border); */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    transition: background-color 300ms ease;
+    position: relative;
+    background-color: rgba(33, 33, 33, 0.1);
+}
+
+.songs-list li:hover {
+    background-color: rgba(33, 33, 33, 0.15);
+}
+
+.songs-list li:first-child {
+    /* border-top: var(--songs-border); */
+    border-top-left-radius: var(--songs-border-radius);
+    border-top-right-radius: var(--songs-border-radius);
+}
+
+.songs-list li:last-child {
+    /* border-bottom: var(--songs-border); */
+    border-bottom-left-radius: var(--songs-border-radius);
+    border-bottom-right-radius: var(--songs-border-radius);
+}
+
+.songs-list li .song-name {
+    font-weight: 500;
+    font-family: var(--heading-font);
+    display: inline-block;
+    flex: 1;
+    text-align: left;
+    font-size: 1.1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.songs-list li .song-description {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 1;
+    text-align: right;
+    color: rgba(0, 0, 0, 0.6);
+    padding-right: 1rem;
+    font-style: italic;
+}
+
+.songs-list li .song-duration {
+    padding-left: 1rem;
+    border-left: var(--songs-border);
+}
+
+.songs-list li a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+}
+
 @media screen and (max-width: 700px) {
     .album {
         height: 10rem;
@@ -183,6 +297,12 @@ noscript p {
     }
 
     .album .card-description {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .songs-list li .song-description {
         display: none;
     }
 }

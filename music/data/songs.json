@@ -1,8 +1,36 @@
 [
     {
-        "name": ...,
-        "description": ...,
-        "album": ...,
-        "image": ...    // Image specifically for this song, otherwise the album image
+        "name": "A Traveler's Tale",
+        "description": "Sparked from the weird idea of mixing a cello and an acoustic guitar together",
+        "duration": "1:30",
+        "album": "",
+        "image": ""
+    },
+    {
+        "name": "Last Stand",
+        "description": "The first song I wrote using Spitfire's Albion ONE",
+        "duration": "1:39",
+        "album": "",
+        "image": ""
+    },
+    {
+        "name": "Lullaby",
+        "description": "The second song I released on YouTube",
+        "duration": "2:06",
+        "album": "",
+        "image": ""
+    }, {
+        "name": "Not Coming Back",
+        "description": "The first ever song I released on YouTube",
+        "duration": "1:24",
+        "album": "",
+        "image": ""
+    },
+    {
+        "name": "Main Title",
+        "description": "The theme song for legoguy101's 'LEGO: War of Kings'",
+        "duration": "0:56",
+        "album": "War of Kings",
+        "image": ""
     }
 ]
