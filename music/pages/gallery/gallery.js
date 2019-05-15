@@ -10,8 +10,18 @@ class Gallery {
         this.ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
             'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
             'Y', 'Z'];
+        this.songs = [];
+        
+        this.searchboxOnFocus = this.searchboxOnFocus.bind(this);
+        this.searchForSingles = this.searchForSingles.bind(this);
+        this.searchboxOnFocusout = this.searchboxOnFocusout.bind(this);
+
         this.populateAlbums();
-        this.populateSingles();
+        this.getAllSongs().then((result) => {
+            this.songs = result;
+            this.populateSingles(result);
+        });
+        this.addEventListeners();
     }
 
     /**
@@ -74,10 +84,8 @@ class Gallery {
     /**
      * Generates all of the registered singles in the songs.json file
      */
-    populateSingles() {
-        this.getAllSongs().then((result) => {
-            this.createSingles(result);
-        });
+    populateSingles(songs) {
+        this.createSingles(songs);
     }
 
     /**
@@ -180,6 +188,15 @@ class Gallery {
     }
 
     /**
+     * Removes all singles from the singles section
+     */
+    clearSingles() {
+        const singlesSection = document.getElementById('singles_section');
+        const letterList = document.getElementById('letter_list');
+        singlesSection.removeChild(letterList);
+    }
+
+    /**
      * Returns a string, truncated with 'len' many characters, ellipsis
      * @param {String} str The string to truncate
      * @param {Number} len The number of allowed chars in the string
@@ -190,6 +207,95 @@ class Gallery {
             truncated = str.substring(0, len) + "...";
         }
         return truncated;
+    }
+
+    /**
+     * Adds all necessary event listeners to the various elements on the page
+     */
+    addEventListeners() {
+        const searchboxes =
+            document.querySelectorAll(
+                '.icon-text-input input, .text-input input'
+            );
+        const singlesSearchbox = document.getElementById("singles_searchbox");
+
+        singlesSearchbox.addEventListener('keydown', this.searchForSingles);
+        this.addListenersToMany(searchboxes, 'focus', this.searchboxOnFocus);
+        this.addListenersToMany(
+            searchboxes, 'focusout', this.searchboxOnFocusout
+        );
+    }
+
+    /**
+     * Adds event listeners to a set of HTMLElements
+     * @param {NodeList} nodeList The set of nodes to add the listeners to
+     * @param {String} event The type of event to listen to
+     * @param {function} func The function to run on listened event
+     */
+    addListenersToMany(nodeList, event, func) {
+        for (const node of nodeList) {
+            node.addEventListener(event, func);
+        }
+    }
+
+    /**
+     * Occurs when the user focuses on an input on the page
+     * @param {Event} e The event object for this event handler
+     */
+    searchboxOnFocus(e) {
+        e.target.parentNode.classList.add('focus');
+    }
+
+    /**
+     * Removes the .focus class from a .search-box element on focusout
+     * @param {Event} e The event object for this function
+     */
+    searchboxOnFocusout(e) {
+        e.target.parentNode.classList.remove('focus');
+    }
+
+    /**
+     * Searches for singles that start with what's written in the singles
+     * searchbox
+     * @param {Event} e The event object for this event handler
+     */
+    searchForSingles(e) {
+        setTimeout(() => {
+            const filter = e.target.value;
+            const relevantSongs = this.filterSongsByName(this.songs, filter);
+            if (relevantSongs.length) {
+                this.clearSingles();
+                this.scrollToSinglesSearch();
+                this.populateSingles(relevantSongs);
+            } else {
+                const letterList = document.getElementById('letter_list');
+                letterList.innerHTML = `<p>No songs found</p>`;
+            }
+        }, 0);
+    }
+
+    /**
+     * Picks out certain songs in an array of songs according to a filter
+     * @param {Array} songs An array of songs to search in
+     * @param {String} filter The name to use as the filter
+     * @return {Array} The filtered array
+     */
+    filterSongsByName(songs, filter) {
+        const filteredSongs = [];
+        for (const song of songs) {
+            if (song.name.toLowerCase().startsWith(filter.toLowerCase())) {
+                filteredSongs.push(song);
+            }
+        }
+        return filteredSongs;
+    }
+
+    /**
+     * Scrolls the singles searchbox into view
+     */
+    scrollToSinglesSearch() {
+        const singlesSearch = document.getElementById('search_bar');
+        singlesSearch.scrollIntoView(true);
     }
 }
 

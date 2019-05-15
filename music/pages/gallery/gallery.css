@@ -186,6 +186,13 @@ noscript p {
     z-index: 10;
 }
 
+#singles_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 #singles_section .section-heading {
     margin-bottom: 1rem;
 }
@@ -225,6 +232,7 @@ noscript p {
     transition: background-color 300ms ease;
     position: relative;
     background-color: rgba(33, 33, 33, 0.05);
+    cursor: pointer;
 }
 
 .songs-list li:hover {
@@ -278,6 +286,42 @@ noscript p {
     height: 100%;
     width: 100%;
     z-index: 10;
+}
+
+.icon-text-input {
+    background-color: rgba(33, 33, 33, 0.05);
+    border-radius: 100rem;
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+    width: 100%;
+    max-width: var(--max-width);
+}
+
+.icon-text-input.focus {
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.icon-text-input i {
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    margin-right: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.icon-text-input input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    font-family: var(--heading-font);
+    background-color: transparent;
+    border: none;
+    margin-left: 0.1rem;
+    font-size: 0.85rem;
+    display: block;
+    flex: 1;
+    color: #212121;
 }
 
 @media screen and (max-width: 700px) {
