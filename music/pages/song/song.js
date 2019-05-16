@@ -1,6 +1,18 @@
+'use strict';
+
 class Song {
     constructor() {
+        this.showBackground();
         this.getSong();
+    }
+
+    /**
+     * Fades in the background-image
+     */
+    showBackground() {
+        const backgroundContainer =
+            document.getElementById('background_image_container');
+        backgroundContainer.classList.add('show');
     }
 
     /**
@@ -23,6 +35,7 @@ class Song {
 
             const songTitle = document.getElementById('song_title');
             songTitle.innerText = song.name;
+            this.getSongFile(song);
         });
     }
 
@@ -33,6 +46,29 @@ class Song {
         const rawSongs = await fetch('../../data/songs.json');
         const songs = await rawSongs.json();
         return songs;
+    }
+
+    /**
+     * Gets the appropriate .wav file from the server and preps it for playing
+     */
+    getSongFile(song) {
+        const url = `../../songs/${song.filepath}`;
+        fetch(url)
+            .then((response) => {
+                return response;
+            })
+            .then((response) => {
+                this.playFile(response);
+            });
+    }
+
+    /**
+     * Receives a song file and plays it
+     * @param {Object} songFile The song to play
+     */
+    playFile(songFile) {
+        const audio = new Audio(songFile.url);
+        audio.play();
     }
 }
 

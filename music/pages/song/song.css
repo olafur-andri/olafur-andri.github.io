@@ -26,17 +26,16 @@ body {
     justify-content: flex-start;
     align-items: center;
     pointer-events: none;
+    will-change: opacity;
+    transition: opacity 400ms ease;
+    opacity: 0;
+}
+
+#background_image_container.show {
+    opacity: 1;
 }
 
 #background_image {
-    /* position: fixed;
-    top: 0;
-    left: 0;
-    max-width: 50rem;
-    background-image: url('../../images/noAlbum/noAlbumHDTV.png');
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-position: top left; */
     width: 100%;
     min-width: 1200px;
 }
