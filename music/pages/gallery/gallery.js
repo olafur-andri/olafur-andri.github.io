@@ -171,8 +171,8 @@ class Gallery {
 
             nameSpan.innerText = song.name;
             nameSpan.classList.add('song-name')
-            descriptionSpan.innerText = description;
-            descriptionSpan.classList.add('song-description')
+            // descriptionSpan.innerText = description;
+            // descriptionSpan.classList.add('song-description')
             durationSpan.innerText = song.duration;
             durationSpan.classList.add('song-duration');
             link.href = `../song/song.html?name=${song.name}`;
