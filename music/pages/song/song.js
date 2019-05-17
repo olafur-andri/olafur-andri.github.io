@@ -78,6 +78,9 @@ class Song {
         const indicator = document.getElementById('progress_indicator');
         const downloadButton = document.getElementById('download_button');
 
+        audio.preload = 'auto';
+        console.log(audio);
+
         // Add event listener to download button
         this.audio = audio;
         downloadButton.addEventListener('click', this.downloadOnClick);
