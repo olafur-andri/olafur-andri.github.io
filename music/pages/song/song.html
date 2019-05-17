@@ -3,7 +3,7 @@
   <head>
     <title>Play Song</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,6 +20,7 @@
     <main>
       <menu>
         <h2 id="song_title"></h2>
+
         <div id="song_progress">
           <p id="current_progress">0:00</p>
           <div id="progress_bar">
@@ -27,6 +28,18 @@
           </div>
           <p id="song_length"></p>
         </div>
+
+        <div id="song_controls">
+          
+        </div>
+
+        <a
+            id="download_button"
+            class="btn btn-flat btn-circled btn-icon"
+            target="_blank"
+            href="">
+          <i class="material-icons">get_app</i>
+        </a>
       </menu>
     </main>
   </body>
