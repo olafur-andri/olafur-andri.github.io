@@ -1,0 +1,23 @@
+#expanded_content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+#compact_content {
+  display: none;
+}
+
+@media (max-width: 45rem) {
+  #expanded_content {
+    display: none;
+  }
+
+  #compact_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0;
+  }
+}

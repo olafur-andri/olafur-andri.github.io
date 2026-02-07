@@ -1,0 +1,7 @@
+[mat-menu-item].active {
+  color: var(--mat-sys-primary);
+}
+
+[mat-menu-item].active mat-icon {
+  color: inherit;
+}

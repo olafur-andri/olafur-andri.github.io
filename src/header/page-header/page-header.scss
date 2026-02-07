@@ -1,0 +1,27 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+
+  background-color: var(--mat-sys-surface-container);
+
+  padding: 1rem;
+
+  border-radius: var(--mat-sys-corner-medium);
+
+  #header_left_content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  #header_right_content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+}

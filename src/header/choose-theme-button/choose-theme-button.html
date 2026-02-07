@@ -1,0 +1,19 @@
+<button
+  matIconButton
+  [matMenuTriggerFor]="menu"
+>
+  <mat-icon svgIcon="paintbrush" />
+</button>
+
+<mat-menu #menu="matMenu">
+  @for (theme of _allThemes; track theme.type) {
+    <button
+      mat-menu-item
+      [class.active]="theme.type === _currentTheme().type"
+      (click)="_currentTheme.set(theme)"
+    >
+      <mat-icon [svgIcon]="theme.svgIconName" />
+      {{ theme.label }}
+    </button>
+  }
+</mat-menu>
