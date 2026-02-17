@@ -20,16 +20,6 @@ export class ChooseThemeButton {
   protected readonly _allThemes: readonly Theme[] = [LIGHT_THEME, DARK_THEME, AUTO_THEME];
   protected readonly _currentTheme = signal<Theme>(this.getInitialTheme());
 
-  private readonly _applyThemeEffect = effect(() => {
-    const currentTheme = this._currentTheme();
-    document.body.setAttribute('data-color-scheme', currentTheme.type);
-  });
-
-  private readonly _saveThemeEffect = effect(() => {
-    const currentTheme = this._currentTheme();
-    localStorage.setItem(LS_THEME_TYPE_KEY, currentTheme.type);
-  });
-
   constructor() {
     const iconRegistry = inject(MatIconRegistry);
     const sanitizer = inject(DomSanitizer);
@@ -38,6 +28,18 @@ export class ChooseThemeButton {
     iconRegistry.addSvgIconLiteral('sun', sanitizer.bypassSecurityTrustHtml(SUN_ICON));
     iconRegistry.addSvgIconLiteral('moon', sanitizer.bypassSecurityTrustHtml(MOON_ICON));
     iconRegistry.addSvgIconLiteral('desktop', sanitizer.bypassSecurityTrustHtml(DESKTOP_ICON));
+
+    // an effect that applies the current color theme
+    effect(() => {
+      const currentTheme = this._currentTheme();
+      document.body.setAttribute('data-color-scheme', currentTheme.type);
+    });
+
+    // an effect that saves the current color theme to localStorage
+    effect(() => {
+      const currentTheme = this._currentTheme();
+      localStorage.setItem(LS_THEME_TYPE_KEY, currentTheme.type);
+    });
   }
 
   private getInitialTheme() {

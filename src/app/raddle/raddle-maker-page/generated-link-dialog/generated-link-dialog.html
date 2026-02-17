@@ -1,0 +1,32 @@
+<mat-dialog-content>
+  <p>
+    A link to your brand new raddle has just been generated. Click the "Open" button below to open your brand new Raddle
+    in a new tab.
+  </p>
+
+  @if (compressedRaddleSpec.length > 2000) {
+    <p>
+      <mat-icon fontIcon="warning" />
+      Beware that the link to your raddle is quite long, and may not work when shared on
+      social media.
+    </p>
+  } @else if (compressedRaddleSpec.length > 7000) {
+    <p>
+      <mat-icon fontIcon="error" /> The link to your raddle is <i>huge</i>. It might not work at all, and is probably
+      not shareable on social media.
+    </p>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button matButton [matDialogClose]="false">Cancel</button>
+
+  <a
+    matButton="filled"
+    routerLink="/raddle/{{ compressedRaddleSpec }}"
+    target="_blank"
+    [matDialogClose]="true"
+  >
+    Open
+  </a>
+</mat-dialog-actions>

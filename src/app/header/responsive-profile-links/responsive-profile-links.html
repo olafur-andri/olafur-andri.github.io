@@ -1,0 +1,92 @@
+@let urlMode = _urlMode();
+
+<div id="container">
+  <div id="expanded_content">
+    @if (urlMode === "front-page") {
+      <!-- LinkedIn -->
+      <a
+        matButton="tonal"
+        href="https://www.linkedin.com/in/olafurandri/"
+        aria-label="LinkedIn profile"
+        target="_blank"
+      >
+        <mat-icon svgIcon="linkedin" />
+        LinkedIn Profile
+      </a>
+
+      <!-- GitHub -->
+      <a
+        matButton="tonal"
+        href="https://github.com/olafur-andri"
+        aria-label="GitHub profile"
+        target="_blank"
+      >
+        <mat-icon svgIcon="github" />
+        GitHub Profile
+      </a>
+    } @else if (urlMode === "raddle-game") {
+      <!-- Link to raddle maker page -->
+      <a
+        matButton="tonal"
+        routerLink="/raddle-maker"
+        aria-label="Go to raddle maker"
+        target="_self"
+      >
+        <mat-icon fontIcon="add" />
+        Create your raddle
+      </a>
+
+      <button
+        matButton="tonal"
+        (click)="copyUrlToClipboard()"
+      >
+        <mat-icon fontIcon="share" />
+        Share this raddle
+      </button>
+    }
+  </div>
+
+  <div id="compact_content">
+    @if (urlMode === "front-page") {
+      <!-- LinkedIn -->
+      <a
+        matIconButton
+        href="https://www.linkedin.com/in/olafurandri/"
+        aria-label="LinkedIn profile"
+        target="_blank"
+        matTooltip="LinkedIn profile"
+      >
+        <mat-icon svgIcon="linkedin" />
+      </a>
+
+      <!-- GitHub -->
+      <a
+        matIconButton
+        href="https://github.com/olafur-andri"
+        aria-label="GitHub profile"
+        target="_blank"
+        matTooltip="GitHub profile"
+      >
+        <mat-icon svgIcon="github" />
+      </a>
+    } @else if (urlMode === "raddle-game") {
+      <a
+        matIconButton
+        routerLink="/raddle-maker"
+        aria-label="Go to raddle maker"
+        target="_self"
+        matTooltip="Create your raddle"
+      >
+        <mat-icon fontIcon="add" />
+      </a>
+
+      <button
+        matIconButton
+        (click)="copyUrlToClipboard()"
+        matTooltip="Share this raddle"
+      >
+        <mat-icon fontIcon="share" />
+      </button>
+    }
+  </div>
+</div>

@@ -1,27 +1,69 @@
-import {Component, inject} from '@angular/core';
+import {Component, computed, inject, signal} from '@angular/core';
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatIcon, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from '@angular/platform-browser';
+import {NavigationEnd, Router, RouterLink} from '@angular/router';
+import {filter} from 'rxjs';
+import {MatTooltip} from '@angular/material/tooltip';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-responsive-profile-links',
   imports: [
     MatButton,
     MatIcon,
-    MatIconButton
+    MatIconButton,
+    RouterLink,
+    MatTooltip
   ],
   templateUrl: './responsive-profile-links.html',
   styleUrl: './responsive-profile-links.scss',
 })
 export class ResponsiveProfileLinks {
+  private readonly _router = inject(Router);
+  private readonly _snackbarService = inject(MatSnackBar);
+
+  private readonly _url = signal(this._router.url);
+
+  protected readonly _urlMode = computed<UrlMode>(() => {
+    const url = this._url();
+
+    if (url.startsWith('/raddle/')) {
+      return 'raddle-game';
+    }
+
+    if (url.startsWith('/raddle-maker')) {
+      return 'raddle-maker';
+    }
+
+    return 'front-page';
+  });
+
   constructor() {
+    // icon stuff
     const iconRegistry = inject(MatIconRegistry);
     const sanitizer = inject(DomSanitizer);
 
     iconRegistry.addSvgIconLiteral('linkedin', sanitizer.bypassSecurityTrustHtml(LINKEDIN_ICON));
     iconRegistry.addSvgIconLiteral('github', sanitizer.bypassSecurityTrustHtml(GITHUB_ICON));
+
+    // react to URL changes
+    this._router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe(() => this._url.set(this._router.url));
+  }
+
+  protected async copyUrlToClipboard() {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      this._snackbarService.open('Copied URL to clipboard', 'Dismiss', {duration: 2000});
+    } catch (e) {
+      this._snackbarService.open('Failed to copy URL to clipboard', 'Dismiss', {duration: 2000});
+    }
   }
 }
+
+type UrlMode = 'front-page' | 'raddle-game' | 'raddle-maker';
 
 const LINKEDIN_ICON =
   `

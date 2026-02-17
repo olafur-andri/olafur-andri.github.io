@@ -1,9 +1,11 @@
 h1 {
   font-family: 'Josefin Sans', serif;
   font-weight: 600;
+  line-height: 1em;
+  letter-spacing: var(--mat-sys-headline-large-tracking);
+  color: var(--mat-sys-on-surface);
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 0.5rem; // the font is a little weird so I have to compensate with extra top padding
   text-transform: uppercase;
-  line-height: 1em;
 }

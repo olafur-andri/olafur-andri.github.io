@@ -1,0 +1,53 @@
+@let raddleAuthor = _raddleAuthor();
+@let raddleIsCompleted = _raddleIsCompleted();
+@let activeStep = _activeStep();
+
+<main>
+  @if (raddleAuthor) {
+    <mat-chip id="author">{{ raddleAuthor }}</mat-chip>
+  }
+
+  <h1 id="title">{{ _raddleTitle() }}</h1>
+
+  @if (raddleIsCompleted) {
+    <div id="completion_banner">
+      <div id="completion_banner_results">
+        <span class="word">{{ _firstWord() }}</span>
+
+        <div>
+          {{ _hintEmojis() }}
+        </div>
+
+        <span class="word">{{ _lastWord() }}</span>
+      </div>
+
+      <button
+        matButton="filled"
+        (click)="copyResultsToClipboard()"
+      >
+        <mat-icon fontIcon="content_copy" />
+        Copy results to clipboard
+      </button>
+    </div>
+  }
+
+  <div id="columns">
+    <div id="ladder_column">
+      <app-raddle-ladder
+        [(raddleState)]="_raddleState"
+        [activeStep]="activeStep"
+        [raddleIsCompleted]="raddleIsCompleted"
+      />
+    </div>
+
+    <div id="clues_column">
+      <app-raddle-clues-lists
+        [raddleState]="_raddleState()"
+        [activeStep]="activeStep"
+        [raddleIsCompleted]="raddleIsCompleted"
+      />
+    </div>
+  </div>
+</main>
+
+<app-raddle-footer />

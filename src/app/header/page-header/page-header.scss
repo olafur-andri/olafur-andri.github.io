@@ -5,9 +5,8 @@ header {
   gap: 1rem;
   align-items: center;
 
-  background-color: var(--mat-sys-surface-container);
-
-  padding: 1rem;
+  // background-color: var(--mat-sys-surface-container);
+  // padding: 1rem;
 
   border-radius: var(--mat-sys-corner-medium);
 
@@ -16,6 +15,10 @@ header {
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+
+    #logo_link {
+      text-decoration: none;
+    }
   }
 
   #header_right_content {

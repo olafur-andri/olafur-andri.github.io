@@ -1,0 +1,8 @@
+<h2 matDialogTitle>{{ data.title }}</h2>
+
+<mat-dialog-content [innerHTML]="data.content" />
+
+<mat-dialog-actions>
+    <button matButton [matDialogClose]="false">Cancel</button>
+    <button matButton="filled" [matDialogClose]="true">Yes</button>
+</mat-dialog-actions>

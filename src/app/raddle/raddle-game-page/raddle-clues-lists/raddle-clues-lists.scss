@@ -1,0 +1,91 @@
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.list-overrides((
+    list-item-label-text-font: 'Google Sans Code',
+  ));
+}
+
+#clues_column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1.5rem;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0.5rem;
+
+    .section-heading {
+      color: var(--mat-sys-secondary);
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 0.2rem;
+
+      h4 {
+        margin: 0;
+      }
+    }
+
+    .clue-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 0.5rem;
+
+      .clue {
+        font-size: var(--mat-sys-body-large-size);
+        line-height: var(--mat-sys-body-large-line-height);
+        letter-spacing: var(--mat-sys-body-large-tracking);
+        font-weight: var(--mat-sys-body-large-weight);
+
+        &.clue-unused {
+          background-color: var(--mat-sys-surface-container);
+          border-radius: var(--mat-sys-corner-small);
+          border: 1px solid var(--mat-sys-outline-variant);
+          padding: 0.5rem 1rem;
+
+          &.clue-unused-muted {
+            opacity: 0.5;
+          }
+        }
+
+        &.clue-used {
+          color: color-mix(in srgb, var(--mat-sys-on-surface) 60%, transparent);
+          padding: 0.25rem 1rem;
+        }
+
+        &.clue-completed {
+          padding: 0.25rem 1rem;
+        }
+
+        .blank {
+          font-family: 'Google Sans Code', monospace;
+          text-transform: uppercase;
+        }
+
+        .from {
+          font-family: 'Google Sans Code', monospace;
+          text-transform: uppercase;
+          background-color: var(--mat-sys-surface-variant);
+          color: var(--mat-sys-on-surface-variant);
+        }
+
+        .to {
+          font-family: 'Google Sans Code', monospace;
+          text-transform: uppercase;
+          background-color: var(--mat-sys-primary-container);
+          color: var(--mat-sys-on-primary-container);
+        }
+      }
+    }
+  }
+}

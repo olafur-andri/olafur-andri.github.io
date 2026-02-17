@@ -1,0 +1,93 @@
+@let usedClues = _usedClues();
+@let raddleIsCompleted = this.raddleIsCompleted();
+@let highlightedClueId = _highlightedClueId();
+
+<div id="clues_column">
+  @if (raddleIsCompleted) {
+    <section>
+      <div class="section-heading">
+        <h4>Clues, in order</h4>
+        <mat-divider />
+      </div>
+      <div class="clue-list">
+        @for (clue of _cluesInOrder(); track clue.id) {
+          <div class="clue clue-completed">
+            @for (segment of clue.segments; track $index) {
+              @switch (segment.type) {
+                @case ("blank") {
+                  <span class="blank"><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></span>
+                } @case ("normal") {
+                  <span>{{ segment.text }}</span>
+                } @case ("from") {
+                  <span class="from">{{ segment.text }}</span>
+                } @case ("to") {
+                  <span class="to">{{ segment.text }}</span>
+                }
+              }
+            }
+          </div>
+
+          <mat-divider class="clue-completed-divider" />
+        }
+      </div>
+    </section>
+  } @else {
+    <section>
+      <div class="section-heading">
+        <h4>Clues, out of order</h4>
+        <mat-divider />
+      </div>
+      <div class="clue-list">
+        @for (clue of _unusedCluesShuffled(); track clue.id) {
+          <div
+            class="clue clue-unused"
+            [class.clue-unused-muted]="highlightedClueId !== null && highlightedClueId !== clue.id"
+          >
+            @for (segment of clue.segments; track $index) {
+              @switch (segment.type) {
+                @case ("blank") {
+                  <span class="blank"><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></span>
+                } @case ("normal") {
+                  <span>{{ segment.text }}</span>
+                } @case ("from") {
+                  <span class="from">{{ segment.text }}</span>
+                } @case ("to") {
+                  <span class="to">{{ segment.text }}</span>
+                }
+              }
+            }
+          </div>
+        }
+      </div>
+    </section>
+
+    @if (usedClues) {
+      <section>
+        <div class="section-heading">
+          <h4>Used clues</h4>
+          <mat-divider />
+        </div>
+
+        <div class="clue-list">
+          @for (clue of usedClues; track clue.id) {
+            <div class="clue clue-used">
+              @for (segment of clue.segments; track $index) {
+                @switch (segment.type) {
+                  @case ("blank") {
+                    <span class="blank"><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></span>
+                  } @case ("normal") {
+                    <span>{{ segment.text }}</span>
+                  } @case ("from") {
+                    <span class="from">{{ segment.text }}</span>
+                  } @case ("to") {
+                    <span class="to">{{ segment.text }}</span>
+                  }
+                }
+              }
+            </div>
+          }
+        </div>
+      </section>
+    }
+  }
+</div>

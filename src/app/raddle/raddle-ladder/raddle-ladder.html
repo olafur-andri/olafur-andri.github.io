@@ -1,0 +1,79 @@
+@let clueToStep = this._clueToStep();
+@let clueFromStep = this._clueFromStep();
+@let raddleIsCompleted = this.raddleIsCompleted();
+@let enabledInputIds = _enabledInputIds();
+@let activeStep = this.activeStep();
+
+<div id="ladder">
+  <div class="ladder-step-small"></div>
+
+  @for (step of _steps(); track step.id) {
+    @let isActiveStep = step.id === activeStep?.id;
+
+    <div class="ladder-step">
+      @if (step.isCompleted) {
+        <div
+          class="ladder-step-label ladder-step-label-frozen"
+          [class.clue-to]="clueToStep?.id === step.id"
+          [class.clue-from]="clueFromStep?.id === step.id"
+        >
+          {{ step.word }}
+        </div>
+      } @else {
+        <input
+          [id]="`input_${step.id}`"
+          class="ladder-step-label ladder-step-label-editable"
+          [class.clue-to]="clueToStep?.id === step.id"
+          [class.clue-from]="clueFromStep?.id === step.id"
+          [class.ladder-step-label-active]="isActiveStep"
+          [value]="step.userInput"
+          [disabled]="!enabledInputIds.has(step.id)"
+          [placeholder]="isActiveStep ? '' : step.inputPlaceholder"
+          (input)="updateStepValue(step, $event)"
+          (focus)="onInputFocused(step)"
+        />
+      }
+
+      @if (step.phraseToNextWord) {
+        <div class="ladder-phrase">
+          @if (step.isCompleted && step.nextStep?.isCompleted) {
+            {{ step.phraseToNextWord }}
+          } @else {
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          }
+        </div>
+      }
+
+      @if (isActiveStep && step.hintLevel !== "reveal-word") {
+        <div class="ladder-wing ladder-wing-left ladder-wing-word-shape">
+          {{ step.wordShape }}
+        </div>
+
+        <button
+          class="ladder-wing ladder-wing-right ladder-wing-hint-button"
+          (click)="onHintButtonClicked(step)"
+        >
+          @switch (step.hintLevel) {
+            @case ("no-hint") {
+              <mat-icon svgIcon="light_bulb" />
+            } @case ("reveal-clue") {
+              <mat-icon svgIcon="eye" />
+            }
+          }
+        </button>
+      }
+    </div>
+  }
+
+  <div class="ladder-step-small">
+    @if (!raddleIsCompleted) {
+      <button
+        matButton
+        id="switch_solve_direction_button"
+        (click)="toggleSolveDirection()"
+      >
+        {{ _switchSolveDirectionLabel() }}
+      </button>
+    }
+  </div>
+</div>
