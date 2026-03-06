@@ -63,3 +63,15 @@
 
 - [x] **Let's create the Raddle for Lotte**
 - [x] Make sure that the link to your Raddle system is on your front page
+
+- [x] The phrases are line-breaking too quickly
+- [ ] The Raddle Maker removes more than one step sometimes
+    - I think what would solve it is to make the "next free step ID" a computed value that returns the max ID already in use + 1
+- [ ] The intro text on my home page has a spelling mistake!!
+- [ ] Users should be able to add a step wherever in the Raddle Maker
+- [ ] Users should be able to move a step up or down
+- [ ] The Raddle Maker could benefit from having a layout change
+    - [ ] Each word has an associated input
+    - [ ] In between words, there is an arrow pointing down with a pencil on it. To its left, you have the phrase written out in small text (possibly truncated or multi-line) and on its right, you have the clue.
+    - [ ] If the user presses/clicks the arrow, then a dialog is opened where they can edit the two. The phrase should be a simple text input, but the clue should maybe be a text area (because they usually are a bit longer.
+    - [ ] The dialog has a cancel and save button.
