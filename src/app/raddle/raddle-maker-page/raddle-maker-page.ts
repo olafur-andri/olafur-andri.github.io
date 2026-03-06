@@ -1,4 +1,4 @@
-import {Component, effect, inject, OnInit, signal, untracked} from '@angular/core';
+import {Component, computed, effect, inject, OnInit, signal, untracked} from '@angular/core';
 import {applyEach, form, FormField, required} from '@angular/forms/signals';
 import {RaddleFooter} from '../raddle-footer/raddle-footer';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -24,9 +24,14 @@ export class RaddleMakerPage implements OnInit {
   protected readonly _raddleFormModel = signal<RaddleFormData>(createDefaultFormData());
   private readonly _savingToLocalStorageIsAllowed = signal(false);
 
-  private readonly _dialogService = inject(MatDialog);
+  private readonly _nextStepId = computed(() =>
+    this._raddleFormModel()
+      .steps
+      .map(step => step.id)
+      .reduce((maxSoFar, currentId) => Math.max(maxSoFar, currentId), -Infinity)
+      + 1);
 
-  private _nextStepId = 0;
+  private readonly _dialogService = inject(MatDialog);
 
   constructor() {
     // effect that saves the current form data to localStorage
@@ -78,7 +83,7 @@ export class RaddleMakerPage implements OnInit {
       steps: [
         ...formModel.steps,
         {
-          id: this.getNextStepId(),
+          id: untracked(this._nextStepId),
           word: '',
           clueToNextWord: '',
           phraseToNextWord: '',
@@ -87,7 +92,7 @@ export class RaddleMakerPage implements OnInit {
     }));
   }
 
-  protected removeStep(stepId: string) {
+  protected removeStep(stepId: number) {
     this._raddleFormModel.update(formModel => ({
       ...formModel,
       steps: formModel.steps.filter(step => step.id !== stepId)
@@ -113,12 +118,6 @@ export class RaddleMakerPage implements OnInit {
         this._raddleFormModel.set(createDefaultFormData());
       }
     });
-  }
-
-  private getNextStepId(): string {
-    const result = this._nextStepId.toString();
-    this._nextStepId++;
-    return result;
   }
 }
 
@@ -155,7 +154,7 @@ function createDefaultFormData(): RaddleFormData {
     rngSeed: 42,
     lastWord: '',
     steps: [
-      {id: '0', word: '', clueToNextWord: '', phraseToNextWord: ''},
+      {id: 0, word: '', clueToNextWord: '', phraseToNextWord: ''},
     ],
   }
 }
@@ -170,7 +169,7 @@ interface RaddleFormData {
 
 /** Interface for an object that stores the form state for when the user is specifying a single raddle step */
 interface RaddleStepData {
-  id: string,
+  id: number,
   word: string,
   clueToNextWord: string,
   phraseToNextWord: string,
