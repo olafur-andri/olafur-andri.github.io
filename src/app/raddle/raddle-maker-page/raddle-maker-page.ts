@@ -46,7 +46,9 @@ export class RaddleMakerPage implements OnInit {
     const defaultFormJson = JSON.stringify(createDefaultFormData());
 
     if (savedData !== null && savedData !== defaultFormJson) {
-      const dialogRef = this._dialogService.open(ConfirmResumeFormDialog);
+      const dialogRef = this._dialogService.open(ConfirmResumeFormDialog, {
+        disableClose: true,
+      });
 
       dialogRef.afterClosed().subscribe(confirmed => {
         if (confirmed) {
