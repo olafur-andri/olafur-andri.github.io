@@ -1,0 +1,70 @@
+@let clueTokens = _clueTokens();
+@let phraseText = _phraseText();
+@let clueFormField = this.clueFormField()();
+@let phraseFormField = this.phraseFormField()();
+
+<div id="row">
+  <div id="arrow_column">
+    <mat-icon svgIcon="arrow_cool_down" />
+  </div>
+
+  <!-- Clue -->
+  <div id="clue_column" class="column">
+    <p id="clue_label" class="label">Clue</p>
+
+    <p id="clue_value" class="value">
+      @for (clueToken of clueTokens; track $index) {
+        @switch (clueToken.type) {
+          @case ("normal") {
+            <span>{{ clueToken.text }}</span>
+          } @case("from") {
+            <span class="special-clue-token special-clue-token-from">{{ clueToken.text }}</span>
+          } @case("to") {
+            <span class="special-clue-token special-clue-token-to">{{ clueToken.text }}</span>
+          }
+        }
+      }
+    </p>
+
+    @if (clueFormField.touched() && clueFormField.invalid()) {
+      @for (error of clueFormField.errors(); track error.message) {
+        <p class="error-message">{{ error.message }}</p>
+      }
+    }
+  </div>
+
+  <!-- Action buttons -->
+  <div id="action_buttons_container">
+    <button
+      matIconButton
+      type="button"
+      [matMenuTriggerFor]="actionMenu"
+    >
+      <mat-icon fontIcon="more_horiz" />
+    </button>
+
+    <mat-menu #actionMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon fontIcon="question_mark" />
+        Edit clue
+      </button>
+
+      <button mat-menu-item>
+        <mat-icon fontIcon="format_quote" />
+        Edit phrase
+      </button>
+    </mat-menu>
+  </div>
+
+  <!-- Phrase -->
+  <div id="phrase_column" class="column">
+    <p id="phrase_label" class="label">Phrase</p>
+    <p id="phrase_value" class="value">{{ phraseText }}</p>
+
+    @if (phraseFormField.touched() && phraseFormField.invalid()) {
+      @for (error of phraseFormField.errors(); track error.message) {
+        <p class="error-message">{{ error.message }}</p>
+      }
+    }
+  </div>
+</div>

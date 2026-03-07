@@ -1,0 +1,106 @@
+@use '@angular/material' as mat;
+
+:host {
+  width: 100%;
+}
+
+#row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.1rem;
+
+  #arrow_column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: color-mix(in srgb, var(--mat-sys-on-surface) 38%, transparent);
+  }
+
+  #action_buttons_container {
+    border-left: 1px solid var(--mat-sys-surface-variant);
+    border-right: 1px solid var(--mat-sys-surface-variant);
+    padding: 0 0.2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &#clue_column {
+      align-items: flex-start;
+      flex: 2;
+
+      .special-clue-token {
+        font-family: "Google Sans Code", monospace;
+        text-transform: uppercase;
+
+        &.special-clue-token-from {
+          background-color: var(--mat-sys-surface-variant);
+          color: var(--mat-sys-on-surface-variant);
+        }
+
+        &.special-clue-token-to {
+          background-color: var(--mat-sys-primary-container);
+          color: var(--mat-sys-on-primary-container);
+        }
+      }
+    }
+
+    &#phrase_column {
+      align-items: flex-end;
+      text-align: right;
+      flex: 1;
+    }
+
+    .label, .value {
+      margin: 0;
+      color: var(--mat-sys-on-surface);
+    }
+
+    #clue_value {
+      font-family: var(--mat-sys-body-medium-font), sans-serif;
+      line-height: var(--mat-sys-body-medium-line-height);
+      font-size: var(--mat-sys-body-medium-size);
+      letter-spacing: var(--mat-sys-body-medium-tracking);
+      font-weight: var(--mat-sys-body-medium-weight);
+    }
+
+    #phrase_value {
+      font-family: "Google Sans Code", monospace;
+      text-transform: uppercase;
+
+      line-height: var(--mat-sys-body-small-line-height);
+      font-size: var(--mat-sys-body-small-size);
+      letter-spacing: var(--mat-sys-body-small-tracking);
+      font-weight: var(--mat-sys-body-small-weight);
+    }
+
+    .label {
+      font-family: var(--mat-sys-label-large-font), sans-serif;
+      line-height: var(--mat-sys-label-large-line-height);
+      font-size: var(--mat-sys-label-large-size);
+      letter-spacing: var(--mat-sys-label-large-tracking);
+      font-weight: var(--mat-sys-label-large-weight);
+      color: var(--mat-sys-secondary);
+    }
+  }
+}
+
+.error-message {
+  font-family: var(--mat-sys-body-small-font), sans-serif;
+  line-height: var(--mat-sys-body-small-line-height);
+  font-size: var(--mat-sys-body-small-size);
+  letter-spacing: var(--mat-sys-body-small-tracking);
+  font-weight: var(--mat-sys-body-small-weight);
+  color: var(--mat-sys-error);
+}

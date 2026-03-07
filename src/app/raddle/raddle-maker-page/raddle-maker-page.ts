@@ -13,10 +13,11 @@ import {GeneratedLinkDialog} from './generated-link-dialog/generated-link-dialog
 import * as lzString from 'lz-string';
 import {ConfirmResetFormDialog} from './confirm-reset-form-dialog/confirm-reset-form-dialog';
 import {ConfirmResumeFormDialog} from './confirm-resume-form-dialog/confirm-resume-form-dialog';
+import {RaddleMakerStepSeparator} from './raddle-maker-step-separator/raddle-maker-step-separator';
 
 @Component({
   selector: 'app-raddle-maker-page',
-  imports: [RaddleFooter, MatFormFieldModule, FormField, MatInputModule, MatExpansionModule, MatDivider, MatButton, MatIcon],
+  imports: [RaddleFooter, MatFormFieldModule, FormField, MatInputModule, MatExpansionModule, MatDivider, MatButton, MatIcon, RaddleMakerStepSeparator],
   templateUrl: './raddle-maker-page.html',
   styleUrl: './raddle-maker-page.scss',
 })
@@ -32,6 +33,16 @@ export class RaddleMakerPage implements OnInit {
       + 1);
 
   private readonly _dialogService = inject(MatDialog);
+
+  protected readonly _raddleForm = form(this._raddleFormModel, (schemaPath) => {
+    required(schemaPath.lastWord, {message: 'This field is required'});
+
+    applyEach(schemaPath.steps, (step) => {
+      required(step.word, {message: 'This field is required'});
+      required(step.clueToNextWord, {message: 'The clue to the next word is required'});
+      required(step.phraseToNextWord, {message: 'The phrase to the next word is required'});
+    });
+  });
 
   constructor() {
     // effect that saves the current form data to localStorage
@@ -66,16 +77,6 @@ export class RaddleMakerPage implements OnInit {
       this._savingToLocalStorageIsAllowed.set(true);
     }
   }
-
-  protected readonly _raddleForm = form(this._raddleFormModel, (schemaPath) => {
-    required(schemaPath.lastWord, {message: 'This field is required'});
-
-    applyEach(schemaPath.steps, (step) => {
-      required(step.word, {message: 'This field is required'});
-      required(step.clueToNextWord, {message: 'This field is required'});
-      required(step.phraseToNextWord, {message: 'This field is required'});
-    });
-  });
 
   protected addStep() {
     this._raddleFormModel.update(formModel => ({

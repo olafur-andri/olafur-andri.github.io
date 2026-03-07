@@ -2,14 +2,21 @@
 
 <main>
   <form id="raddle_spec_form">
-    <mat-form-field>
-      <mat-label>Author</mat-label>
-      <input matInput [formField]="_raddleForm.author" />
+    <section>
+      <div class="section-heading">
+        <h4>Optional info</h4>
+        <mat-divider />
+      </div>
 
-      @for (error of _raddleForm.author().errors(); track $index) {
-        <mat-error>{{ error.message }}</mat-error>
-      }
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Author</mat-label>
+        <input matInput [formField]="_raddleForm.author" />
+
+        @for (error of _raddleForm.author().errors(); track $index) {
+          <mat-error>{{ error.message }}</mat-error>
+        }
+      </mat-form-field>
+    </section>
 
     @for (step of raddleFormModel.steps; track step.id) {
       <section>
@@ -78,6 +85,42 @@
       <mat-form-field>
         <mat-label>Word</mat-label>
         <input matInput [formField]="_raddleForm.lastWord" />
+
+        @for (error of _raddleForm.lastWord().errors(); track $index) {
+          <mat-error>{{ error.message }}</mat-error>
+        }
+      </mat-form-field>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <h4>Ladder</h4>
+        <mat-divider />
+      </div>
+
+      @for (step of raddleFormModel.steps; track step.id) {
+        <!-- Word input -->
+        <mat-form-field>
+          <mat-label>Word {{ $index + 1 }}</mat-label>
+          <input matInput [formField]="_raddleForm.steps[$index].word" class="word-input" />
+
+          @for (error of _raddleForm.lastWord().errors(); track $index) {
+            <mat-error>{{ error.message }}</mat-error>
+          }
+        </mat-form-field>
+      }
+
+      <app-raddle-maker-step-separator
+        [clueFormField]="_raddleForm.steps[raddleFormModel.steps.length - 1].clueToNextWord"
+        [phraseFormField]="_raddleForm.steps[raddleFormModel.steps.length - 1].phraseToNextWord"
+        [fromWord]="raddleFormModel.steps[raddleFormModel.steps.length - 1].word"
+        [toWord]="raddleFormModel.lastWord"
+      />
+
+      <!-- Last word input -->
+      <mat-form-field>
+        <mat-label>Word {{ raddleFormModel.steps.length + 1 }}</mat-label>
+        <input matInput [formField]="_raddleForm.lastWord" class="word-input" />
 
         @for (error of _raddleForm.lastWord().errors(); track $index) {
           <mat-error>{{ error.message }}</mat-error>

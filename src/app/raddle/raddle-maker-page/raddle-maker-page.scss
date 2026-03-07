@@ -18,6 +18,11 @@ main {
 
     mat-form-field {
       width: 100%;
+
+      .word-input {
+        font-family: "Google Sans Code", monospace;
+        text-transform: uppercase;
+      }
     }
 
     section {
@@ -42,6 +47,10 @@ main {
           margin: 0;
         }
       }
+    }
+
+    app-raddle-maker-step-separator {
+      margin-bottom: 1rem;
     }
 
     #form_actions {
