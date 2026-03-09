@@ -2,9 +2,10 @@ import {Component, computed, inject, input, output} from '@angular/core';
 import {FieldTree} from '@angular/forms/signals';
 import {MatIconButton} from '@angular/material/button';
 import {MatIcon, MatIconRegistry} from '@angular/material/icon';
-import {ClueToken, tokenizeClue} from '../../tokenize-clue';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {DomSanitizer} from '@angular/platform-browser';
+import {MatDivider} from '@angular/material/list';
+import {RaddleMakerClueRenderer} from '../raddle-maker-clue-renderer/raddle-maker-clue-renderer';
 
 @Component({
   selector: 'app-raddle-maker-step-separator',
@@ -13,7 +14,9 @@ import {DomSanitizer} from '@angular/platform-browser';
     MatIcon,
     MatMenuTrigger,
     MatMenu,
-    MatMenuItem
+    MatMenuItem,
+    MatDivider,
+    RaddleMakerClueRenderer
   ],
   templateUrl: './raddle-maker-step-separator.html',
   styleUrl: './raddle-maker-step-separator.scss',
@@ -24,23 +27,7 @@ export class RaddleMakerStepSeparator {
   public readonly fromWord = input.required<string>();
   public readonly toWord = input.required<string>();
 
-  public readonly editClick = output<void>();
-
-  protected readonly _clueTokens = computed<ClueToken[]>(() => {
-    const clueFormField = this.clueFormField()();
-    const clueValue = clueFormField.value();
-
-    if (clueValue.trim() === '') {
-      return [{type: 'normal', text: '-'}];
-    }
-
-    const tokens = tokenizeClue(clueValue, this.fromWord(), this.toWord());
-
-    return tokens.map(token => ({
-      type: token.type,
-      text: token.text || '-',
-    }));
-  });
+  public readonly editClueClick = output<void>();
 
   protected readonly _phraseText = computed(() => {
     const phraseValue = this.phraseFormField()().value();

@@ -1,0 +1,65 @@
+@let formIsInvalid = _form().invalid();
+
+<mat-dialog-content>
+  <div id="shortcuts_row">
+    <p><b>Shortcuts:</b></p>
+
+    <!-- preventDefault() prevents the textarea from losing focus -->
+    <button
+      matButton="text"
+      (mousedown)="insertTextIntoTextArea('{from}'); $event.preventDefault()"
+    >
+      {{ '{from}' }}
+    </button>
+
+    <button
+      matButton="text"
+      (mousedown)="insertTextIntoTextArea('{to}'); $event.preventDefault()"
+    >
+      {{ '{to}' }}
+    </button>
+  </div>
+
+  <div id="preview_row">
+    <p><b>Preview:</b></p>
+
+    <app-raddle-maker-clue-renderer
+      [clue]="_form.clue().value()"
+      [fromWord]="_dialogData.fromWord"
+      [toWord]="_dialogData.toWord"
+    />
+  </div>
+
+  <form>
+    <mat-form-field>
+      <mat-label>Clue</mat-label>
+
+      <textarea
+        #clueInput
+        matInput
+        placeholder="{from} says something about {to}"
+        [formField]="_form.clue"
+      ></textarea>
+
+      <mat-hint>
+        {{ '{from} = current word, {to} = next word' }}
+      </mat-hint>
+
+      @for (error of _form.clue().errors(); track $index) {
+        <mat-error>{{ error.message }}</mat-error>
+      }
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button matButton [matDialogClose]="null">Cancel</button>
+  <button
+    matButton="filled"
+    [matDialogClose]="''"
+    id="confirm_button"
+    [disabled]="formIsInvalid"
+  >
+    Confirm
+  </button>
+</mat-dialog-actions>

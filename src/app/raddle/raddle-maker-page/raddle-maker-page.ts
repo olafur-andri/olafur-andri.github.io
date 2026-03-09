@@ -14,6 +14,7 @@ import * as lzString from 'lz-string';
 import {ConfirmResetFormDialog} from './confirm-reset-form-dialog/confirm-reset-form-dialog';
 import {ConfirmResumeFormDialog} from './confirm-resume-form-dialog/confirm-resume-form-dialog';
 import {RaddleMakerStepSeparator} from './raddle-maker-step-separator/raddle-maker-step-separator';
+import {EditClueDialog} from './edit-clue-dialog/edit-clue-dialog';
 
 @Component({
   selector: 'app-raddle-maker-page',
@@ -30,9 +31,9 @@ export class RaddleMakerPage implements OnInit {
       .steps
       .map(step => step.id)
       .reduce((maxSoFar, currentId) => Math.max(maxSoFar, currentId), -Infinity)
-      + 1);
+    + 1);
 
-  private readonly _dialogService = inject(MatDialog);
+  private readonly _dialog = inject(MatDialog);
 
   protected readonly _raddleForm = form(this._raddleFormModel, (schemaPath) => {
     required(schemaPath.lastWord, {message: 'This field is required'});
@@ -62,7 +63,7 @@ export class RaddleMakerPage implements OnInit {
     const defaultFormJson = JSON.stringify(createDefaultFormData());
 
     if (savedData !== null && savedData !== defaultFormJson) {
-      const dialogRef = this._dialogService.open(ConfirmResumeFormDialog, {
+      const dialogRef = this._dialog.open(ConfirmResumeFormDialog, {
         disableClose: true,
       });
 
@@ -105,19 +106,44 @@ export class RaddleMakerPage implements OnInit {
     const raddleSpecJson = JSON.stringify(raddleSpec);
     const raddleSpecCompressed = lzString.compressToEncodedURIComponent(raddleSpecJson);
 
-    this._dialogService.open(
+    this._dialog.open(
       GeneratedLinkDialog,
-      { data: raddleSpecCompressed }
+      {data: raddleSpecCompressed}
     );
   }
 
   protected askThenResetForm() {
-    const dialogRef = this._dialogService.open(ConfirmResetFormDialog);
+    const dialogRef = this._dialog.open(ConfirmResetFormDialog);
 
     dialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
         this._raddleFormModel.set(createDefaultFormData());
       }
+    });
+  }
+
+  protected showEditClueDialog(initialClue: string, fromWord: string, toWord: string) {
+    const dialogRef = this._dialog.open(
+      EditClueDialog,
+      {
+        data: {
+          initialClue,
+          fromWord,
+          toWord,
+        },
+
+        autoFocus: 'textarea',
+        width: '95%',
+        maxWidth: '500px',
+      }
+    );
+
+    dialogRef.afterClosed().subscribe((value: string | null | undefined) => {
+      if (value === null || value === undefined) {
+        return;
+      }
+
+
     });
   }
 }

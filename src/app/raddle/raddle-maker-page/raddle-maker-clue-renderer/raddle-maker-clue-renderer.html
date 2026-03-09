@@ -1,0 +1,15 @@
+@let clueTokens = _clueTokens();
+
+<p>
+  @for (clueToken of clueTokens; track $index) {
+    @switch (clueToken.type) {
+      @case ("normal") {
+        <span>{{ clueToken.text }}</span>
+      } @case("from") {
+        <span class="special-clue-token special-clue-token-from">{{ clueToken.text }}</span>
+      } @case("to") {
+        <span class="special-clue-token special-clue-token-to">{{ clueToken.text }}</span>
+      }
+    }
+  }
+</p>
