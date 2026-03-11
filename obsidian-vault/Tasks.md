@@ -67,20 +67,33 @@
 - [x] The phrases are line-breaking too quickly
 - [x] The Raddle Maker removes more than one step sometimes
     - I think what would solve it is to make the "next free step ID" a computed value that returns the max ID already in use + 1
-- [ ] Create the "edit clue" dialog
+- [x] Create the "edit clue" dialog
 	- [x] Should have a preview for the clue on the dialog as well
 	- [x] Should have buttons where you can add {from} and {to} easily with one click/tap
-	- [ ] ==**Need to actually apply the changes to the form model**==
-- [ ] ==Create a "clue tokenizer" function that is super general, and should be used to beautifully display clues on the Raddle Maker page **and** the clues list on the Raddle page==
-- [ ] The intro text on my home page has a spelling mistake!!
-- [ ] Users should be able to add a step wherever in the Raddle Maker
-- [ ] Users should be able to move a step up or down
-- [ ] The Raddle Maker could benefit from having a layout change
-    - [ ] Each word has an associated input
-    - [ ] In between words, there is an arrow pointing down with a pencil on it. To its left, you have the phrase written out in small text (possibly truncated or multi-line) and on its right, you have the clue.
-    - [ ] The clue should convert {from} and {to} to their respective words so that the user gets a preview of the final result
-    - [ ] If the user presses/clicks the arrow, then a dialog is opened where they can edit the two. The phrase should be a simple text input, but the clue should maybe be a text area (because they usually are a bit longer.
-    - [ ] The dialog has a cancel and save button.
-	- [ ] It's a bit tough to type the "{from}" and "{to}" on a mobile phone, so we should add a convenient way to add those strings with one click/tap
-	- [ ] I have to make sure that the clue and phrase shown on the main Raddle Maker Page have a red outline/indicator if they are erroneous (and that they show the error message associated with it - i.e., that they are required)
-- [ ] As an extra quality of life improvement, Angular dialogs can take CSS selectors as the "first focused" element property, meaning that we can always make the "yes" option start off as focused.
+	- [x] Need to actually apply the changes to the form model
+
+- [x] I should be able to press *Enter* when editing the phrase, which should do the same as pressing "Confirm"
+	- [x] Make sure that *Enter* doesn't go through if the form is invalid
+- [x] Create a component that is only responsible for rendering a special clue token (same component should be able to handle the `fromWord` and `toWord`)
+	- [x] Make sure to use that component in the Raddle Page as well
+- [x] The (Raddle Maker-specific) clue previewer does not append the `toWord` to the back of the preview if it's not included in the clue itself, but it should do that
+- [x] Create a "clue tokenizer" function that is super general, and should be used to beautifully display clues on the Raddle Maker page
+- [x] The intro text on my home page has a spelling mistake!!
+- [x] Users should be able to add a step wherever in the Raddle Maker
+	- [x] Just need to add an "**+ Add**" button after the last word
+- [x] Users should be able to move a step up or down
+- [x] Users should be able to delete any step
+- [x] The Raddle Maker could benefit from having a layout change
+    - [x] Each word has an associated input
+    - [x] Phrase  & clue preview
+    - [x] The clue should convert {from} and {to} to their respective words so that the user gets a preview of the final result
+    - [x] If the user presses/clicks the arrow, then a dialog is opened where they can edit the two. The phrase should be a simple text input, but the clue should maybe be a text area (because they usually are a bit longer.
+    - [x] The dialog has a cancel and save button.
+	- [x] It's a bit tough to type the "{from}" and "{to}" on a mobile phone, so we should add a convenient way to add those strings with one click/tap
+	- [x] I have to make sure that the clue and phrase shown on the main Raddle Maker Page have a red outline/indicator if they are erroneous (and that they show the error message associated with it - i.e., that they are required)
+- [x] As an extra quality of life improvement, Angular dialogs can take CSS selectors as the "first focused" element property, meaning that we can always make the "yes" option start off as focused.
+
+- [ ] ==Send the following custom Raddle to Lotte:==
+```
+N4IglgJiBcIIYGMBsAWADHAHAMwLQFMFtNcUBWFFXTTNNXAZgCMAmM7CffARgE4EmIADQgATgDsA5gGUuUaChYi4AVwAuACwD2omCADLAGzAACAEIBn48JDYwogM5rpa-AAcYoAO475IQ-jYajYIhir4ACpaAHL4AB5qAOq%2BegCC4nCSonAAtibA2KJaOQC%2BJmpaJpL4aiZwJthwTKJgCDZuGtkOkTHxSSmw6ZnZOTn4UCUiYOKuomMQYHCuLu4OMADa3gO2%2BIbBIqHhUbEJyaJ%2BAMIacFL45Rp3do61AWqzJtP5hcVlFVU1dRMbjAhDuWmwJlCWk000k7U6cG6xz6Zz8EMASYQmQSTLbnPRMXb7ECHHonfp4wZfIqlSE3LF3fBgTT4UTlMCSDS1HT5ColeFdUko7YIOkEkA4kA%2BCn%2BLRabohMKC07bABK%2BByWgAbnd6q93t88gVqb9Ko0wIZ%2BYileS-LgtOKhLi-IY5fgFUdesrpQBJCEATy0KipPzqhkM9zuajAYyEEfEJgDQZyKic9JMEC0sJMDmKNQ0WeAvMtSM9Nr0YH9gfTlSZDqdei8RSk7utqL0AHk3G45UywRCjT9i63tjpxQBdESGRFl2AtDnBEpAA
+```

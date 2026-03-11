@@ -1,0 +1,14 @@
+.special-clue-token {
+  font-family: "Google Sans Code", monospace;
+  text-transform: uppercase;
+
+  &.special-clue-token-from {
+    background-color: var(--mat-sys-surface-variant);
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  &.special-clue-token-to {
+    background-color: var(--mat-sys-primary-container);
+    color: var(--mat-sys-on-primary-container);
+  }
+}

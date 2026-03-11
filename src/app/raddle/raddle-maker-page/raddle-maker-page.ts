@@ -13,12 +13,18 @@ import {GeneratedLinkDialog} from './generated-link-dialog/generated-link-dialog
 import * as lzString from 'lz-string';
 import {ConfirmResetFormDialog} from './confirm-reset-form-dialog/confirm-reset-form-dialog';
 import {ConfirmResumeFormDialog} from './confirm-resume-form-dialog/confirm-resume-form-dialog';
-import {RaddleMakerStepSeparator} from './raddle-maker-step-separator/raddle-maker-step-separator';
+import {RaddleMakerStepActions} from './raddle-maker-step-actions/raddle-maker-step-actions';
 import {EditClueDialog} from './edit-clue-dialog/edit-clue-dialog';
+import {EditPhraseDialog} from './edit-phrase-dialog/edit-phrase-dialog';
+import {MatCard, MatCardContent} from '@angular/material/card';
+import {
+  ConfirmDeleteStepDialog,
+  ConfirmDeleteStepDialogData
+} from './confirm-delete-step-dialog/confirm-delete-step-dialog';
 
 @Component({
   selector: 'app-raddle-maker-page',
-  imports: [RaddleFooter, MatFormFieldModule, FormField, MatInputModule, MatExpansionModule, MatDivider, MatButton, MatIcon, RaddleMakerStepSeparator],
+  imports: [RaddleFooter, MatFormFieldModule, FormField, MatInputModule, MatExpansionModule, MatDivider, MatButton, MatIcon, RaddleMakerStepActions, MatCard, MatCardContent],
   templateUrl: './raddle-maker-page.html',
   styleUrl: './raddle-maker-page.scss',
 })
@@ -65,6 +71,7 @@ export class RaddleMakerPage implements OnInit {
     if (savedData !== null && savedData !== defaultFormJson) {
       const dialogRef = this._dialog.open(ConfirmResumeFormDialog, {
         disableClose: true,
+        autoFocus: '#confirm_button',
       });
 
       dialogRef.afterClosed().subscribe(confirmed => {
@@ -106,10 +113,10 @@ export class RaddleMakerPage implements OnInit {
     const raddleSpecJson = JSON.stringify(raddleSpec);
     const raddleSpecCompressed = lzString.compressToEncodedURIComponent(raddleSpecJson);
 
-    this._dialog.open(
-      GeneratedLinkDialog,
-      {data: raddleSpecCompressed}
-    );
+    this._dialog.open(GeneratedLinkDialog, {
+      data: raddleSpecCompressed,
+      autoFocus: '#confirm_button',
+    });
   }
 
   protected askThenResetForm() {
@@ -122,28 +129,161 @@ export class RaddleMakerPage implements OnInit {
     });
   }
 
-  protected showEditClueDialog(initialClue: string, fromWord: string, toWord: string) {
-    const dialogRef = this._dialog.open(
-      EditClueDialog,
-      {
-        data: {
-          initialClue,
-          fromWord,
-          toWord,
-        },
+  protected showEditClueDialog(initialClue: string, fromWord: string, toWord: string, clueStepId: number) {
+    const dialogRef = this._dialog.open(EditClueDialog, {
+      data: { initialClue, fromWord, toWord },
+      autoFocus: 'textarea',
+      width: EDIT_DIALOG_WIDTH,
+      maxWidth: EDIT_DIALOG_MAX_WIDTH,
+    });
 
-        autoFocus: 'textarea',
-        width: '95%',
-        maxWidth: '500px',
-      }
-    );
-
-    dialogRef.afterClosed().subscribe((value: string | null | undefined) => {
-      if (value === null || value === undefined) {
+    dialogRef.afterClosed().subscribe((newClue: string | null | undefined) => {
+      if (newClue === null || newClue === undefined) {
         return;
       }
 
+      this._raddleFormModel.update(form => ({
+        ...form,
+        steps: form.steps.map(step => ({
+          ...step,
+          clueToNextWord: step.id === clueStepId
+            ? newClue
+            : step.clueToNextWord
+        })),
+      }));
+    });
+  }
 
+  protected showEditPhraseDialog(initialPhrase: string, fromWord: string, toWord: string, phraseStepId: number) {
+    const dialogRef = this._dialog.open(EditPhraseDialog, {
+      data: { initialPhrase, fromWord, toWord },
+      autoFocus: 'input',
+      width: EDIT_DIALOG_WIDTH,
+      maxWidth: EDIT_DIALOG_MAX_WIDTH,
+    });
+
+    dialogRef.afterClosed().subscribe((newPhrase: string | null | undefined) => {
+      if (newPhrase === null || newPhrase === undefined) {
+        return;
+      }
+
+      this._raddleFormModel.update(form => ({
+        ...form,
+        steps: form.steps.map(step => ({
+          ...step,
+          phraseToNextWord: step.id === phraseStepId
+            ? newPhrase
+            : step.phraseToNextWord
+        })),
+      }));
+    });
+  }
+
+  protected showDeleteStepDialog(stepId: number, stepWord: string) {
+    const currentNrOfSteps = untracked(this._raddleFormModel).steps.length;
+
+    if (currentNrOfSteps <= 1) {
+      throw new Error('Cannot delete the last step');
+    }
+
+    const dialogRef = this._dialog.open(ConfirmDeleteStepDialog, {
+      data: <ConfirmDeleteStepDialogData>{ stepWord },
+      autoFocus: 'first-tabbable',
+      width: EDIT_DIALOG_WIDTH,
+      maxWidth: EDIT_DIALOG_MAX_WIDTH,
+    })
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean | null | undefined) => {
+      if (!confirmed) {
+        return;
+      }
+
+      this._raddleFormModel.update(form => ({
+        ...form,
+        steps: form.steps.filter(step => step.id !== stepId),
+      }));
+    })
+  }
+
+  protected swapStepWithNext(stepId: number) {
+    const steps = untracked(this._raddleFormModel).steps;
+    const stepIndex = steps.findIndex(step => step.id === stepId);
+
+    if (stepIndex < 0) {
+      throw new Error('Cannot swap step with the next one because the requested step was not found');
+    }
+
+    const nextStepIndex = stepIndex + 1;
+
+    if (nextStepIndex >= steps.length) {
+      throw new Error('Cannot swap step with the next one because the next step is the last word');
+    }
+
+    // perform the swap
+    const newSteps = [...steps];
+    [newSteps[stepIndex], newSteps[nextStepIndex]] = [newSteps[nextStepIndex], newSteps[stepIndex]];
+
+    untracked(() => {
+      this._raddleFormModel.update(form => ({
+        ...form,
+        steps: newSteps,
+      }));
+    });
+  }
+
+  protected prependStep() {
+    untracked(() => {
+      this._raddleFormModel.update(form => ({
+        ...form,
+        steps: [
+          {
+            id: untracked(this._nextStepId),
+            word: '',
+            phraseToNextWord: '',
+            clueToNextWord: '',
+          },
+          ...form.steps,
+        ],
+      }));
+    });
+  }
+
+  protected insertStepBelow(stepId: number) {
+    const steps = untracked(this._raddleFormModel).steps;
+    const stepIndex = steps.findIndex(step => step.id === stepId);
+
+    if (stepIndex < 0) {
+      throw new Error('Cannot insert step below the requested step because the requested step was not found');
+    }
+
+    const newSteps = [...steps];
+    newSteps.splice(stepIndex + 1, 0, {
+      id: untracked(this._nextStepId),
+      word: '',
+      clueToNextWord: '',
+      phraseToNextWord: '',
+    });
+
+    untracked(() => {
+      this._raddleFormModel.update(form => ({
+        ...form,
+        steps: newSteps,
+      }));
+    });
+  }
+
+  protected appendStep() {
+    untracked(() => {
+      this._raddleFormModel.update(form => ({
+        ...form,
+        steps: [...form.steps, {
+          id: untracked(this._nextStepId),
+          word: form.lastWord,
+          clueToNextWord: '',
+          phraseToNextWord: '',
+        }],
+        lastWord: '',
+      }));
     });
   }
 }
@@ -203,3 +343,5 @@ interface RaddleStepData {
 }
 
 const LOCAL_STORAGE_KEY = 'raddle-maker-form-data';
+const EDIT_DIALOG_WIDTH = '95%';
+const EDIT_DIALOG_MAX_WIDTH = '500px';

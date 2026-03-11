@@ -11,14 +11,6 @@
   align-items: stretch;
   gap: 0.3rem;
 
-  #arrow_column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: color-mix(in srgb, var(--mat-sys-on-surface) 38%, transparent);
-  }
-
   #action_buttons_container {
     display: flex;
     flex-direction: column;
@@ -34,7 +26,7 @@
 
     &#clue_column {
       align-items: flex-start;
-      flex: 2;
+      flex: 1;
 
       .special-clue-token {
         font-family: "Google Sans Code", monospace;

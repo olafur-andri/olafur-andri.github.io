@@ -1,4 +1,6 @@
 @let clueTokens = _clueTokens();
+@let toWordIsIncludedInClue = _toWordIsIncludedInClue();
+@let toWord = this.toWord();
 
 <p>
   @for (clueToken of clueTokens; track $index) {
@@ -6,10 +8,15 @@
       @case ("normal") {
         <span>{{ clueToken.text }}</span>
       } @case("from") {
-        <span class="special-clue-token special-clue-token-from">{{ clueToken.text }}</span>
+        <app-clue-special-token [text]="clueToken.text" type="from" />
       } @case("to") {
-        <span class="special-clue-token special-clue-token-to">{{ clueToken.text }}</span>
+        <app-clue-special-token [text]="clueToken.text" type="to" />
       }
     }
+  }
+
+  @if (!toWordIsIncludedInClue) {
+    →
+    <app-clue-special-token [text]="toWord" type="to" />
   }
 </p>
