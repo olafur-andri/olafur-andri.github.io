@@ -49,10 +49,6 @@ main {
       }
     }
 
-    app-raddle-maker-step-separator {
-      margin-bottom: 1rem;
-    }
-
     #form_actions {
       display: flex;
       flex-direction: row;
@@ -65,4 +61,30 @@ main {
   mat-expansion-panel {
     width: 100%;
   }
+}
+
+#step_cards_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+}
+
+.step-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.between-steps-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }

@@ -1,9 +1,12 @@
 import {Component, computed, input} from '@angular/core';
-import {ClueToken, tokenizeClue} from '../../tokenize-clue';
+import {ClueToken, tokenizeClue} from '../tokenize-clue';
+import {ClueSpecialToken} from '../../clue-special-token/clue-special-token';
 
 @Component({
   selector: 'app-raddle-maker-clue-renderer',
-  imports: [],
+  imports: [
+    ClueSpecialToken
+  ],
   templateUrl: './raddle-maker-clue-renderer.html',
   styleUrl: './raddle-maker-clue-renderer.scss',
 })
@@ -26,4 +29,9 @@ export class RaddleMakerClueRenderer {
       text: token.text || '-',
     }));
   });
+
+  protected readonly _toWordIsIncludedInClue = computed(() =>
+    this
+      ._clueTokens()
+      .some(token => token.type === 'to'));
 }

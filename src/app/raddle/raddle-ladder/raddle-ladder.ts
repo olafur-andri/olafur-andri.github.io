@@ -161,6 +161,7 @@ export class RaddleLadder {
 
     const confirmDialogRef = this._dialogService.open(RaddleConfirmHintDialog, {
       data: getConfirmDialogData(newHintLevel),
+      autoFocus: '#confirm_button',
     });
 
     confirmDialogRef.afterClosed().subscribe(confirmed => {

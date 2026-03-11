@@ -6,15 +6,15 @@
 
     <!-- preventDefault() prevents the textarea from losing focus -->
     <button
-      matButton="text"
-      (mousedown)="insertTextIntoTextArea('{from}'); $event.preventDefault()"
+      matButton="outlined"
+      (pointerdown)="insertTextIntoTextArea('{from}'); $event.preventDefault()"
     >
       {{ '{from}' }}
     </button>
 
     <button
-      matButton="text"
-      (mousedown)="insertTextIntoTextArea('{to}'); $event.preventDefault()"
+      matButton="outlined"
+      (pointerdown)="insertTextIntoTextArea('{to}'); $event.preventDefault()"
     >
       {{ '{to}' }}
     </button>
@@ -31,15 +31,10 @@
   </div>
 
   <form>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Clue</mat-label>
 
-      <textarea
-        #clueInput
-        matInput
-        placeholder="{from} says something about {to}"
-        [formField]="_form.clue"
-      ></textarea>
+      <textarea #clueInput matInput [formField]="_form.clue"></textarea>
 
       <mat-hint>
         {{ '{from} = current word, {to} = next word' }}
@@ -54,12 +49,5 @@
 
 <mat-dialog-actions>
   <button matButton [matDialogClose]="null">Cancel</button>
-  <button
-    matButton="filled"
-    [matDialogClose]="''"
-    id="confirm_button"
-    [disabled]="formIsInvalid"
-  >
-    Confirm
-  </button>
+  <button matButton="filled" [matDialogClose]="_form.clue().value()" [disabled]="formIsInvalid">Confirm</button>
 </mat-dialog-actions>

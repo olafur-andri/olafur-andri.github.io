@@ -1,0 +1,30 @@
+@let formIsInvalid = _form().invalid();
+
+<mat-dialog-content>
+  <div id="preview_row">
+    <p><b>Preview:</b></p>
+
+    <app-raddle-maker-phrase-renderer
+      [fromWord]="_dialogData.fromWord"
+      [toWord]="_dialogData.toWord"
+      [phrase]="_form.phrase().value()"
+    />
+  </div>
+
+  <form (ngSubmit)="onFormSubmitted()">
+    <mat-form-field appearance="outline">
+      <mat-label>Phrase</mat-label>
+      <input matInput [formField]="_form.phrase" />
+      <mat-hint>Short phrase that connects both words</mat-hint>
+
+      @for (error of _form.phrase().errors(); track $index) {
+        <mat-error>{{ error.message }}</mat-error>
+      }
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button matButton [matDialogClose]="null">Cancel</button>
+  <button matButton="filled" [matDialogClose]="_form.phrase().value()" [disabled]="formIsInvalid">Confirm</button>
+</mat-dialog-actions>

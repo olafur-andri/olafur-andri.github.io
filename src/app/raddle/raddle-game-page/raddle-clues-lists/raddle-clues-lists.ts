@@ -1,11 +1,13 @@
 import {Component, computed, input} from '@angular/core';
 import {RaddleSolveDirection, RaddleState, RaddleStateStep} from '../raddle-game-page';
 import {MatDivider} from '@angular/material/list';
+import {ClueSpecialToken} from '../../clue-special-token/clue-special-token';
 
 @Component({
   selector: 'app-raddle-clues-lists',
   imports: [
-    MatDivider
+    MatDivider,
+    ClueSpecialToken
   ],
   templateUrl: './raddle-clues-lists.html',
   styleUrl: './raddle-clues-lists.scss',

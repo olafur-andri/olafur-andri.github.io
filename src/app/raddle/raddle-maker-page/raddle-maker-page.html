@@ -8,85 +8,11 @@
         <mat-divider />
       </div>
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Author</mat-label>
         <input matInput [formField]="_raddleForm.author" />
 
         @for (error of _raddleForm.author().errors(); track $index) {
-          <mat-error>{{ error.message }}</mat-error>
-        }
-      </mat-form-field>
-    </section>
-
-    @for (step of raddleFormModel.steps; track step.id) {
-      <section>
-        <div class="section-heading">
-          <h4>Step {{ $index + 1 }}</h4>
-          <mat-divider />
-        </div>
-
-        <mat-form-field>
-          <mat-label>Word</mat-label>
-          <input matInput [formField]="_raddleForm.steps[$index].word" />
-
-          @for (error of _raddleForm.steps[$index].word().errors(); track $index) {
-            <mat-error>{{ error.message }}</mat-error>
-          }
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Clue to next word</mat-label>
-          <input matInput [formField]="_raddleForm.steps[$index].clueToNextWord" placeholder="{from} says something about {to}" />
-          <mat-hint>&#123;from&#125; = current word, &#123;to&#125; = next word</mat-hint>
-
-          @for (error of _raddleForm.steps[$index].clueToNextWord().errors(); track $index) {
-            <mat-error>{{ error.message }}</mat-error>
-          }
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Phrase to next word</mat-label>
-          <input matInput [formField]="_raddleForm.steps[$index].phraseToNextWord" />
-          <mat-hint>Displayed between this word and the next one</mat-hint>
-
-          @for (error of _raddleForm.steps[$index].phraseToNextWord().errors(); track $index) {
-            <mat-error>{{ error.message }}</mat-error>
-          }
-        </mat-form-field>
-
-        @if (!$first) {
-          <button
-            matButton
-            type="button"
-            (click)="removeStep(step.id)"
-          >
-            <mat-icon fontIcon="remove" />
-            Remove step
-          </button>
-        }
-      </section>
-    }
-
-    <button
-      matButton
-      type="button"
-      (click)="addStep()"
-    >
-      <mat-icon fontIcon="add" />
-      Add step
-    </button>
-
-    <section>
-      <div class="section-heading">
-        <h4>Last word</h4>
-        <mat-divider />
-      </div>
-
-      <mat-form-field>
-        <mat-label>Word</mat-label>
-        <input matInput [formField]="_raddleForm.lastWord" />
-
-        @for (error of _raddleForm.lastWord().errors(); track $index) {
           <mat-error>{{ error.message }}</mat-error>
         }
       </mat-form-field>
@@ -98,40 +24,78 @@
         <mat-divider />
       </div>
 
-      @for (step of raddleFormModel.steps; track step.id) {
-        <!-- Word input -->
-        <mat-form-field>
-          <mat-label>Word {{ $index + 1 }}</mat-label>
-          <input matInput [formField]="_raddleForm.steps[$index].word" class="word-input" />
+      <div id="step_cards_container">
+        <div class="between-steps-actions">
+          <button matButton type="button" (click)="prependStep()">
+            <mat-icon fontIcon="add" /> New step
+          </button>
+        </div>
 
-          @for (error of _raddleForm.lastWord().errors(); track $index) {
-            <mat-error>{{ error.message }}</mat-error>
-          }
-        </mat-form-field>
-      }
+        @for (step of raddleFormModel.steps; track step.id) {
+          <mat-card appearance="outlined">
+            <mat-card-content class="step-card-content">
+              <!-- Word input -->
+              <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                <mat-label>Word {{ $index + 1 }}</mat-label>
+                <input matInput [formField]="_raddleForm.steps[$index].word" class="word-input" />
 
-      <app-raddle-maker-step-separator
-        [clueFormField]="_raddleForm.steps[raddleFormModel.steps.length - 1].clueToNextWord"
-        [phraseFormField]="_raddleForm.steps[raddleFormModel.steps.length - 1].phraseToNextWord"
-        [fromWord]="raddleFormModel.steps[raddleFormModel.steps.length - 1].word"
-        [toWord]="raddleFormModel.lastWord"
+                @for (error of _raddleForm.steps[$index].word().errors(); track $index) {
+                  <mat-error>{{ error.message }}</mat-error>
+                }
+              </mat-form-field>
 
-        (editClueClick)="showEditClueDialog(
-          raddleFormModel.steps[raddleFormModel.steps.length - 1].clueToNextWord,
-          raddleFormModel.steps[raddleFormModel.steps.length - 1].word,
-          raddleFormModel.lastWord
-        )"
-      />
+              <!-- Card actions -->
+              @let fromWord = step.word;
+              @let toWord = $last
+                ? raddleFormModel.lastWord
+                : raddleFormModel.steps[$index + 1].word;
 
-      <!-- Last word input -->
-      <mat-form-field>
-        <mat-label>Word {{ raddleFormModel.steps.length + 1 }}</mat-label>
-        <input matInput [formField]="_raddleForm.lastWord" class="word-input" />
+              <app-raddle-maker-step-actions
+                [clueFormField]="_raddleForm.steps[$index].clueToNextWord"
+                [phraseFormField]="_raddleForm.steps[$index].phraseToNextWord"
+                [fromWord]="fromWord"
+                [toWord]="toWord"
+                [showDeleteAction]="raddleFormModel.steps.length > 1"
+                (editClueClick)="showEditClueDialog(step.clueToNextWord, fromWord, toWord, step.id)"
+                (editPhraseClick)="showEditPhraseDialog(step.phraseToNextWord, fromWord, toWord, step.id)"
+                (deleteStepClick)="showDeleteStepDialog(step.id, step.word)"
+              />
+            </mat-card-content>
+          </mat-card>
 
-        @for (error of _raddleForm.lastWord().errors(); track $index) {
-          <mat-error>{{ error.message }}</mat-error>
+          <div class="between-steps-actions">
+            <button matButton type="button" (click)="insertStepBelow(step.id)">
+              <mat-icon fontIcon="add" /> New step
+            </button>
+
+            @if (!$last) {
+              <button matButton type="button" (click)="swapStepWithNext(step.id)">
+                <mat-icon fontIcon="swap_vert" /> Swap
+              </button>
+            }
+          </div>
         }
-      </mat-form-field>
+
+        <!-- Last word input -->
+        <mat-card appearance="outlined">
+          <mat-card-content class="step-card-content">
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <mat-label>Word {{ raddleFormModel.steps.length + 1 }}</mat-label>
+              <input matInput [formField]="_raddleForm.lastWord" class="word-input" />
+
+              @for (error of _raddleForm.lastWord().errors(); track $index) {
+                <mat-error>{{ error.message }}</mat-error>
+              }
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+
+        <div class="between-steps-actions">
+          <button matButton type="button" (click)="appendStep()">
+            <mat-icon fontIcon="add" /> New step
+          </button>
+        </div>
+      </div>
     </section>
 
     <mat-expansion-panel>

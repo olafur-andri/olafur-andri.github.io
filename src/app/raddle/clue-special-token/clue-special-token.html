@@ -1,0 +1,4 @@
+@let text = this.text();
+@let type = this.type();
+
+<span class="special-clue-token" [class.special-clue-token-from]="type === 'from'" [class.special-clue-token-to]="type === 'to'">{{ text || '-' }}</span>

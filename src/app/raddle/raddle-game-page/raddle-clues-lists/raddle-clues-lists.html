@@ -19,9 +19,9 @@
                 } @case ("normal") {
                   <span>{{ segment.text }}</span>
                 } @case ("from") {
-                  <span class="from">{{ segment.text }}</span>
+                  <app-clue-special-token [text]="segment.text" type="from" />
                 } @case ("to") {
-                  <span class="to">{{ segment.text }}</span>
+                  <app-clue-special-token [text]="segment.text" type="to" />
                 }
               }
             }
@@ -50,9 +50,9 @@
                 } @case ("normal") {
                   <span>{{ segment.text }}</span>
                 } @case ("from") {
-                  <span class="from">{{ segment.text }}</span>
+                  <app-clue-special-token [text]="segment.text" type="from" />
                 } @case ("to") {
-                  <span class="to">{{ segment.text }}</span>
+                  <app-clue-special-token [text]="segment.text" type="to" />
                 }
               }
             }
@@ -78,9 +78,9 @@
                   } @case ("normal") {
                     <span>{{ segment.text }}</span>
                   } @case ("from") {
-                    <span class="from">{{ segment.text }}</span>
+                    <app-clue-special-token [text]="segment.text" type="from" />
                   } @case ("to") {
-                    <span class="to">{{ segment.text }}</span>
+                    <app-clue-special-token [text]="segment.text" type="to" />
                   }
                 }
               }

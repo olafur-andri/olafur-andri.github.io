@@ -1,0 +1,9 @@
+@let fromWord = this.fromWord() || '-';
+@let toWord = this.toWord() || '-';
+@let phrase = this.phrase() || '-';
+
+<span id="phrase_value" class="value">
+  <app-clue-special-token [text]="fromWord" type="from" />
+  → {{ phrase }} →
+  <app-clue-special-token [text]="toWord" type="to" />
+</span>
